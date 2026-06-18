@@ -3,199 +3,231 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
-<meta name="theme-color" content="#1b4332" />
+<meta name="theme-color" content="#15140f" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Fairway Freedom" />
 <title>Fairway Freedom Pass</title>
 <style>
   :root{
-    --green:#1b4332; --green2:#2d6a4f; --green3:#40916c; --mint:#d8f3dc;
-    --gold:#c9a227; --gold-soft:#e9d8a6; --ink:#1d2421; --muted:#5a6b62;
-    --cream:#faf8f3; --card:#ffffff; --line:#e3e8e3; --danger:#b23a3a;
+    --ink:#15140f; --bg:#ffffff; --bg2:#f6f5f1; --card:#ffffff;
+    --green:#1f7a4d; --green-dk:#11402a; --gold:#bE9b2e; --muted:#74726a; --line:#ececE6;
     --safe-bottom: env(safe-area-inset-bottom, 0px);
     --safe-top: env(safe-area-inset-top, 0px);
   }
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   html,body{height:100%}
   body{
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-    color:var(--ink);background:var(--cream);line-height:1.5;-webkit-font-smoothing:antialiased;
-    overscroll-behavior-y:none;
+    font-family:'Helvetica Neue',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.45;-webkit-font-smoothing:antialiased;
+    overscroll-behavior-y:none;letter-spacing:-0.01em;
   }
-  #app{max-width:480px;margin:0 auto;min-height:100%;background:var(--cream);position:relative;
-    box-shadow:0 0 60px rgba(27,67,50,.08)}
-  .screen{display:none;padding:0 0 110px;min-height:100vh;animation:fade .25s ease}
+  #app{max-width:480px;margin:0 auto;min-height:100%;background:var(--bg);position:relative}
+  .screen{display:none;padding:0 0 104px;min-height:100vh;animation:fade .28s ease}
   .screen.active{display:block}
-  @keyframes fade{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}
-  button{font-family:inherit;cursor:pointer;border:none;background:none}
-  h1,h2,h3{line-height:1.18;letter-spacing:-0.01em}
-  .pad{padding:0 18px}
+  @keyframes fade{from{opacity:.3;transform:translateY(8px)}to{opacity:1;transform:none}}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+  h1,h2,h3{line-height:1.08;letter-spacing:-0.035em;font-weight:800}
+  .pad{padding:0 20px}
+  img{display:block;max-width:100%}
 
-  .appbar{position:sticky;top:0;z-index:30;background:var(--green);color:#fff;
-    padding:calc(var(--safe-top) + 14px) 18px 14px;display:flex;align-items:center;justify-content:space-between}
-  .appbar .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:17px;letter-spacing:-.02em}
-  .appbar .brand .ball{font-size:19px}
-  .appbar .pill{font-size:11px;font-weight:700;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);
-    padding:5px 11px;border-radius:999px;color:var(--gold-soft);text-transform:uppercase;letter-spacing:.06em}
+  /* Top bar */
+  .topbar{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);
+    padding:calc(var(--safe-top) + 16px) 20px 12px;display:flex;align-items:center;justify-content:space-between;
+    border-bottom:1px solid var(--line)}
+  .topbar .logo{font-size:18px;font-weight:800;letter-spacing:-.04em;display:flex;align-items:center;gap:7px}
+  .topbar .logo .mk{width:24px;height:24px;border-radius:7px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px}
+  .topbar .credits{font-size:12.5px;font-weight:700;background:var(--bg2);border:1px solid var(--line);padding:7px 12px;border-radius:999px;display:flex;gap:6px;align-items:center}
+  .topbar .credits b{color:var(--green)}
 
-  .hero{background:linear-gradient(160deg,var(--green) 0%,var(--green2) 62%,var(--green3) 100%);
-    color:#fff;padding:30px 18px 34px;position:relative;overflow:hidden}
-  .hero::after{content:"⛳";position:absolute;right:-18px;bottom:-34px;font-size:180px;opacity:.08}
-  .hero .eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:800;color:var(--gold-soft)}
-  .hero h1{font-size:31px;font-weight:800;margin:10px 0 8px;position:relative}
-  .hero p{font-size:15.5px;color:#e8f3ec;max-width:420px;position:relative}
-  .price-chip{display:inline-flex;align-items:baseline;gap:8px;margin-top:20px;background:rgba(255,255,255,.12);
-    border:1px solid rgba(255,255,255,.25);padding:11px 18px;border-radius:999px;font-weight:700;font-size:14px;position:relative}
-  .price-chip b{color:var(--gold-soft);font-size:21px}
+  /* Buttons */
+  .btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+    background:var(--ink);color:#fff;font-weight:700;font-size:16px;padding:17px;border-radius:999px;letter-spacing:-.01em;
+    transition:transform .08s,opacity .2s}
+  .btn:active{transform:scale(.98)}
+  .btn.green{background:var(--green)}
+  .btn.outline{background:transparent;border:1.6px solid var(--ink);color:var(--ink)}
+  .btn.ghost{background:var(--bg2);color:var(--ink)}
+  .btn[disabled]{opacity:.4;pointer-events:none}
 
-  .btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;
-    background:var(--gold);color:#3a2e05;font-weight:800;font-size:16px;padding:16px;border-radius:14px;
-    box-shadow:0 6px 18px rgba(201,162,39,.3);transition:transform .08s,box-shadow .2s}
-  .btn:active{transform:scale(.985)}
-  .btn.green{background:var(--green2);color:#fff;box-shadow:0 6px 18px rgba(27,67,50,.22)}
-  .btn.outline{background:transparent;border:1.5px solid var(--line);color:var(--green);box-shadow:none;font-weight:700}
-  .btn.sm{padding:12px;font-size:14px;border-radius:11px}
-  .btn[disabled]{opacity:.5;pointer-events:none;filter:grayscale(.3)}
+  /* Hero (non-member) */
+  .hero{position:relative;height:62vh;min-height:440px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;color:#fff}
+  .hero .photo{position:absolute;inset:0}
+  .hero .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,20,12,.05) 0%,rgba(10,20,12,.15) 45%,rgba(10,18,11,.82) 100%)}
+  .hero .inner{position:relative;padding:0 22px 30px}
+  .hero .eyebrow{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#e9d8a6;margin-bottom:12px}
+  .hero h1{font-size:42px;font-weight:800;letter-spacing:-.045em;line-height:.98}
+  .hero p{font-size:15.5px;color:#eef2ec;margin-top:12px;max-width:380px;letter-spacing:-.005em}
+  .hero .price{display:flex;align-items:baseline;gap:8px;margin-top:18px;font-weight:600;font-size:14px;color:#dfe7df}
+  .hero .price b{font-size:30px;font-weight:800;color:#fff;letter-spacing:-.04em}
 
-  .section{padding:22px 18px 6px}
-  .section h2{font-size:20px;font-weight:800}
-  .section .sub{color:var(--muted);font-size:14px;margin-top:3px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;
-    box-shadow:0 4px 16px rgba(27,67,50,.05)}
-  .stat-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
-  .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
-  .stat .n{font-size:24px;font-weight:800;color:var(--green)}
-  .stat .l{font-size:12px;color:var(--muted);font-weight:600;margin-top:2px}
-  .stat.gold .n{color:var(--gold)}
+  /* Sections */
+  .section{padding:26px 20px 6px}
+  .section .eyebrow{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .section h2{font-size:26px;margin-top:8px}
+  .section .sub{color:var(--muted);font-size:14.5px;margin-top:7px;letter-spacing:-.005em}
 
-  .split{display:flex;border-radius:14px;overflow:hidden;border:1px solid var(--line);margin-top:14px}
-  .split .seg{padding:16px;color:#fff}
-  .split .take{flex:15;background:var(--gold);color:#3a2e05;min-width:92px}
-  .split .escrow{flex:85;background:var(--green2)}
-  .split .pct{font-size:22px;font-weight:800;line-height:1}
-  .split .amt{font-size:12px;opacity:.92;margin-top:3px}
-  .split .lbl{font-size:11.5px;font-weight:600;margin-top:8px;opacity:.95}
+  /* How-it-works steps */
+  .steps{display:grid;gap:12px;margin-top:16px}
+  .step{display:flex;gap:14px;align-items:flex-start}
+  .step .num{width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;font-weight:800;font-size:14px;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step b{font-size:15.5px}
+  .step p{font-size:14px;color:var(--muted);margin-top:2px}
 
-  ul.clean{list-style:none;display:grid;gap:11px;margin-top:6px}
-  ul.clean li{display:flex;gap:11px;align-items:flex-start;font-size:14.5px}
-  ul.clean li::before{content:"✓";color:var(--green3);font-weight:800;flex-shrink:0;margin-top:1px}
+  /* Escrow split */
+  .split{display:flex;border-radius:16px;overflow:hidden;margin-top:16px;border:1px solid var(--line)}
+  .split .seg{padding:18px 16px}
+  .split .take{flex:15;background:var(--bg2);min-width:96px}
+  .split .escrow{flex:85;background:var(--green-dk);color:#fff}
+  .split .pct{font-size:24px;font-weight:800;letter-spacing:-.04em}
+  .split .amt{font-size:12.5px;opacity:.85;margin-top:2px}
+  .split .lbl{font-size:11.5px;font-weight:600;margin-top:10px;opacity:.92}
 
-  .search{display:flex;gap:8px;padding:14px 18px 8px;position:sticky;top:0;background:var(--cream);z-index:20}
-  .search input{flex:1;padding:13px 15px;border:1px solid var(--line);border-radius:12px;font-size:15px;background:#fff;color:var(--ink)}
-  .search input:focus{outline:none;border-color:var(--green3)}
-  .chips{display:flex;gap:8px;overflow-x:auto;padding:4px 18px 12px;scrollbar-width:none}
+  /* Membership card (ClassPass-style) */
+  .memcard{position:relative;border-radius:22px;overflow:hidden;color:#fff;padding:22px;
+    background:linear-gradient(135deg,#16402a 0%,#1f7a4d 130%);box-shadow:0 16px 36px rgba(17,64,42,.28)}
+  .memcard .glow{position:absolute;right:-40px;top:-60px;width:180px;height:180px;border-radius:50%;
+    background:radial-gradient(circle,rgba(233,216,166,.5),transparent 65%)}
+  .memcard .top{display:flex;justify-content:space-between;align-items:flex-start;position:relative}
+  .memcard .tier{font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#e9d8a6}
+  .memcard .nm{font-size:22px;font-weight:800;margin-top:6px;letter-spacing:-.03em}
+  .memcard .id{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#cfe6d8;margin-top:4px;letter-spacing:.06em}
+  .memcard .qr{width:58px;height:58px;border-radius:11px;background:#fff;padding:6px}
+  .memcard .foot{display:flex;gap:22px;margin-top:22px;position:relative}
+  .memcard .foot .k{font-size:11px;color:#bcd6c6}
+  .memcard .foot .v{font-size:18px;font-weight:800;margin-top:1px;letter-spacing:-.03em}
+
+  /* Value progress */
+  .progress{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:14px}
+  .progress .lab{display:flex;justify-content:space-between;font-size:13px;font-weight:700}
+  .vbar{margin-top:10px;height:10px;border-radius:6px;background:var(--bg2);overflow:hidden}
+  .vbar>span{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--green),var(--gold));transition:width .6s}
+
+  /* Search & chips */
+  .searchwrap{padding:14px 20px 8px;position:sticky;top:0;background:var(--bg);z-index:20}
+  .searchwrap .field{display:flex;align-items:center;gap:10px;background:var(--bg2);border-radius:14px;padding:13px 15px}
+  .searchwrap input{flex:1;border:none;background:none;font-size:15.5px;color:var(--ink);outline:none}
+  .chips{display:flex;gap:9px;overflow-x:auto;padding:2px 20px 14px;scrollbar-width:none}
   .chips::-webkit-scrollbar{display:none}
-  .chip{flex:none;font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px;background:#fff;
-    border:1px solid var(--line);color:var(--muted)}
-  .chip.on{background:var(--green);color:#fff;border-color:var(--green)}
+  .chip{flex:none;font-size:13.5px;font-weight:600;padding:9px 16px;border-radius:999px;background:#fff;border:1.4px solid var(--line);color:var(--muted)}
+  .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 
-  .courses{display:grid;gap:12px;padding:4px 18px}
-  .course{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:15px;display:flex;gap:13px;align-items:center;
-    box-shadow:0 3px 12px rgba(27,67,50,.05);transition:transform .08s}
-  .course:active{transform:scale(.99)}
-  .course .pin{width:46px;height:46px;border-radius:12px;background:var(--mint);display:flex;align-items:center;justify-content:center;
-    font-size:22px;flex-shrink:0}
-  .course .info{flex:1;min-width:0}
-  .course .info .nm{font-weight:700;font-size:15.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .course .info .loc{font-size:13px;color:var(--muted);margin-top:1px}
-  .course .info .meta{font-size:12px;color:var(--green3);font-weight:600;margin-top:5px}
-  .rounds-badge{font-size:11.5px;font-weight:800;padding:5px 9px;border-radius:999px;flex-shrink:0;text-align:center;min-width:54px}
-  .rounds-badge.full{background:var(--mint);color:var(--green)}
-  .rounds-badge.part{background:var(--gold-soft);color:#5a4708}
-  .rounds-badge.used{background:#eee;color:#999}
+  /* Course cards — photo-forward */
+  .courses{display:grid;gap:20px;padding:6px 20px}
+  .ccard{background:var(--card);border-radius:20px;overflow:hidden;border:1px solid var(--line);
+    box-shadow:0 6px 22px rgba(20,20,15,.06);transition:transform .1s}
+  .ccard:active{transform:scale(.99)}
+  .ccard .photo{position:relative;aspect-ratio:16/10;overflow:hidden}
+  .ccard .photo .sun{position:absolute;right:16%;top:18%;width:46px;height:46px;border-radius:50%;
+    background:radial-gradient(circle,#fff7d6,rgba(255,247,214,.1) 70%)}
+  .ccard .photo .hill{position:absolute;left:-10%;right:-10%;bottom:-30%;height:62%;border-radius:50% 50% 0 0;background:rgba(255,255,255,.10)}
+  .badge{position:absolute;top:12px;right:12px;font-size:12px;font-weight:800;padding:7px 11px;border-radius:999px;
+    background:rgba(255,255,255,.92);backdrop-filter:blur(6px);color:var(--ink);letter-spacing:-.01em}
+  .badge.used{background:rgba(20,20,15,.62);color:#fff}
+  .heart{position:absolute;top:11px;left:12px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);
+    display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--ink)}
+  .ccard .body{padding:15px 16px 17px}
+  .ccard .nm{font-size:18px;font-weight:800;letter-spacing:-.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ccard .loc{font-size:13.5px;color:var(--muted);margin-top:3px}
+  .ccard .meta{display:flex;align-items:center;gap:12px;margin-top:11px;font-size:13.5px;font-weight:600}
+  .ccard .meta .star{color:var(--ink)}
+  .ccard .meta .dot{color:var(--line)}
+  .ccard .meta .fee{color:var(--muted);font-weight:600}
+  .ccard .meta .free{margin-left:auto;color:var(--green);font-weight:700}
 
-  .sheet-bg{position:fixed;inset:0;background:rgba(20,30,25,.5);z-index:40;display:none;align-items:flex-end;
-    justify-content:center;backdrop-filter:blur(2px)}
+  /* Horizontal featured rail */
+  .rail{display:flex;gap:14px;overflow-x:auto;padding:14px 20px 6px;scrollbar-width:none}
+  .rail::-webkit-scrollbar{display:none}
+  .rail .ccard{flex:none;width:230px}
+
+  /* Sheet */
+  .sheet-bg{position:fixed;inset:0;background:rgba(15,18,14,.55);z-index:40;display:none;align-items:flex-end;justify-content:center}
   .sheet-bg.open{display:flex;animation:fade .2s}
-  .sheet{background:var(--cream);width:100%;max-width:480px;border-radius:22px 22px 0 0;padding:8px 18px calc(20px + var(--safe-bottom));
-    max-height:88vh;overflow-y:auto;animation:slideup .28s cubic-bezier(.2,.8,.2,1)}
+  .sheet{background:var(--bg);width:100%;max-width:480px;border-radius:24px 24px 0 0;max-height:92vh;overflow-y:auto;
+    animation:slideup .3s cubic-bezier(.2,.8,.2,1);padding-bottom:calc(20px + var(--safe-bottom))}
   @keyframes slideup{from{transform:translateY(100%)}to{transform:none}}
-  .sheet .grab{width:42px;height:5px;border-radius:3px;background:#d4dad5;margin:8px auto 16px}
-  .sheet .ttl{font-size:22px;font-weight:800;letter-spacing:-.02em}
-  .sheet .loc2{color:var(--muted);font-size:14px;margin-top:3px}
-  .detail-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+  .sheet .shphoto{position:relative;height:200px;overflow:hidden}
+  .sheet .shphoto .grab{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:42px;height:5px;border-radius:3px;background:rgba(255,255,255,.7);z-index:2}
+  .sheet .shphoto .close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;font-size:18px;z-index:2}
+  .sheet .shbody{padding:18px 20px 8px}
+  .sheet .ttl{font-size:25px;font-weight:800;letter-spacing:-.035em}
+  .sheet .loc2{color:var(--muted);font-size:14.5px;margin-top:4px;display:flex;align-items:center;gap:6px}
+  .sheet .blurb{font-size:15px;color:#3a3a32;margin-top:14px;line-height:1.55}
+  .dstats{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin:18px 0}
+  .dstat{background:var(--bg2);border-radius:14px;padding:15px}
+  .dstat .n{font-size:22px;font-weight:800;letter-spacing:-.03em}
+  .dstat .l{font-size:12px;color:var(--muted);margin-top:2px}
+  .formfield{margin-top:14px}
+  .formfield label{font-size:12.5px;font-weight:700;color:var(--muted)}
+  .formfield input{width:100%;padding:15px;border:1.4px solid var(--line);border-radius:13px;font-size:16px;margin-top:6px;outline:none}
+  .formfield input:focus{border-color:var(--ink)}
+  .ribbon{display:flex;justify-content:space-between;align-items:center;background:var(--bg2);border-radius:14px;padding:15px 16px;margin-top:18px}
+  .ribbon .big{font-size:19px;font-weight:800;letter-spacing:-.03em}
 
-  .passcard{background:linear-gradient(150deg,var(--green) 0%,var(--green2) 70%,var(--green3) 100%);
-    color:#fff;border-radius:20px;padding:22px;position:relative;overflow:hidden;box-shadow:0 12px 30px rgba(27,67,50,.28)}
-  .passcard::after{content:"⛳";position:absolute;right:-12px;bottom:-26px;font-size:130px;opacity:.1}
-  .passcard .row{display:flex;justify-content:space-between;align-items:flex-start;position:relative}
-  .passcard .tier{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--gold-soft)}
-  .passcard .nm{font-size:23px;font-weight:800;margin-top:6px}
-  .passcard .id{font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#cfe6d8;margin-top:3px;letter-spacing:.05em}
-  .passcard .qr{width:62px;height:62px;border-radius:11px;background:#fff;padding:6px}
-  .passcard .foot{display:flex;justify-content:space-between;margin-top:20px;position:relative;font-size:12px;color:#d6ebdd}
-  .passcard .foot b{display:block;color:#fff;font-size:14px;font-weight:700;margin-top:1px}
+  ul.clean{list-style:none;display:grid;gap:12px;margin-top:6px}
+  ul.clean li{display:flex;gap:11px;align-items:flex-start;font-size:14.5px}
+  ul.clean li::before{content:"✓";color:var(--green);font-weight:800;flex-shrink:0}
 
-  .value-bar{margin-top:6px;height:11px;border-radius:6px;background:#e7ece7;overflow:hidden}
-  .value-bar > span{display:block;height:100%;background:linear-gradient(90deg,var(--green3),var(--gold));border-radius:6px;transition:width .5s}
-
-  .note{font-size:12px;color:var(--muted);font-style:italic;line-height:1.5}
-  .toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;
-    padding:13px 20px;border-radius:12px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:.3s;z-index:60;
-    max-width:90%;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.25)}
-  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
-  .redeem-ok{text-align:center;padding:14px 0 6px}
-  .redeem-ok .ring{width:84px;height:84px;border-radius:50%;background:var(--mint);display:flex;align-items:center;justify-content:center;
-    font-size:42px;margin:0 auto 14px;animation:pop .4s cubic-bezier(.2,1.4,.4,1)}
+  .redeem-ok{text-align:center;padding:22px 20px 6px}
+  .redeem-ok .ring{width:88px;height:88px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:44px;margin:0 auto 16px;animation:pop .45s cubic-bezier(.2,1.4,.4,1)}
   @keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
 
-  .tabbar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;z-index:35;
-    background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-top:1px solid var(--line);
-    display:flex;padding:8px 6px calc(8px + var(--safe-bottom))}
-  .tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;color:var(--muted);font-size:10.5px;font-weight:700}
-  .tab .ic{font-size:21px;line-height:1}
-  .tab.on{color:var(--green)}
-  .tab.on .ic{transform:translateY(-1px)}
-
-  .divider{height:1px;background:var(--line);margin:18px 0}
+  .note{font-size:12px;color:var(--muted);line-height:1.55}
   .center{text-align:center}
-  .mt8{margin-top:8px}.mt14{margin-top:14px}.mt20{margin-top:20px}
-  a.link{color:var(--green2);font-weight:700;text-decoration:none}
+  .mt8{margin-top:8px}.mt14{margin-top:14px}.mt20{margin-top:20px}.mt24{margin-top:24px}
+
+  .toast{position:fixed;left:50%;bottom:88px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;
+    padding:13px 20px;border-radius:14px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:.3s;z-index:60;max-width:90%;text-align:center}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  /* Tab bar */
+  .tabbar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;z-index:35;
+    background:rgba(255,255,255,.95);backdrop-filter:blur(16px);border-top:1px solid var(--line);
+    display:flex;padding:9px 6px calc(9px + var(--safe-bottom))}
+  .tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:5px 0;color:#b4b2aa;font-size:10.5px;font-weight:700;letter-spacing:0}
+  .tab .ic{font-size:20px;line-height:1;filter:grayscale(1) opacity(.6)}
+  .tab.on{color:var(--ink)}
+  .tab.on .ic{filter:none}
 </style>
 </head>
 <body>
 <div id="app">
-
   <section class="screen active" id="screen-home"></section>
 
   <section class="screen" id="screen-courses">
-    <div class="appbar"><div class="brand"><span class="ball">⛳</span> The Network</div><div class="pill" id="course-count">—</div></div>
-    <div class="search"><input id="search" type="search" placeholder="Search courses or city…" autocomplete="off" /></div>
+    <div class="topbar">
+      <div class="logo"><span class="mk">⛳</span> Explore</div>
+      <div class="credits" id="course-count">—</div>
+    </div>
+    <div class="searchwrap"><div class="field"><span>🔍</span><input id="search" type="search" placeholder="Search courses or city" autocomplete="off" /></div></div>
     <div class="chips" id="state-chips"></div>
     <div class="courses" id="course-list"></div>
-    <p class="note pad mt14" style="padding-bottom:8px">Sample network for demo. Two 18-hole rounds per course, per season.</p>
+    <p class="note pad mt14" style="padding-bottom:6px">Sample network for this demo · two 18-hole rounds per course, per season.</p>
   </section>
 
   <section class="screen" id="screen-pass">
-    <div class="appbar"><div class="brand"><span class="ball">🎟️</span> My Pass</div><div class="pill" id="pass-season">2026</div></div>
+    <div class="topbar"><div class="logo"><span class="mk">⛳</span> My Pass</div><div class="credits">Season <b>2026</b></div></div>
     <div id="pass-body"></div>
   </section>
-
 </div>
 
 <div class="sheet-bg" id="sheet-bg"><div class="sheet" id="sheet"></div></div>
 <div class="toast" id="toast"></div>
 
 <nav class="tabbar">
-  <button class="tab on" data-tab="home"><span class="ic">🏠</span>Home</button>
-  <button class="tab" data-tab="courses"><span class="ic">🗺️</span>Courses</button>
-  <button class="tab" data-tab="pass"><span class="ic">🎟️</span>Pass</button>
+  <button class="tab on" data-tab="home"><span class="ic">🏡</span>Home</button>
+  <button class="tab" data-tab="courses"><span class="ic">🧭</span>Explore</button>
+  <button class="tab" data-tab="pass"><span class="ic">🎫</span>Pass</button>
 </nav>
 
 <script>
-/* ---------------- Fairway Freedom Pass — web app v1 ----------------
+/* ---------------- Fairway Freedom Pass — web app v1 (ClassPass-style redesign) ----
    Front-end prototype. State persists in localStorage (no backend yet).
-   Model from the concept blueprint: $399/yr, 2 rounds at every course,
-   15% operator / 85% escrow, QR check-in logs each round.
-------------------------------------------------------------------- */
-const PRICE = 399;
-const ESCROW_PER_PASS = 339.15;   // 85% of $399
-const ROUNDS_PER_COURSE = 2;
-const AVG_GREEN_FEE = 55;         // illustrative value-per-round for the saver math
+   Model: $399/yr, 2 rounds at every course, 15% operator / 85% escrow, QR check-in.
+------------------------------------------------------------------------------------ */
+const PRICE = 399, ESCROW_PER_PASS = 339.15, ROUNDS_PER_COURSE = 2, AVG_GREEN_FEE = 55;
 
-/* Sample independent-course network (demo data — illustrative, not real listings) */
 const COURSES = [
   { id:'c1',  name:'Cedar Hollow Links',     city:'Medina',        state:'OH', fee:48, blurb:'Rolling links-style muni with bentgrass greens and a famous walk-up burger.' },
   { id:'c2',  name:'Sandy Run Golf Club',    city:'Akron',         state:'OH', fee:42, blurb:'Family-run since 1961. Tight tree-lined par 70, generous senior rates.' },
@@ -213,42 +245,44 @@ const COURSES = [
   { id:'c14', name:'Eagle Point Municipal',  city:'Columbus',      state:'OH', fee:38, blurb:'The best value in the network — and a perfect first-timer course.' },
 ];
 
-/* ---- State ---- */
-const KEY = 'ffp_v1';
-let S = load();
-function load(){
-  try { return JSON.parse(localStorage.getItem(KEY)) || fresh(); }
-  catch { return fresh(); }
+/* Premium golf-landscape gradient "photos" (deterministic, always render) */
+const PALETTES = [
+  ['#bfe3f5','#dff3e3','#57b974','#1c7a48'],
+  ['#cfe9f7','#e7f3df','#7cc585','#2c8a55'],
+  ['#f6e6c4','#eef0d2','#97c47b','#3a8c55'],
+  ['#cdeef0','#dff2ea','#62bd9c','#1c7a64'],
+  ['#e0d6ef','#e9eede','#8cc083','#327646'],
+  ['#ffe1c2','#f2ecd1','#a0c77c','#43864d'],
+];
+function idx(c){ return parseInt(c.id.slice(1)); }
+function photoStyle(c){
+  const p = PALETTES[idx(c)%PALETTES.length];
+  return `background:radial-gradient(circle at 78% 24%, rgba(255,250,222,.0) 12%, rgba(255,250,222,0) 12%),`
+       + `linear-gradient(180deg, ${p[0]} 0%, ${p[1]} 49%, ${p[2]} 50%, ${p[3]} 100%);`;
 }
-function fresh(){ return { member:null, used:{} /* courseId: [ISO dates] */ }; }
+function ratingOf(c){ return (4.3 + (idx(c)*3 % 7)/10).toFixed(1); }
+function photoEl(c, h){ return `<div class="photo" style="${photoStyle(c)}height:${h||''}"><div class="sun"></div><div class="hill"></div></div>`; }
+
+/* ---- State ---- */
+const KEY='ffp_v1';
+let S = load();
+function load(){ try{ return JSON.parse(localStorage.getItem(KEY))||fresh(); }catch{ return fresh(); } }
+function fresh(){ return { member:null, used:{}, saved:{} }; }
 function save(){ localStorage.setItem(KEY, JSON.stringify(S)); }
 
-/* ---- Derived ---- */
-const usedAt = id => (S.used[id] || []).length;
+const usedAt = id => (S.used[id]||[]).length;
 const totalRounds = () => Object.values(S.used).reduce((a,b)=>a+b.length,0);
-const valueCaptured = () => totalRounds() * AVG_GREEN_FEE;
-const escrowContributed = () => { const t = totalRounds(); return t ? ESCROW_PER_PASS / t : 0; };
+const valueCaptured = () => totalRounds()*AVG_GREEN_FEE;
 
-/* ---- Helpers ---- */
 const $ = s => document.querySelector(s);
-const money = n => '$' + n.toLocaleString('en-US',{maximumFractionDigits:0});
-const money2 = n => '$' + n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
-let toastT;
-function toast(msg){
-  const t=$('#toast'); t.textContent=msg; t.classList.add('show');
-  clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),2400);
-}
+const money = n => '$'+n.toLocaleString('en-US',{maximumFractionDigits:0});
+const money2 = n => '$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+let toastT; function toast(m){ const t=$('#toast'); t.textContent=m; t.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),2400); }
 
-/* ---- Sheet ---- */
-function openSheet(html){
-  $('#sheet').innerHTML = '<div class="grab"></div>' + html;
-  $('#sheet-bg').classList.add('open');
-  document.body.style.overflow='hidden';
-}
+function openSheet(html){ $('#sheet').innerHTML=html; $('#sheet-bg').classList.add('open'); document.body.style.overflow='hidden'; }
 function closeSheet(){ $('#sheet-bg').classList.remove('open'); document.body.style.overflow=''; }
-$('#sheet-bg').addEventListener('click', e=>{ if(e.target.id==='sheet-bg') closeSheet(); });
+$('#sheet-bg').addEventListener('click',e=>{ if(e.target.id==='sheet-bg') closeSheet(); });
 
-/* ---- Navigation ---- */
 function go(tab){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   $('#screen-'+tab).classList.add('active');
@@ -262,94 +296,118 @@ document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>go(b.dataset.tab));
 
 /* ---- HOME ---- */
 function renderHome(){
-  const joined = !!S.member;
-  const el = $('#screen-home');
-  if(!joined){
+  const el=$('#screen-home');
+  if(!S.member){
+    const feat = COURSES.slice(0,6).map(c=>railCard(c)).join('');
     el.innerHTML = `
       <div class="hero">
-        <div class="eyebrow">Independent Course Co-op</div>
-        <h1>Play hundreds of local courses. One pass.</h1>
-        <p>Two free 18-hole rounds at every independent, family-owned course in the network — funded by an escrow pool that pays the courses, not corporate booking apps.</p>
-        <div class="price-chip"><b>${money(PRICE)}</b> / year · 2 rounds at every course</div>
+        ${photoEl(COURSES[12],'100%')}
+        <div class="scrim"></div>
+        <div class="inner">
+          <div class="eyebrow">Independent Course Co-op</div>
+          <h1>Play local.<br/>One pass.</h1>
+          <p>Two free 18-hole rounds at every independent, family-owned course in the network.</p>
+          <div class="price"><b>${money(PRICE)}</b> / year · 2 rounds, every course</div>
+        </div>
       </div>
       <div class="section">
-        <button class="btn" id="join-btn">Become a Founding Member →</button>
-        <button class="btn outline mt14" id="browse-btn">Browse the course network</button>
+        <button class="btn" id="join-btn">Become a Founding Member</button>
+        <button class="btn ghost mt14" id="browse-btn">Explore the courses</button>
       </div>
       <div class="section">
-        <h2>Why golfers win</h2>
-        <ul class="clean mt8">
-          <li>Play just <b>5 rounds</b> and the ${money(PRICE)} pass pays for itself.</li>
-          <li>Two free 18-hole rounds at <b>every course</b> on the national roster.</li>
-          <li>The ultimate excuse for a weekend golf road trip.</li>
-          <li>Zero corporate booking-app fees or surge pricing.</li>
-        </ul>
+        <div class="eyebrow">How it works</div>
+        <h2>Three steps to free rounds</h2>
+        <div class="steps">
+          <div class="step"><div class="num">1</div><div><b>Buy the pass</b><p>One flat annual fee. Lock in founding-member pricing.</p></div></div>
+          <div class="step"><div class="num">2</div><div><b>Explore the network</b><p>Hundreds of independently owned public gems, coast to coast.</p></div></div>
+          <div class="step"><div class="num">3</div><div><b>Show up &amp; play</b><p>Scan the pro-shop QR. Two free 18-hole rounds, every destination.</p></div></div>
+        </div>
       </div>
       <div class="section">
+        <div class="eyebrow">Featured courses</div>
+        <h2>On the roster</h2>
+      </div>
+      <div class="rail">${feat}</div>
+      <div class="section">
+        <div class="eyebrow">The model</div>
         <h2>Where your ${money(PRICE)} goes</h2>
         <p class="sub">No course is paid upfront — zero risk. The pool distributes what's collected.</p>
         <div class="split">
           <div class="seg take"><div class="pct">15%</div><div class="amt">${money2(PRICE-ESCROW_PER_PASS)}</div><div class="lbl">Operations</div></div>
-          <div class="seg escrow"><div class="pct">85%</div><div class="amt">${money2(ESCROW_PER_PASS)} / pass</div><div class="lbl">Locked in escrow — paid to courses at season's end by rounds played</div></div>
+          <div class="seg escrow"><div class="pct">85%</div><div class="amt">${money2(ESCROW_PER_PASS)} / pass</div><div class="lbl">Locked in escrow — paid to courses at season's end, by rounds played</div></div>
         </div>
       </div>
-      <p class="note pad" style="padding-bottom:8px">Concept prototype · payout figures illustrative, based on consumer-breakage assumptions.</p>`;
-    $('#join-btn').onclick = openJoin;
-    $('#browse-btn').onclick = ()=>go('courses');
+      <p class="note pad mt20" style="padding-bottom:8px">Concept prototype · payout figures illustrative, based on consumer-breakage assumptions.</p>`;
+    $('#join-btn').onclick=openJoin; $('#browse-btn').onclick=()=>go('courses');
+    bindRail();
   } else {
-    const t = totalRounds();
-    const val = valueCaptured();
-    const pct = Math.min(100, Math.round(val/PRICE*100));
+    const t=totalRounds(), val=valueCaptured(), pct=Math.min(100,Math.round(val/PRICE*100));
+    const next = COURSES.filter(c=>usedAt(c.id)<ROUNDS_PER_COURSE).slice(0,6).map(railCard).join('');
     el.innerHTML = `
-      <div class="appbar"><div class="brand"><span class="ball">⛳</span> Fairway Freedom</div><div class="pill">Founding</div></div>
+      <div class="topbar"><div class="logo"><span class="mk">⛳</span> Fairway Freedom</div><div class="credits"><b>${ROUNDS_PER_COURSE*COURSES.length - t}</b> rounds left</div></div>
       <div class="section">
-        <h2>Welcome back, ${S.member.name.split(' ')[0]} 👋</h2>
-        <p class="sub">${t===0 ? "Your season's ready. Find a course and check in at the pro shop." : `You've played ${t} round${t>1?'s':''} so far.`}</p>
-        <div class="stat-row">
-          <div class="stat"><div class="n">${t}</div><div class="l">Rounds played</div></div>
-          <div class="stat gold"><div class="n">${money(val)}</div><div class="l">Value captured</div></div>
+        <div class="eyebrow">Welcome back</div>
+        <h2>Hi, ${S.member.name.split(' ')[0]} 👋</h2>
+        <p class="sub">${t===0?"Your season's ready. Find a course and check in at the pro shop.":`You've played ${t} round${t>1?'s':''} so far this season.`}</p>
+        <div class="progress">
+          <div class="lab"><span>Pass value vs ${money(PRICE)} paid</span><span style="color:var(--green)">${pct}%</span></div>
+          <div class="vbar mt8"><span style="width:${pct}%"></span></div>
+          <p class="note mt8">${val>=PRICE?'🎉 Your pass has paid for itself.':`Play ${Math.max(0,Math.ceil((PRICE-val)/AVG_GREEN_FEE))} more round(s) to break even · ${money(val)} value captured.`}</p>
         </div>
-        <div class="card mt14">
-          <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700">
-            <span>Pass value vs ${money(PRICE)} paid</span><span style="color:var(--green)">${pct}%</span>
-          </div>
-          <div class="value-bar mt8"><span style="width:${pct}%"></span></div>
-          <p class="note mt8">${val>=PRICE ? '🎉 Your pass has paid for itself!' : `Play ${Math.max(0, Math.ceil((PRICE-val)/AVG_GREEN_FEE))} more round(s) to break even.`}</p>
-        </div>
-        <button class="btn mt20" id="find-btn">Find a course to play →</button>
-        <button class="btn outline mt14" id="pass-btn">View my digital pass</button>
-      </div>`;
+        <button class="btn mt20" id="find-btn">Find a course to play</button>
+      </div>
+      <div class="section"><div class="eyebrow">Pick up where you left off</div><h2>Courses near the network</h2></div>
+      <div class="rail">${next}</div>`;
     $('#find-btn').onclick=()=>go('courses');
-    $('#pass-btn').onclick=()=>go('pass');
+    bindRail();
   }
 }
 
-/* ---- JOIN flow ---- */
+/* ---- Cards ---- */
+function railCard(c){
+  const left=ROUNDS_PER_COURSE-usedAt(c.id);
+  const badge = left>0?`<div class="badge">${left} left</div>`:`<div class="badge used">Played</div>`;
+  return `<div class="ccard" data-id="${c.id}">
+    <div class="photo" style="${photoStyle(c)}aspect-ratio:16/10"><div class="sun"></div><div class="hill"></div>${badge}</div>
+    <div class="body">
+      <div class="nm">${c.name}</div>
+      <div class="loc">${c.city}, ${c.state}</div>
+      <div class="meta"><span class="star">★ ${ratingOf(c)}</span><span class="dot">·</span><span class="fee">${money(c.fee)}</span></div>
+    </div></div>`;
+}
+function ccard(c){
+  const u=usedAt(c.id), left=ROUNDS_PER_COURSE-u;
+  const badge = left===2?`<div class="badge">2 rounds free</div>`:left===1?`<div class="badge">1 round left</div>`:`<div class="badge used">Both played</div>`;
+  return `<div class="ccard" data-id="${c.id}">
+    <div class="photo" style="${photoStyle(c)}"><div class="sun"></div><div class="hill"></div>
+      <div class="heart">${S.saved[c.id]?'♥':'♡'}</div>${badge}</div>
+    <div class="body">
+      <div class="nm">${c.name}</div>
+      <div class="loc">${c.city}, ${c.state}</div>
+      <div class="meta"><span class="star">★ ${ratingOf(c)}</span><span class="dot">·</span><span class="fee">~${money(c.fee)} green fee</span>
+        ${left>0?`<span class="free">${left} free</span>`:''}</div>
+    </div></div>`;
+}
+function bindRail(){ document.querySelectorAll('.rail .ccard, .courses .ccard').forEach(el=>el.onclick=()=>openCourse(el.dataset.id)); }
+
+/* ---- JOIN ---- */
 function openJoin(){
   openSheet(`
-    <div class="ttl">Become a Founding Member</div>
-    <div class="loc2">Lock in founding pricing — ${money(PRICE)} for the 2026 season.</div>
-    <div class="mt20">
-      <label style="font-size:13px;font-weight:700;color:var(--muted)">Your name</label>
-      <input id="j-name" placeholder="Jordan Fairway" style="width:100%;padding:14px;border:1px solid var(--line);border-radius:12px;font-size:16px;margin-top:6px" />
-    </div>
-    <div class="mt14">
-      <label style="font-size:13px;font-weight:700;color:var(--muted)">Email</label>
-      <input id="j-email" type="email" placeholder="you@email.com" style="width:100%;padding:14px;border:1px solid var(--line);border-radius:12px;font-size:16px;margin-top:6px" />
-    </div>
-    <div class="card mt20" style="background:var(--mint);border-color:#bfe3c9">
-      <div style="display:flex;justify-content:space-between;font-weight:800;font-size:17px"><span>Annual Pass</span><span>${money(PRICE)}</span></div>
-      <p class="note" style="font-style:normal;margin-top:4px">2 rounds at all ${COURSES.length}+ courses · ${money2(ESCROW_PER_PASS)} of this goes straight to the course escrow pool.</p>
-    </div>
-    <button class="btn mt20" id="j-go">Activate my pass</button>
-    <p class="note center mt14">Demo checkout — no real payment is taken.</p>
-  `);
+    <div class="shphoto" style="${photoStyle(COURSES[6])}"><div class="grab"></div><button class="close" onclick="closeSheet()">✕</button></div>
+    <div class="shbody">
+      <div class="ttl">Become a Founding Member</div>
+      <div class="loc2">Lock in founding pricing — ${money(PRICE)} for the 2026 season.</div>
+      <div class="formfield"><label>Your name</label><input id="j-name" placeholder="Jordan Fairway" /></div>
+      <div class="formfield"><label>Email</label><input id="j-email" type="email" placeholder="you@email.com" /></div>
+      <div class="ribbon"><div><div class="big">Annual Pass</div><div class="note">2 rounds at all ${COURSES.length}+ courses</div></div><div class="big">${money(PRICE)}</div></div>
+      <button class="btn mt20" id="j-go">Activate my pass</button>
+      <p class="note center mt14">Demo checkout — no real payment is taken.</p>
+    </div>`);
   $('#j-go').onclick=()=>{
-    const name=($('#j-name').value||'').trim();
-    const email=($('#j-email').value||'').trim();
+    const name=($('#j-name').value||'').trim(), email=($('#j-email').value||'').trim();
     if(name.length<2){ toast('Enter your name'); return; }
     if(!/.+@.+\..+/.test(email)){ toast('Enter a valid email'); return; }
-    S.member = { name, email, id:'FFP-'+Math.random().toString(36).slice(2,7).toUpperCase()+'-26', joined:new Date().toISOString() };
+    S.member={ name, email, id:'FFP-'+Math.random().toString(36).slice(2,7).toUpperCase()+'-26', joined:new Date().toISOString() };
     save(); closeSheet(); toast('🎉 Welcome to the network!'); renderHome();
   };
 }
@@ -357,91 +415,71 @@ function openJoin(){
 /* ---- COURSES ---- */
 let filterState='ALL', filterText='';
 function renderCourses(){
-  $('#course-count').textContent = COURSES.length + ' courses';
-  const states = ['ALL', ...Array.from(new Set(COURSES.map(c=>c.state)))];
+  $('#course-count').innerHTML = `<b>${COURSES.length}</b>&nbsp;courses`;
+  const states=['ALL',...Array.from(new Set(COURSES.map(c=>c.state)))];
   $('#state-chips').innerHTML = states.map(s=>`<button class="chip ${s===filterState?'on':''}" data-st="${s}">${s==='ALL'?'All states':s}</button>`).join('');
   document.querySelectorAll('#state-chips .chip').forEach(c=>c.onclick=()=>{filterState=c.dataset.st;renderCourses();});
   const q=filterText.toLowerCase();
-  const list = COURSES.filter(c=>
-    (filterState==='ALL'||c.state===filterState) &&
-    (!q || c.name.toLowerCase().includes(q) || c.city.toLowerCase().includes(q))
-  );
-  $('#course-list').innerHTML = list.length ? list.map(courseCard).join('') :
-    `<p class="note pad mt14">No courses match. Try another search.</p>`;
-  document.querySelectorAll('.course').forEach(el=>el.onclick=()=>openCourse(el.dataset.id));
-}
-function courseCard(c){
-  const u=usedAt(c.id), left=ROUNDS_PER_COURSE-u;
-  const badge = left===ROUNDS_PER_COURSE ? `<span class="rounds-badge full">2 left</span>`
-    : left===1 ? `<span class="rounds-badge part">1 left</span>`
-    : `<span class="rounds-badge used">Used</span>`;
-  return `<div class="course" data-id="${c.id}">
-    <div class="pin">⛳</div>
-    <div class="info">
-      <div class="nm">${c.name}</div>
-      <div class="loc">${c.city}, ${c.state} · ~${money(c.fee)} green fee</div>
-      <div class="meta">${left>0 ? `${left} free round${left>1?'s':''} available` : 'Both rounds played this season'}</div>
-    </div>
-    ${badge}
-  </div>`;
+  const list=COURSES.filter(c=>(filterState==='ALL'||c.state===filterState)&&(!q||c.name.toLowerCase().includes(q)||c.city.toLowerCase().includes(q)));
+  $('#course-list').innerHTML = list.length?list.map(ccard).join(''):`<p class="note pad mt14">No courses match. Try another search.</p>`;
+  bindRail();
 }
 $('#search').addEventListener('input',e=>{filterText=e.target.value;renderCourses();});
 
 /* ---- COURSE DETAIL + REDEEM ---- */
 function openCourse(id){
   const c=COURSES.find(x=>x.id===id); if(!c) return;
-  const u=usedAt(id), left=ROUNDS_PER_COURSE-u;
-  const member=!!S.member;
+  const left=ROUNDS_PER_COURSE-usedAt(id), member=!!S.member;
   openSheet(`
-    <div class="ttl">${c.name}</div>
-    <div class="loc2">📍 ${c.city}, ${c.state}</div>
-    <p class="mt14" style="font-size:14.5px;color:#3c4a42">${c.blurb}</p>
-    <div class="detail-stats">
-      <div class="stat"><div class="n">${left}</div><div class="l">Rounds left here</div></div>
-      <div class="stat gold"><div class="n">${money(c.fee)}</div><div class="l">Walk-up green fee</div></div>
-    </div>
-    ${ member ? (left>0 ? `
-      <button class="btn" id="redeem">📲 Check in — redeem a round</button>
-      <p class="note center mt14">At the course, scan the pro-shop QR placard to log your round.</p>`
-      : `<div class="card center" style="background:#f4f4f2"><b>Both rounds played</b><p class="note" style="font-style:normal;margin-top:4px">You've used your 2 rounds here this season. Resets next season.</p></div>`)
-    : `<button class="btn" id="joinfirst">Join to unlock free rounds</button>` }
-  `);
-  if(member && left>0) $('#redeem').onclick=()=>confirmRedeem(c);
-  if(!member) $('#joinfirst').onclick=()=>{openJoin();};
+    <div class="shphoto" style="${photoStyle(c)}"><div class="grab"></div><button class="close" onclick="closeSheet()">✕</button></div>
+    <div class="shbody">
+      <div class="ttl">${c.name}</div>
+      <div class="loc2">📍 ${c.city}, ${c.state} · ★ ${ratingOf(c)}</div>
+      <p class="blurb">${c.blurb}</p>
+      <div class="dstats">
+        <div class="dstat"><div class="n">${left}</div><div class="l">Free rounds left here</div></div>
+        <div class="dstat"><div class="n">${money(c.fee)}</div><div class="l">Walk-up green fee</div></div>
+      </div>
+      ${ member ? (left>0?`
+        <button class="btn" id="redeem">Check in — redeem a round</button>
+        <p class="note center mt14">At the course, scan the pro-shop QR placard to log your round.</p>`
+        : `<div class="ribbon"><div><div class="big">Both rounds played</div><div class="note">Resets next season.</div></div><div style="font-size:24px">✓</div></div>`)
+      : `<button class="btn" id="joinfirst">Join to unlock free rounds</button>` }
+    </div>`);
+  if(member&&left>0) $('#redeem').onclick=()=>confirmRedeem(c);
+  if(!member) $('#joinfirst').onclick=openJoin;
 }
 function confirmRedeem(c){
   openSheet(`
-    <div class="ttl">Check in at ${c.name}?</div>
-    <div class="loc2">This logs one of your two free rounds here.</div>
-    <div class="card mt20" style="background:var(--mint);border-color:#bfe3c9">
-      <ul class="clean">
+    <div class="shphoto" style="${photoStyle(c)}height:140px"><div class="grab"></div><button class="close" onclick="closeSheet()">✕</button></div>
+    <div class="shbody">
+      <div class="ttl">Check in at ${c.name}?</div>
+      <div class="loc2">This logs one of your two free rounds here.</div>
+      <ul class="clean mt20">
         <li>You'll have <b>${ROUNDS_PER_COURSE-usedAt(c.id)-1} round</b> left here this season.</li>
         <li>Your round is tracked digitally toward the course's escrow check.</li>
         <li>You still pay $0 green fee — keep your cart &amp; pro-shop spend local.</li>
       </ul>
-    </div>
-    <button class="btn mt20" id="do-redeem">Confirm check-in</button>
-    <button class="btn outline mt14" id="cancel-redeem">Not yet</button>
-  `);
+      <button class="btn mt24" id="do-redeem">Confirm check-in</button>
+      <button class="btn outline mt14" id="cancel-redeem">Not yet</button>
+    </div>`);
   $('#cancel-redeem').onclick=()=>openCourse(c.id);
   $('#do-redeem').onclick=()=>{
-    (S.used[c.id]=S.used[c.id]||[]).push(new Date().toISOString());
-    save();
+    (S.used[c.id]=S.used[c.id]||[]).push(new Date().toISOString()); save();
     const left=ROUNDS_PER_COURSE-usedAt(c.id);
     openSheet(`
       <div class="redeem-ok">
-        <div class="ring">✅</div>
+        <div class="ring">✓</div>
         <div class="ttl">Round logged!</div>
-        <p class="mt8" style="color:var(--muted);font-size:15px">Enjoy ${c.name}. ${left>0?`You have ${left} round left here.`:'That was your last round here this season.'}</p>
-        <div class="detail-stats" style="margin-top:18px">
-          <div class="stat"><div class="n">${totalRounds()}</div><div class="l">Total rounds played</div></div>
-          <div class="stat gold"><div class="n">${money(valueCaptured())}</div><div class="l">Value captured</div></div>
+        <p class="sub" style="margin-top:8px">Enjoy ${c.name}. ${left>0?`You have ${left} round left here.`:'That was your last round here this season.'}</p>
+        <div class="dstats" style="margin-top:20px">
+          <div class="dstat"><div class="n">${totalRounds()}</div><div class="l">Total rounds played</div></div>
+          <div class="dstat"><div class="n">${money(valueCaptured())}</div><div class="l">Value captured</div></div>
         </div>
-        <p class="note mt14">~${money(c.fee)} of green-fee value · your round feeds ${c.name}'s season-end escrow payout.</p>
+        <p class="note">~${money(c.fee)} of green-fee value · your round feeds ${c.name}'s season-end escrow payout.</p>
         <button class="btn mt20" id="ok-done">Done</button>
-      </div>
-    `);
-    $('#ok-done').onclick=()=>{closeSheet();renderCourses();renderHome();toast('⛳ Round added to your pass');};
+      </div>`);
+    $('#ok-done').onclick=()=>{ closeSheet(); renderCourses(); renderHome(); toast('⛳ Round added to your pass'); };
   };
 }
 
@@ -449,69 +487,53 @@ function confirmRedeem(c){
 function renderPass(){
   const el=$('#pass-body');
   if(!S.member){
-    el.innerHTML=`<div class="section center">
-      <p class="sub mt20">You haven't joined yet.</p>
-      <button class="btn mt14" id="p-join">Become a Founding Member</button>
-    </div>`;
+    el.innerHTML=`<div class="section center"><p class="sub mt20">You haven't joined yet.</p><button class="btn mt14" id="p-join">Become a Founding Member</button></div>`;
     $('#p-join').onclick=openJoin; return;
   }
   const m=S.member, t=totalRounds(), val=valueCaptured();
   el.innerHTML=`
     <div class="section">
-      <div class="passcard">
-        <div class="row">
-          <div>
-            <div class="tier">Founding Member · 2026</div>
-            <div class="nm">${m.name}</div>
-            <div class="id">${m.id}</div>
-          </div>
+      <div class="memcard">
+        <div class="glow"></div>
+        <div class="top">
+          <div><div class="tier">Founding Member · 2026</div><div class="nm">${m.name}</div><div class="id">${m.id}</div></div>
           <div class="qr">${qrSvg(m.id)}</div>
         </div>
         <div class="foot">
-          <div>Rounds played<b>${t}</b></div>
-          <div>Value captured<b>${money(val)}</b></div>
-          <div>Pass<b>${money(PRICE)}/yr</b></div>
+          <div><div class="k">Rounds played</div><div class="v">${t}</div></div>
+          <div><div class="k">Value captured</div><div class="v">${money(val)}</div></div>
+          <div><div class="k">Pass</div><div class="v">${money(PRICE)}/yr</div></div>
         </div>
       </div>
       <p class="note center mt14">Show this QR at any course's pro shop to check in.</p>
     </div>
-    <div class="section">
-      <h2>Your season</h2>
-      <div id="history"></div>
-    </div>
-    <div class="section">
-      <button class="btn outline" id="reset">Reset demo</button>
-    </div>`;
+    <div class="section"><div class="eyebrow">Your season</div><h2>Round history</h2></div>
+    <div class="courses" id="history"></div>
+    <div class="section"><button class="btn outline" id="reset">Reset demo</button></div>`;
   const entries=[];
-  Object.keys(S.used).forEach(id=>{
-    const c=COURSES.find(x=>x.id===id); if(!c)return;
-    S.used[id].forEach(d=>entries.push({c,d}));
-  });
+  Object.keys(S.used).forEach(id=>{ const c=COURSES.find(x=>x.id===id); if(c) S.used[id].forEach(d=>entries.push({c,d})); });
   entries.sort((a,b)=>new Date(b.d)-new Date(a.d));
   $('#history').innerHTML = entries.length ? entries.map(e=>`
-    <div class="course" style="cursor:default">
-      <div class="pin" style="background:var(--gold-soft)">🏌️</div>
-      <div class="info"><div class="nm">${e.c.name}</div>
-      <div class="loc">${e.c.city}, ${e.c.state} · ${new Date(e.d).toLocaleDateString('en-US',{month:'short',day:'numeric'})}</div></div>
-      <span class="rounds-badge full">+${money(e.c.fee)}</span>
-    </div>`).join('') :
-    `<p class="note">No rounds yet. Head to the Courses tab and check in at your first stop. ⛳</p>`;
+    <div class="ccard" data-id="${e.c.id}" style="display:flex">
+      <div class="photo" style="${photoStyle(e.c)}width:96px;flex:none;aspect-ratio:auto"><div class="sun"></div></div>
+      <div class="body" style="flex:1"><div class="nm" style="font-size:16px">${e.c.name}</div>
+        <div class="loc">${e.c.city}, ${e.c.state} · ${new Date(e.d).toLocaleDateString('en-US',{month:'short',day:'numeric'})}</div>
+        <div class="meta"><span class="free">+${money(e.c.fee)} value</span></div></div>
+    </div>`).join('') : `<p class="note pad">No rounds yet. Head to Explore and check in at your first stop. ⛳</p>`;
+  bindRail();
   $('#reset').onclick=()=>{ if(confirm('Reset the demo? This clears your pass and round history.')){ S=fresh(); save(); toast('Demo reset'); closeSheet(); go('home'); } };
 }
 
-/* Decorative QR-style matrix from the member id (demo-only, not scannable) */
 function qrSvg(seed){
   let h=0; for(const ch of seed) h=(h*31+ch.charCodeAt(0))>>>0;
-  const n=7, cell=50/n; let rects='';
-  for(let y=0;y<n;y++)for(let x=0;x<n;x++){
-    h=(h*1103515245+12345)>>>0;
+  const n=7,cell=50/n; let r='';
+  for(let y=0;y<n;y++)for(let x=0;x<n;x++){ h=(h*1103515245+12345)>>>0;
     const corner=(x<2&&y<2)||(x>n-3&&y<2)||(x<2&&y>n-3);
-    if(corner || ((h>>16)&1)) rects+=`<rect x="${x*cell}" y="${y*cell}" width="${cell}" height="${cell}" fill="#1b4332"/>`;
-  }
-  return `<svg viewBox="0 0 50 50" width="100%" height="100%">${rects}</svg>`;
+    if(corner||((h>>16)&1)) r+=`<rect x="${x*cell}" y="${y*cell}" width="${cell}" height="${cell}" fill="#15140f"/>`; }
+  return `<svg viewBox="0 0 50 50" width="100%" height="100%">${r}</svg>`;
 }
 
-/* ---- boot ---- */
+window.closeSheet = closeSheet;
 renderHome();
 </script>
 </body>
