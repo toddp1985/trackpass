@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Fairway Freedom" />
-<title>Fairway Freedom Pass</title>
+<title>Fairway Freedom Pass — Texas</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <style>
@@ -283,7 +283,7 @@
       <div id="map" class="coursemap"></div>
       <div class="courses" id="course-list"></div>
     </div>
-    <p class="note pad mt14" style="padding-bottom:6px">Sample network for this demo · two 18-hole rounds per course, per season.</p>
+    <p class="note pad mt14" style="padding-bottom:6px">Texas launch network · real public &amp; municipal courses · green fees are representative weekday estimates · two 18-hole rounds per course, per season.</p>
   </section>
 
   <section class="screen" id="screen-pass">
@@ -308,21 +308,34 @@
 ------------------------------------------------------------------------------------ */
 const PRICE = 399, ESCROW_PER_PASS = 339.15, ROUNDS_PER_COURSE = 2, AVG_GREEN_FEE = 55;
 
+// Real, currently-operating Texas public / municipal courses (the affordable,
+// independent everyday tracks this co-op model is built for). Coordinates are
+// approximate; green fees are representative weekday rates for a demo (the "~"
+// in the UI marks them as estimates), not live pricing.
 const COURSES = [
-  { id:'c1',  name:'Cedar Hollow Links',     city:'Medina',        state:'OH', fee:48, lat:41.14, lng:-81.86, blurb:'Rolling links-style muni with bentgrass greens and a famous walk-up burger.' },
-  { id:'c2',  name:'Sandy Run Golf Club',    city:'Akron',         state:'OH', fee:42, lat:41.08, lng:-81.52, blurb:'Family-run since 1961. Tight tree-lined par 70, generous senior rates.' },
-  { id:'c3',  name:'Maple Ridge Country',    city:'Hudson',        state:'OH', fee:55, lat:41.24, lng:-81.44, blurb:'Hidden gem with the best pro-shop coffee in the county.' },
-  { id:'c4',  name:'Birch Creek Greens',     city:'Toledo',        state:'OH', fee:39, lat:41.66, lng:-83.56, blurb:'Wide-open and beginner-friendly; lights for twilight nines.' },
-  { id:'c5',  name:'Lakeside National',      city:'Sandusky',      state:'OH', fee:62, lat:41.45, lng:-82.71, blurb:'Lake-breeze layout with five water holes and a killer patio.' },
-  { id:'c6',  name:'Stonebrook Fairways',    city:'Ann Arbor',     state:'MI', fee:58, lat:42.28, lng:-83.74, blurb:'Classic 1920s design, recently restored bunkering, walkable.' },
-  { id:'c7',  name:'Whispering Pines',       city:'Traverse City', state:'MI', fee:67, lat:44.76, lng:-85.62, blurb:'Northern-Michigan beauty tucked into the pines. Cart highly advised.' },
-  { id:'c8',  name:'River Bend Club',        city:'Grand Rapids',  state:'MI', fee:51, lat:42.96, lng:-85.67, blurb:'Two nines that play completely differently. Honest, fair, fun.' },
-  { id:'c9',  name:'Heron Marsh Golf',       city:'Kalamazoo',     state:'MI', fee:44, lat:42.29, lng:-85.59, blurb:'Low-key wetlands track; bring extra balls for the back nine.' },
-  { id:'c10', name:'Pinehurst Commons',      city:'Asheville',     state:'NC', fee:64, lat:35.60, lng:-82.55, blurb:'Mountain-view fairways and the friendliest starter in the Carolinas.' },
-  { id:'c11', name:'Blue Ridge Run',         city:'Boone',         state:'NC', fee:59, lat:36.22, lng:-81.67, blurb:'Elevation changes for days. Play it forward and enjoy the views.' },
-  { id:'c12', name:'Catawba Valley Golf',    city:'Hickory',       state:'NC', fee:46, lat:35.73, lng:-81.34, blurb:'Affordable everyday track that locals are fiercely loyal to.' },
-  { id:'c13', name:'Tobacco Road Public',    city:'Sanford',       state:'NC', fee:71, lat:35.48, lng:-79.18, blurb:'Bold, sandy, unforgettable. The bucket-lister of the network.' },
-  { id:'c14', name:'Eagle Point Municipal',  city:'Columbus',      state:'OH', fee:38, lat:39.96, lng:-82.99, blurb:'The best value in the network — and a perfect first-timer course.' },
+  // ── Austin ──
+  { id:'c1',  name:'Lions Municipal (Muny)',  city:'Austin',      region:'Austin', state:'TX', fee:35, lat:30.2880, lng:-97.7805, blurb:"Austin's first public course (1924) and a Texas historic landmark — walkable, beloved, right in West Austin." },
+  { id:'c2',  name:'Morris Williams Golf Course', city:'Austin',  region:'Austin', state:'TX', fee:38, lat:30.3074, lng:-97.6868, blurb:"Locals' favorite muni with a unique routing and stunning downtown Austin skyline views." },
+  { id:'c3',  name:'Roy Kizer Golf Course',   city:'Austin',      region:'Austin', state:'TX', fee:42, lat:30.1835, lng:-97.7330, blurb:"Austin's premier links-style muni — open, breezy, and a great walk in South Austin." },
+  { id:'c4',  name:'Jimmy Clay Golf Course',  city:'Austin',      region:'Austin', state:'TX', fee:34, lat:30.1856, lng:-97.7296, blurb:'Shares a property with Roy Kizer — pair them for a 36-hole South Austin day.' },
+  { id:'c5',  name:'Riverside Golf Course',   city:'Austin',      region:'Austin', state:'TX', fee:30, lat:30.2330, lng:-97.7150, blurb:'East-of-downtown muni where Texas legends Ben Crenshaw and Tom Kite first learned the game.' },
+  { id:'c6',  name:'Hancock Golf Course',     city:'Austin',      region:'Austin', state:'TX', fee:18, lat:30.3013, lng:-97.7178, blurb:'The oldest course in Texas (1899) — a quirky, walkable nine-holer in central Austin.' },
+  // ── San Antonio ──
+  { id:'c7',  name:'Brackenridge Park Golf Course', city:'San Antonio', region:'San Antonio', state:'TX', fee:50, lat:29.4620, lng:-98.4730, blurb:'Historic tree-lined city-park course near downtown — old-school charm at a fair price.' },
+  { id:'c8',  name:'Cedar Creek Golf Course', city:'San Antonio', region:'San Antonio', state:'TX', fee:48, lat:29.6190, lng:-98.6290, blurb:'Hilly, scenic Northwest San Antonio muni on the Alamo City Golf Trail.' },
+  { id:'c9',  name:'Olmos Basin Golf Course', city:'San Antonio', region:'San Antonio', state:'TX', fee:40, lat:29.4880, lng:-98.4900, blurb:'Oak-lined municipal layout just minutes from downtown San Antonio.' },
+  // ── Dallas–Fort Worth ──
+  { id:'c10', name:'Tenison Highlands',       city:'Dallas',      region:'Dallas–Fort Worth', state:'TX', fee:45, lat:32.7940, lng:-96.7330, blurb:'Redesigned 7,100-yard Highlands course — 36 holes, ten minutes from downtown Dallas.' },
+  { id:'c11', name:'Stevens Park Golf Course', city:'Dallas',     region:'Dallas–Fort Worth', state:'TX', fee:40, lat:32.7520, lng:-96.8520, blurb:'1924 Kessler Park gem with downtown Dallas views — a true muni bargain.' },
+  { id:'c12', name:'Luna Vista Golf Course',  city:'Dallas',      region:'Dallas–Fort Worth', state:'TX', fee:32, lat:32.8720, lng:-96.9340, blurb:'Honest, affordable Dallas muni (formerly L.B. Houston) along the Elm Fork.' },
+  { id:'c13', name:'Pecan Valley Golf Course', city:'Fort Worth', region:'Dallas–Fort Worth', state:'TX', fee:35, lat:32.6470, lng:-97.4520, blurb:'Two 18s split by the Trinity River — the River course is among the best munis in Texas.' },
+  { id:'c14', name:'Rockwood Park Golf Course', city:'Fort Worth', region:'Dallas–Fort Worth', state:'TX', fee:33, lat:32.7760, lng:-97.3370, blurb:'A John Bredemus 1938 design, revitalized by the City of Fort Worth — classic and walkable.' },
+  { id:'c15', name:'Meadowbrook Golf Course', city:'Fort Worth',  region:'Dallas–Fort Worth', state:'TX', fee:28, lat:32.7560, lng:-97.2700, blurb:'East-central Fort Worth muni that plays fair for every skill level.' },
+  // ── Houston ──
+  { id:'c16', name:'Memorial Park Golf Course', city:'Houston',   region:'Houston', state:'TX', fee:40, lat:29.7640, lng:-95.4340, blurb:'Widely considered the best muni in Texas — a 1936 classic that now hosts the PGA Tour.' },
+  { id:'c17', name:'Gus Wortham Park Golf Course', city:'Houston', region:'Houston', state:'TX', fee:32, lat:29.7420, lng:-95.3230, blurb:'Restored historic muni just east of downtown Houston — scenic and affordable.' },
+  { id:'c18', name:'Hermann Park Golf Course', city:'Houston',    region:'Houston', state:'TX', fee:26, lat:29.7170, lng:-95.3900, blurb:'Historic, central Houston muni — easy to reach and easy on the wallet.' },
+  { id:'c19', name:'Sharpstown Golf Course',  city:'Houston',     region:'Houston', state:'TX', fee:24, lat:29.7000, lng:-95.5100, blurb:'Well-kept, lower-priced Houston muni — a reliable everyday track.' },
 ];
 
 /* Premium golf-landscape gradient "photos" (deterministic, always render) */
@@ -386,9 +399,9 @@ function renderHome(){
     el.innerHTML = `
       <div class="hero">
         <div class="inner">
-          <div class="eyebrow">Independent Course Co-op</div>
+          <div class="eyebrow">Texas Independent Course Co-op</div>
           <h1>United<br/>We Swing.</h1>
-          <p>One pass. Two free 18-hole rounds at every independent, family-owned course in the national network.</p>
+          <p>One pass. Two free 18-hole rounds at every independent &amp; municipal course in the Texas network — Austin to Houston.</p>
           <div class="hero-cta">
             <button class="btn" id="join-btn">Become a Founding Member</button>
             <button class="btn outline" id="browse-btn">Explore the courses</button>
@@ -397,7 +410,7 @@ function renderHome(){
         </div>
       </div>
       <div class="statband">
-        <div class="s"><b>Hundreds</b><span>of independent courses</span></div>
+        <div class="s"><b>${COURSES.length} courses</b><span>across Texas</span></div>
         <div class="s"><b>2 rounds</b><span>free at every course</span></div>
         <div class="s"><b>${money(PRICE)}/yr</b><span>flat — no per-round fees</span></div>
       </div>
@@ -406,7 +419,7 @@ function renderHome(){
         <h2>Three steps to free rounds</h2>
         <div class="steps">
           <div class="step"><div class="num">1</div><div><b>Buy the pass</b><p>One flat annual fee. Lock in founding-member pricing.</p></div></div>
-          <div class="step"><div class="num">2</div><div><b>Explore the network</b><p>Hundreds of independently owned public gems, coast to coast.</p></div></div>
+          <div class="step"><div class="num">2</div><div><b>Explore the network</b><p>Independent &amp; municipal gems across Austin, San Antonio, DFW & Houston.</p></div></div>
           <div class="step"><div class="num">3</div><div><b>Show up &amp; play</b><p>Scan the pro-shop QR. Two free 18-hole rounds, every destination.</p></div></div>
         </div>
       </div>
@@ -500,14 +513,14 @@ function openJoin(){
 }
 
 /* ---- COURSES ---- */
-let filterState='ALL', filterText='';
+let filterRegion='ALL', filterText='';
 function renderCourses(){
-  $('#course-count').innerHTML = `<b>${COURSES.length}</b>&nbsp;courses`;
-  const states=['ALL',...Array.from(new Set(COURSES.map(c=>c.state)))];
-  $('#state-chips').innerHTML = states.map(s=>`<button class="chip ${s===filterState?'on':''}" data-st="${s}">${s==='ALL'?'All states':s}</button>`).join('');
-  document.querySelectorAll('#state-chips .chip').forEach(c=>c.onclick=()=>{filterState=c.dataset.st;renderCourses();});
+  $('#course-count').innerHTML = `<b>${COURSES.length}</b>&nbsp;TX courses`;
+  const regions=['ALL',...Array.from(new Set(COURSES.map(c=>c.region)))];
+  $('#state-chips').innerHTML = regions.map(s=>`<button class="chip ${s===filterRegion?'on':''}" data-rg="${s}">${s==='ALL'?'All Texas':s}</button>`).join('');
+  document.querySelectorAll('#state-chips .chip').forEach(c=>c.onclick=()=>{filterRegion=c.dataset.rg;renderCourses();});
   const q=filterText.toLowerCase();
-  const list=COURSES.filter(c=>(filterState==='ALL'||c.state===filterState)&&(!q||c.name.toLowerCase().includes(q)||c.city.toLowerCase().includes(q)));
+  const list=COURSES.filter(c=>(filterRegion==='ALL'||c.region===filterRegion)&&(!q||c.name.toLowerCase().includes(q)||c.city.toLowerCase().includes(q)));
   $('#course-list').innerHTML = list.length?list.map(ccard).join(''):`<p class="note pad mt14">No courses match. Try another search.</p>`;
   bindRail();
   updateMap(list);
@@ -518,7 +531,7 @@ $('#search').addEventListener('input',e=>{filterText=e.target.value;renderCourse
 let MAP=null, MARKERS=[];
 function initMap(){
   if(MAP || typeof L==='undefined' || !document.getElementById('map')) return;
-  MAP = L.map('map',{ scrollWheelZoom:false, attributionControl:true }).setView([40.2,-83.0],5);
+  MAP = L.map('map',{ scrollWheelZoom:false, attributionControl:true }).setView([31.3,-99.0],6);
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
     { maxZoom:18, attribution:'&copy; OpenStreetMap &copy; CARTO' }).addTo(MAP);
 }
