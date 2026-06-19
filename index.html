@@ -132,6 +132,8 @@
     box-shadow:0 6px 22px rgba(20,20,15,.06);transition:transform .1s}
   .ccard:active{transform:scale(.99)}
   .ccard .photo{position:relative;aspect-ratio:16/10;overflow:hidden}
+  .cphoto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+  .badge,.heart{z-index:2}
   .ccard .photo .sun{position:absolute;right:16%;top:18%;width:46px;height:46px;border-radius:50%;
     background:radial-gradient(circle,#fff7d6,rgba(255,247,214,.1) 70%)}
   .ccard .photo .hill{position:absolute;left:-10%;right:-10%;bottom:-30%;height:62%;border-radius:50% 50% 0 0;background:rgba(255,255,255,.10)}
@@ -260,7 +262,7 @@
 <body>
 <header class="topnav">
   <div class="tn-inner">
-    <div class="tn-logo"><span class="mk">⛳</span> Fairway Freedom</div>
+    <div class="tn-logo"><span class="mk"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M8 3.5V21" stroke="#fff" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M8 4.2l8.5 2.6L8 9.4z" fill="#fff"/><ellipse cx="8" cy="21" rx="4.2" ry="1.3" fill="#fff" opacity=".85"/></svg></span> Fairway Freedom</div>
     <nav class="tn-links">
       <button class="tn-link on" data-tab="home">Home</button>
       <button class="tn-link" data-tab="courses">Courses</button>
@@ -275,7 +277,7 @@
 
   <section class="screen" id="screen-courses">
     <div class="topbar">
-      <div class="logo"><span class="mk">⛳</span> Explore</div>
+      <div class="logo"><span class="mk"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M8 3.5V21" stroke="#fff" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M8 4.2l8.5 2.6L8 9.4z" fill="#fff"/><ellipse cx="8" cy="21" rx="4.2" ry="1.3" fill="#fff" opacity=".85"/></svg></span> Explore</div>
       <div class="credits" id="course-count">—</div>
     </div>
     <div class="searchwrap"><div class="field"><span>🔍</span><input id="search" type="search" placeholder="Search courses or city" autocomplete="off" /></div></div>
@@ -288,7 +290,7 @@
   </section>
 
   <section class="screen" id="screen-pass">
-    <div class="topbar"><div class="logo"><span class="mk">⛳</span> My Pass</div><div class="credits">Season <b>2026</b></div></div>
+    <div class="topbar"><div class="logo"><span class="mk"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M8 3.5V21" stroke="#fff" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M8 4.2l8.5 2.6L8 9.4z" fill="#fff"/><ellipse cx="8" cy="21" rx="4.2" ry="1.3" fill="#fff" opacity=".85"/></svg></span> My Pass</div><div class="credits">Season <b>2026</b></div></div>
     <div id="pass-body"></div>
   </section>
 
@@ -412,6 +414,15 @@ function photoStyle(c){
 }
 function ratingOf(c){ return (4.3 + (idx(c)*3 % 7)/10).toFixed(1); }
 function photoEl(c, h){ return `<div class="photo" style="${photoStyle(c)}height:${h||''}"><div class="sun"></div><div class="hill"></div></div>`; }
+// Real golf-course photography (Unsplash, free license). Rotated across courses;
+// if an image fails to load it removes itself, revealing the gradient fallback.
+// (Representative golf imagery for the demo — not photos of the specific course.)
+const IMG = [
+  'photo-1535131749006-b7f58c99034b','photo-1587174486073-ae5e5cff23aa','photo-1592919505780-303950717480',
+  'photo-1500932334442-8761ee4810a7','photo-1535132011086-b8818f016104','photo-1530028828-25e8270793c5',
+  'photo-1622398925373-3f91b1e275f5','photo-1611374243147-44a702c2d44c'
+].map(id=>`https://images.unsplash.com/${id}?w=640&q=72&auto=format&fit=crop`);
+function cphoto(c){ return `<img class="cphoto" loading="lazy" src="${IMG[idx(c)%IMG.length]}" alt="${c.name}" onerror="this.remove()">`; }
 
 /* ---- State ---- */
 const KEY='ffp_v1';
@@ -521,7 +532,7 @@ function renderHome(){
     const t=totalRounds(), val=valueCaptured(), pct=Math.min(100,Math.round(val/PRICE*100));
     const next = COURSES.filter(c=>usedAt(c.id)<ROUNDS_PER_COURSE).slice(0,6).map(railCard).join('');
     el.innerHTML = `
-      <div class="topbar"><div class="logo"><span class="mk">⛳</span> Fairway Freedom</div><div class="credits"><b>${ROUNDS_PER_COURSE*COURSES.length - t}</b> rounds left</div></div>
+      <div class="topbar"><div class="logo"><span class="mk"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M8 3.5V21" stroke="#fff" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M8 4.2l8.5 2.6L8 9.4z" fill="#fff"/><ellipse cx="8" cy="21" rx="4.2" ry="1.3" fill="#fff" opacity=".85"/></svg></span> Fairway Freedom</div><div class="credits"><b>${ROUNDS_PER_COURSE*COURSES.length - t}</b> rounds left</div></div>
       <div class="section">
         <div class="eyebrow">Welcome back</div>
         <h2>Hi, ${S.member.name.split(' ')[0]} 👋</h2>
@@ -545,7 +556,7 @@ function railCard(c){
   const left=ROUNDS_PER_COURSE-usedAt(c.id);
   const badge = left>0?`<div class="badge">${left} left</div>`:`<div class="badge used">Played</div>`;
   return `<div class="ccard" data-id="${c.id}">
-    <div class="photo" style="${photoStyle(c)}aspect-ratio:16/10"><div class="sun"></div><div class="hill"></div>${badge}</div>
+    <div class="photo" style="${photoStyle(c)}aspect-ratio:16/10">${cphoto(c)}${badge}</div>
     <div class="body">
       <div class="nm">${c.name}</div>
       <div class="loc">${c.city}, ${c.state}</div>
@@ -556,7 +567,7 @@ function ccard(c){
   const u=usedAt(c.id), left=ROUNDS_PER_COURSE-u;
   const badge = left===2?`<div class="badge">2 rounds free</div>`:left===1?`<div class="badge">1 round left</div>`:`<div class="badge used">Both played</div>`;
   return `<div class="ccard" data-id="${c.id}">
-    <div class="photo" style="${photoStyle(c)}"><div class="sun"></div><div class="hill"></div>
+    <div class="photo" style="${photoStyle(c)}">${cphoto(c)}
       <div class="heart">${S.saved[c.id]?'♥':'♡'}</div>${badge}</div>
     <div class="body">
       <div class="nm">${c.name}</div>
