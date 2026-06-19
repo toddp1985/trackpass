@@ -63,8 +63,9 @@
   .hero .photo,.hero .scrim{display:none}
   .hero .inner{position:relative;max-width:920px;margin:0 auto}
   .hero .eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:16px}
-  .hero h1{font-size:clamp(44px,12vw,68px);font-weight:800;letter-spacing:-.02em;line-height:.9}
-  .hero p{font-size:16.5px;color:var(--muted);margin:18px auto 0;max-width:460px;text-transform:none;letter-spacing:-.005em}
+  .hero h1{font-size:clamp(52px,13vw,80px);font-weight:800;letter-spacing:-.02em;line-height:.92}
+  .hero .lead{font-size:clamp(22px,4.6vw,30px);font-weight:800;letter-spacing:-.02em;line-height:1.05;color:var(--ink);margin:14px auto 0}
+  .hero p{font-size:16.5px;color:var(--muted);margin:14px auto 0;max-width:460px;text-transform:none;letter-spacing:-.005em}
   .hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
   .hero-cta .btn{width:auto;padding:15px 28px}
   .hero .price{display:block;margin-top:20px;font-weight:700;font-size:14px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
@@ -482,8 +483,8 @@ function renderHome(){
     el.innerHTML = `
       <div class="hero">
         <div class="inner">
-          <div class="eyebrow">Play like a pro</div>
-          <h1>Two free rounds.<br/>Every course.</h1>
+          <h1>Play like a pro</h1>
+          <p class="lead">Two free rounds. Every course.</p>
           <p>One flat annual pass. Two complimentary 18-hole rounds at all ${COURSES.length} courses across Texas — Austin, San Antonio, Dallas–Fort Worth &amp; Houston. Pay once, play the whole state.</p>
           <div class="hero-cta">
             <button class="btn" id="join-btn">Get your card</button>
