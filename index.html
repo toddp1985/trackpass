@@ -190,19 +190,68 @@
   .tab.on{color:var(--ink)}
   .tab.on .ic{filter:none}
 
-  /* DESKTOP: this is a mobile-first app, so it's intentionally locked to a phone-width
-     column. On larger screens, present that column as a deliberate "phone preview" on a
-     soft golf-green backdrop instead of leaving stranded white margins. Positioning of
-     the fixed tab bar / bottom sheets is unchanged — they're already centered to the
-     480px column. */
-  @media (min-width: 600px){
-    body{ background:#0d2a1b; }
-    #app{ box-shadow:0 0 100px rgba(0,0,0,.5); }
-    .hero{ height:auto; min-height:420px; }   /* stop the empty sky stretching on tall screens */
+  /* Indy-Pass-style stats band (renders below the hero, all screen sizes) */
+  .statband{ display:grid; grid-template-columns:repeat(3,1fr); background:var(--ink); color:#fff; }
+  .statband .s{ padding:20px 12px; text-align:center; border-right:1px solid rgba(255,255,255,.1); }
+  .statband .s:last-child{ border-right:none; }
+  .statband .s b{ display:block; font-size:22px; font-weight:800; letter-spacing:-.03em; }
+  .statband .s span{ font-size:11.5px; color:#b8c6bd; }
+
+  /* desktop top nav — hidden on mobile (mobile uses the bottom tab bar) */
+  .topnav{ display:none; }
+
+  /* ============ RESPONSIVE: real desktop layout (not a phone frame) ============ */
+  @media (min-width: 860px){
+    #app{ max-width:none; box-shadow:none; }
+    .tabbar, .topbar{ display:none; }                 /* desktop uses the top nav */
+    .screen{ padding-bottom:48px; min-height:auto; }
+    .topnav{ display:block; position:sticky; top:0; z-index:50; background:rgba(255,255,255,.93);
+      backdrop-filter:blur(14px); border-bottom:1px solid var(--line); }
+    .tn-inner{ max-width:1160px; margin:0 auto; display:flex; align-items:center; gap:8px; padding:13px 28px; }
+    .tn-logo{ font-size:19px; font-weight:800; letter-spacing:-.04em; display:flex; align-items:center; gap:8px; }
+    .tn-logo .mk{ width:26px; height:26px; border-radius:8px; background:var(--ink); color:#fff; display:flex; align-items:center; justify-content:center; font-size:14px; }
+    .tn-links{ display:flex; gap:4px; margin-left:18px; }
+    .tn-link{ font-size:15px; font-weight:600; color:var(--muted); padding:9px 14px; border-radius:999px; }
+    .tn-link:hover{ color:var(--ink); background:var(--bg2); }
+    .tn-link.on{ color:var(--ink); }
+    .tn-join{ margin-left:auto; width:auto; padding:11px 22px; font-size:15px; }
+    /* full-bleed hero, headline aligned to the page container */
+    .hero{ height:78vh; min-height:560px; max-height:800px; }
+    .hero .inner{ max-width:1160px; margin:0 auto; width:100%; padding:0 28px 58px; }
+    .hero h1{ font-size:72px; }
+    .hero p{ font-size:18px; max-width:540px; }
+    .hero .eyebrow{ font-size:12px; }
+    /* center content blocks in a page container */
+    .section, .searchwrap, .chips, .courses, .rail{ max-width:1160px; margin-left:auto; margin-right:auto; }
+    .section{ padding:46px 28px 6px; }
+    .section h2{ font-size:33px; }
+    .searchwrap .field{ max-width:520px; }
+    /* multi-column course grid */
+    .courses{ grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); padding:12px 28px; gap:24px; }
+    .steps{ grid-template-columns:repeat(3, 1fr); gap:28px; }
+    .split{ max-width:720px; }
+    .statband .s{ padding:30px 16px; } .statband .s b{ font-size:30px; } .statband .s span{ font-size:13px; }
+    /* the standalone CTA pair shouldn't stretch full width */
+    #screen-home .section:first-of-type{ max-width:380px; }
+    /* sheets become centered modals on desktop */
+    .sheet-bg{ align-items:center; }
+    .sheet{ max-width:560px; border-radius:24px; max-height:86vh; }
+    .sheet .shphoto{ border-radius:24px 24px 0 0; }
   }
 </style>
 </head>
 <body>
+<header class="topnav">
+  <div class="tn-inner">
+    <div class="tn-logo"><span class="mk">⛳</span> Fairway Freedom</div>
+    <nav class="tn-links">
+      <button class="tn-link on" data-tab="home">Home</button>
+      <button class="tn-link" data-tab="courses">Courses</button>
+      <button class="tn-link" data-tab="pass">My Pass</button>
+    </nav>
+    <button class="btn tn-join" id="tn-join">Join · $399</button>
+  </div>
+</header>
 <div id="app">
   <section class="screen active" id="screen-home"></section>
 
@@ -298,12 +347,16 @@ function go(tab){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   $('#screen-'+tab).classList.add('active');
   document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on', b.dataset.tab===tab));
+  document.querySelectorAll('.tn-link').forEach(b=>b.classList.toggle('on', b.dataset.tab===tab));
+  const tj=document.getElementById('tn-join'); if(tj) tj.textContent = S.member ? 'My Pass →' : 'Join · $399';
   window.scrollTo(0,0);
   if(tab==='courses') renderCourses();
   if(tab==='pass') renderPass();
   if(tab==='home') renderHome();
 }
 document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>go(b.dataset.tab));
+document.querySelectorAll('.tn-link').forEach(b=>b.onclick=()=>go(b.dataset.tab));
+document.getElementById('tn-join').onclick=()=>{ S.member ? go('pass') : openJoin(); };
 
 /* ---- HOME ---- */
 function renderHome(){
@@ -320,6 +373,11 @@ function renderHome(){
           <p>Two free 18-hole rounds at every independent, family-owned course in the network.</p>
           <div class="price"><b>${money(PRICE)}</b> / year · 2 rounds, every course</div>
         </div>
+      </div>
+      <div class="statband">
+        <div class="s"><b>Hundreds</b><span>of independent courses</span></div>
+        <div class="s"><b>2 rounds</b><span>free at every course</span></div>
+        <div class="s"><b>${money(PRICE)}/yr</b><span>flat — no per-round fees</span></div>
       </div>
       <div class="section">
         <button class="btn" id="join-btn">Become a Founding Member</button>
