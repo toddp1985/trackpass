@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
-<meta name="theme-color" content="#0b1b2c" />
+<meta name="theme-color" content="#16412b" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Fairway Freedom" />
@@ -11,10 +11,12 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <style>
+  /* Golf palette: deep pine-green ink, fairway-green CTAs, gold accents, warm cream bg.
+     (--red is the accent slot — now gold — so existing accent rules become gold.) */
   :root{
-    --ink:#0b1b2c; --navy:#0b1b2c; --bg:#ffffff; --bg2:#f3f4f6; --card:#ffffff;
-    --red:#e3261f; --red-dk:#c21d18; --green:#1f7a4d; --green-dk:#11402a; --gold:#bE9b2e;
-    --muted:#5e6b78; --line:#e6e8ec;
+    --ink:#16412b; --navy:#103223; --bg:#faf9f4; --bg2:#efece2; --card:#ffffff;
+    --red:#c2912e; --red-dk:#a3771f; --green:#1f7a4d; --green-dk:#123d27; --gold:#c2912e;
+    --muted:#5d6b60; --line:#e6e4d8;
     --safe-bottom: env(safe-area-inset-bottom, 0px);
     --safe-top: env(safe-area-inset-top, 0px);
   }
@@ -40,13 +42,13 @@
     padding:calc(var(--safe-top) + 16px) 20px 12px;display:flex;align-items:center;justify-content:space-between;
     border-bottom:1px solid var(--line)}
   .topbar .logo{font-size:18px;font-weight:800;letter-spacing:-.04em;display:flex;align-items:center;gap:7px}
-  .topbar .logo .mk{width:24px;height:24px;border-radius:6px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px}
+  .topbar .logo .mk{width:24px;height:24px;border-radius:6px;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px}
   .topbar .credits{font-size:12.5px;font-weight:700;background:var(--bg2);border:1px solid var(--line);padding:7px 12px;border-radius:999px;display:flex;gap:6px;align-items:center}
   .topbar .credits b{color:var(--green)}
 
   /* Buttons */
   .btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
-    background:var(--red);color:#fff;font-weight:800;font-size:15px;padding:16px;border-radius:8px;letter-spacing:.02em;text-transform:uppercase;
+    background:var(--green);color:#fff;font-weight:800;font-size:15px;padding:16px;border-radius:8px;letter-spacing:.02em;text-transform:uppercase;
     transition:transform .08s,filter .2s}
   .btn:active{transform:scale(.98)}
   .btn:hover{filter:brightness(1.06)}
@@ -224,7 +226,7 @@
       backdrop-filter:blur(14px); border-bottom:1px solid var(--line); }
     .tn-inner{ max-width:1160px; margin:0 auto; display:flex; align-items:center; gap:8px; padding:13px 28px; }
     .tn-logo{ font-size:19px; font-weight:800; letter-spacing:-.04em; display:flex; align-items:center; gap:8px; }
-    .tn-logo .mk{ width:26px; height:26px; border-radius:6px; background:var(--red); color:#fff; display:flex; align-items:center; justify-content:center; font-size:14px; }
+    .tn-logo .mk{ width:26px; height:26px; border-radius:6px; background:var(--green); color:#fff; display:flex; align-items:center; justify-content:center; font-size:14px; }
     .tn-links{ display:flex; gap:6px; margin-left:22px; }
     .tn-link{ font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:.02em; color:var(--ink); padding:9px 12px; border-radius:6px; }
     .tn-link:hover{ color:var(--red); }
@@ -286,7 +288,7 @@
       <div id="map" class="coursemap"></div>
       <div class="courses" id="course-list"></div>
     </div>
-    <p class="note pad mt14" style="padding-bottom:6px">Texas launch network · real public &amp; municipal courses · green fees are representative weekday estimates · two 18-hole rounds per course, per season.</p>
+    <p class="note pad mt14" style="padding-bottom:6px">Texas launch · our tracks · real public &amp; municipal courses · green fees are representative weekday estimates · two 18-hole rounds per course, per season.</p>
   </section>
 
   <section class="screen" id="screen-pass">
@@ -482,7 +484,7 @@ function renderHome(){
         <div class="inner">
           <div class="eyebrow">Texas Independent Course Co-op</div>
           <h1>United<br/>We Swing.</h1>
-          <p>One pass. Two free 18-hole rounds at every independent &amp; municipal course in the Texas network — Austin to Houston.</p>
+          <p>One pass. Two free 18-hole rounds at every independent &amp; municipal course in our Texas tracks — Austin to Houston.</p>
           <div class="hero-cta">
             <button class="btn" id="join-btn">Become a Founding Member</button>
             <button class="btn outline" id="browse-btn">Explore the courses</button>
@@ -500,7 +502,7 @@ function renderHome(){
         <h2>Three steps to free rounds</h2>
         <div class="steps">
           <div class="step"><div class="num">1</div><div><b>Buy the pass</b><p>One flat annual fee. Lock in founding-member pricing.</p></div></div>
-          <div class="step"><div class="num">2</div><div><b>Explore the network</b><p>Independent &amp; municipal gems across Austin, San Antonio, DFW & Houston.</p></div></div>
+          <div class="step"><div class="num">2</div><div><b>Explore the tracks</b><p>Independent &amp; municipal gems across Austin, San Antonio, DFW & Houston.</p></div></div>
           <div class="step"><div class="num">3</div><div><b>Show up &amp; play</b><p>Scan the pro-shop QR. Two free 18-hole rounds, every destination.</p></div></div>
         </div>
       </div>
@@ -544,7 +546,7 @@ function renderHome(){
         </div>
         <button class="btn mt20" id="find-btn">Find a course to play</button>
       </div>
-      <div class="section"><div class="eyebrow">Pick up where you left off</div><h2>Courses near the network</h2></div>
+      <div class="section"><div class="eyebrow">Pick up where you left off</div><h2>More of our tracks</h2></div>
       <div class="rail">${next}</div>`;
     $('#find-btn').onclick=()=>go('courses');
     bindRail();
@@ -596,7 +598,7 @@ function openJoin(){
     if(name.length<2){ toast('Enter your name'); return; }
     if(!/.+@.+\..+/.test(email)){ toast('Enter a valid email'); return; }
     S.member={ name, email, id:'FFP-'+Math.random().toString(36).slice(2,7).toUpperCase()+'-26', joined:new Date().toISOString() };
-    save(); closeSheet(); toast('🎉 Welcome to the network!'); renderHome();
+    save(); closeSheet(); toast('🎉 Welcome to the tracks!'); renderHome();
   };
 }
 
