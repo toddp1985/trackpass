@@ -118,14 +118,6 @@
         },
         {
           "@type": "Question",
-          "name": "How does Rec Pass compare to Indy Pass?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Indy Pass gives you a fixed number of days at partner venues only. Rec Pass has the same multi-venue spirit, but with a key addition: your green fee is covered up to $50 per round at any Texas public or municipal course — not just partners — with no limit on how many rounds you play. The usable network is effectively unlimited from day one, even before the partner roster grows."
-          }
-        },
-        {
-          "@type": "Question",
           "name": "When does Rec Pass launch and how do I join?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -193,7 +185,7 @@
   .btn.ghost{background:var(--bg2);color:var(--ink)}
   .btn[disabled]{opacity:.4;pointer-events:none}
 
-  /* Hero (non-member) — Indy-Pass-style clean white hero, giant uppercase type */
+  /* Hero (non-member) — clean white hero, giant uppercase type */
   .hero{position:relative;background:var(--bg);color:var(--ink);padding:60px 22px 44px;text-align:center;border-bottom:1px solid var(--line)}
   .hero .photo,.hero .scrim{display:none}
   .hero .inner{position:relative;max-width:920px;margin:0 auto}
@@ -278,7 +270,6 @@
     box-shadow:0 6px 22px rgba(20,20,15,.06);transition:transform .1s}
   .ccard:active{transform:scale(.99)}
   .ccard .photo{position:relative;aspect-ratio:16/10;overflow:hidden}
-  .cphoto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
   .badge,.heart{z-index:2}
   .ccard .photo .sun{position:absolute;right:16%;top:18%;width:46px;height:46px;border-radius:50%;
     background:radial-gradient(circle,#fff7d6,rgba(255,247,214,.1) 70%)}
@@ -368,7 +359,7 @@
   .tab.on{color:var(--ink)}
   .tab.on .ic{filter:none}
 
-  /* Indy-Pass-style stats band (renders below the hero, all screen sizes) */
+  /* Stats band (renders below the hero, all screen sizes) */
   .statband{ display:grid; grid-template-columns:repeat(3,1fr); background:var(--ink); color:#fff; }
   .statband .s{ padding:20px 12px; text-align:center; border-right:1px solid rgba(255,255,255,.1); }
   .statband .s:last-child{ border-right:none; }
@@ -490,10 +481,9 @@
       <div class="eyebrow">Why it works</div>
       <h2>You only fill what's empty</h2>
       <ul class="clean" style="max-width:640px">
-        <li>Redemptions are <b>weekday &amp; off-peak</b>, advance-booked — they fill tee times that would otherwise go empty, not displace paying weekend play.</li>
-        <li>Redemptions are <b>weekday &amp; off-peak</b>, advance-booked — designed to fill empty inventory, not your prime weekend tee sheet.</li>
+        <li>Redemptions are <b>weekday &amp; off-peak</b>, advance-booked — they fill tee times that would otherwise go empty, not displace your paying weekend rounds.</li>
         <li>You set blackout dates. You keep your rack rate. You never discount walk-ups.</li>
-        <li>Geographic "breakage" means most passholders never visit every course — which makes the per-round check generous.</li>
+        <li>Geographic "breakage" means most passholders never visit every course — which makes the per-round season-end check generous.</li>
       </ul>
     </div>
 
@@ -528,7 +518,8 @@
 <script>
 /* ---------------- Rec Pass — web app v1 (ClassPass-style redesign) ----
    Front-end prototype. State persists in localStorage (no backend yet).
-   Model: $399/yr, 2 rounds at every course, 15% operator / 85% escrow, QR check-in.
+   Model: $199/yr, any Texas course, no limit. Partner courses free (show pass).
+   Any other TX public/muni: green fee covered up to $50/round, weekday/off-peak, receipt required.
 ------------------------------------------------------------------------------------ */
 const PRICE = 199, AVG_GREEN_FEE = 35, REIMB_CAP = 50;
 // Unlimited model: no round cap per course or per year — every course is always playable.
@@ -581,16 +572,6 @@ function photoStyle(c){
 }
 function ratingOf(c){ return (4.3 + (idx(c)*3 % 7)/10).toFixed(1); }
 function photoEl(c, h){ return `<div class="photo" style="${photoStyle(c)}height:${h||''}"><div class="sun"></div><div class="hill"></div></div>`; }
-// Real golf-course photography (Unsplash, free license). Rotated across courses;
-// if an image fails to load it removes itself, revealing the gradient fallback.
-// (Representative golf imagery for the demo — not photos of the specific course.)
-const IMG = [
-  'photo-1535131749006-b7f58c99034b','photo-1587174486073-ae5e5cff23aa','photo-1592919505780-303950717480',
-  'photo-1500932334442-8761ee4810a7','photo-1535132011086-b8818f016104','photo-1530028828-25e8270793c5',
-  'photo-1622398925373-3f91b1e275f5','photo-1611374243147-44a702c2d44c'
-].map(id=>`https://images.unsplash.com/${id}?w=640&q=72&auto=format&fit=crop`);
-function cphoto(c){ return `<img class="cphoto" loading="lazy" src="${IMG[idx(c)%IMG.length]}" alt="${c.name}" onerror="this.remove()">`; }
-
 /* ---- State ---- */
 const KEY='ffp_v1';
 let S = load();
@@ -684,8 +665,8 @@ function renderHome(){
       <div class="rail">${feat}</div>
       <div class="section">
         <div class="eyebrow">The math</div>
-        <h2>${money(PRICE)} — two green fees and it's paid for</h2>
-        <p class="sub" style="max-width:560px">Partner-course green fees average $30–$50. Play four or five partner courses and you've covered the pass — then it's unlimited free golf at partner courses and up to ${money(REIMB_CAP)}/round anywhere else in Texas. No limit on how many courses or rounds.</p>
+        <h2>${money(PRICE)} — a few rounds and it pays for itself</h2>
+        <p class="sub" style="max-width:560px">Partner-course green fees average $30–$50. Play four or five partner courses and the pass has paid for itself — then it's unlimited free golf at partner courses and up to ${money(REIMB_CAP)}/round anywhere else in Texas. No limit on how many courses or rounds.</p>
         <div class="split">
           <div class="seg escrow"><div class="pct">Up to ${money(REIMB_CAP)}/round</div><div class="lbl">Any Texas public course — green fee covered, unlimited rounds</div></div>
           <div class="seg take"><div class="pct">Free</div><div class="lbl">Every partner course — show your pass, no receipt</div></div>
@@ -725,10 +706,6 @@ function renderHome(){
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">How does Rec Pass compare to a single-course membership?<span class="arr">⌄</span></button>
             <div class="faq-a">A single-course membership locks you into one track and typically costs $500–$2,000+/year. Rec Pass is $199/year, gives you free rounds at every partner course, and covers your green fee up to $50/round at any Texas public or municipal course — with no limit on rounds. Built for golfers who want variety, not a commitment to one venue.</div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-q" aria-expanded="false">How does Rec Pass compare to Indy Pass (ski)?<span class="arr">⌄</span></button>
-            <div class="faq-a">Indy Pass gives you a fixed number of days at partner venues only. Rec Pass has the same multi-venue spirit, but with a key addition: your green fee is covered up to $50/round at any Texas public or municipal course — not just partners — with no limit on how many rounds you play. The usable network is effectively unlimited from day one, even before the partner roster grows.</div>
           </div>
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">When does it launch? How do I secure my spot?<span class="arr">⌄</span></button>
@@ -784,7 +761,7 @@ function railCard(c){
   const rounds = usedAt(c.id);
   const badge = rounds>0 ? `<div class="badge">${rounds} played</div>` : `<div class="badge">Free</div>`;
   return `<div class="ccard" data-id="${c.id}">
-    <div class="photo" style="${photoStyle(c)}aspect-ratio:16/10">${cphoto(c)}${badge}</div>
+    <div class="photo" style="${photoStyle(c)}aspect-ratio:16/10"><div class="sun"></div><div class="hill"></div>${badge}</div>
     <div class="body">
       <div class="nm">${c.name}</div>
       <div class="loc">${c.city}, ${c.state}</div>
@@ -795,7 +772,7 @@ function ccard(c){
   const u=usedAt(c.id);
   const badge = u>0 ? `<div class="badge">${u} played</div>` : `<div class="badge">Free</div>`;
   return `<div class="ccard" data-id="${c.id}">
-    <div class="photo" style="${photoStyle(c)}">${cphoto(c)}
+    <div class="photo" style="${photoStyle(c)}"><div class="sun"></div><div class="hill"></div>
       <div class="heart">${S.saved[c.id]?'♥':'♡'}</div>${badge}</div>
     <div class="body">
       <div class="nm">${c.name}</div>
@@ -866,7 +843,10 @@ $('#search').addEventListener('input',e=>{filterText=e.target.value;renderCourse
    Formula: x = (lng - (-106.6)) / ((-93.5) - (-106.6)) * 540 + 10
              y = (36.5 - lat) / (36.5 - 25.8) * 440 + 10
 */
-const TX_PATH = 'M 35 10 L 42 12 L 55 14 L 68 14 L 82 12 L 96 11 L 110 10 L 124 9 L 138 9 L 152 8 L 166 8 L 180 8 L 194 8 L 208 8 L 222 8 L 236 8 L 250 8 L 264 8 L 278 8 L 292 8 L 306 8 L 320 8 L 334 9 L 348 9 L 362 10 L 376 11 L 390 12 L 404 14 L 418 15 L 430 17 L 438 23 L 444 30 L 446 38 L 446 46 L 444 54 L 438 62 L 430 68 L 422 74 L 418 82 L 420 92 L 424 102 L 426 112 L 426 122 L 424 132 L 420 142 L 416 152 L 414 162 L 416 172 L 420 182 L 424 192 L 426 202 L 422 212 L 416 222 L 410 230 L 404 236 L 396 244 L 388 254 L 382 264 L 378 274 L 376 286 L 374 298 L 370 308 L 362 318 L 352 326 L 342 332 L 334 340 L 328 350 L 322 360 L 312 368 L 302 374 L 292 378 L 282 382 L 270 386 L 258 390 L 248 396 L 240 404 L 234 412 L 230 420 L 226 430 L 220 438 L 210 444 L 200 448 L 188 450 L 176 450 L 164 448 L 152 444 L 140 438 L 130 430 L 122 422 L 114 414 L 106 408 L 96 404 L 84 402 L 74 402 L 64 404 L 54 408 L 44 412 L 36 416 L 28 418 L 22 414 L 18 408 L 14 400 L 12 390 L 10 378 L 10 366 L 12 354 L 16 342 L 20 330 L 22 318 L 22 306 L 20 294 L 18 282 L 16 270 L 14 258 L 12 246 L 10 234 L 10 222 L 12 210 L 14 198 L 16 186 L 16 174 L 16 162 L 14 150 L 12 138 L 10 126 L 10 114 L 12 102 L 14 90 L 16 78 L 18 66 L 20 54 L 22 42 L 26 32 L 30 22 L 35 10 Z';
+// Accurate Texas silhouette: real border lat/lng projected through latlngToSvg
+// (same transform as the pins), so the outline reads as Texas AND lines up with
+// the course markers. Panhandle, El Paso point, Big Bend dip, Gulf coast, south tip.
+const TX_PATH = 'M 157 10 L 282 10 L 282 82 L 282 90 L 307 96 L 348 107 L 383 110 L 402 117 L 430 123 L 465 127 L 528 130 L 528 143 L 528 191 L 540 220 L 548 249 L 542 273 L 536 290 L 501 302 L 468 329 L 430 343 L 404 366 L 395 401 L 397 429 L 400 444 L 389 448 L 323 425 L 305 388 L 261 331 L 245 305 L 224 286 L 183 286 L 163 311 L 150 319 L 101 296 L 80 261 L 51 232 L 14 205 L 9 195 L 156 195 L 157 113 L 157 10 Z';
 
 function latlngToSvg(lat, lng){
   const x = ((lng - (-106.6)) / ((-93.5) - (-106.6))) * 540 + 10;
