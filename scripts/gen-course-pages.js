@@ -90,6 +90,32 @@ const COURSES = [
   { id:'kil-skylark-field', name:'Skylark Field Golf Course', city:'Killeen', state:'TX', citySlug:'killeen-tx', slug:'skylark-field', type:'Public', fee:30, blurb:"A straightforward public layout near Fort Cavazos in central Texas. Skylark Field is the primary public golf option for the Killeen–Temple area and draws a loyal local following for its dependable conditions." },
   // ── Wichita Falls ──
   { id:'wf-weeks-park', name:'Weeks Park Golf Course', city:'Wichita Falls', state:'TX', citySlug:'wichita-falls-tx', slug:'weeks-park', type:'Municipal', fee:28, blurb:"Wichita Falls' main municipal course sits in Weeks Park along Holliday Creek and is the primary public access golf facility for the North Texas panhandle region. A solid, affordable track with good greens." },
+  // ── The Colony / DFW North ──
+  { id:'col-the-tribute', name:'The Tribute Golf Club', city:'The Colony', state:'TX', citySlug:'the-colony-tx', slug:'the-tribute', type:'Public', fee:75, blurb:"A Scottish links-style masterpiece on the shores of Lake Lewisville in The Colony. The Tribute is consistently ranked among the top 5 public courses in Texas and the best links-style layout in the state — a bucket-list round for any serious golfer." },
+  // ── McKinney ──
+  { id:'mck-tpc-craig-ranch', name:'TPC Craig Ranch', city:'McKinney', state:'TX', citySlug:'mckinney-tx', slug:'tpc-craig-ranch', type:'Public', fee:85, blurb:"Home of the PGA Tour's AT&T Byron Nelson, TPC Craig Ranch is a world-class public layout in McKinney. Playing the same course the pros compete on is a bucket-list experience — and it's open to the public year-round." },
+  // ── Grapevine ──
+  { id:'grv-grapevine-golf', name:'Grapevine Golf Course — Dove Valley', city:'Grapevine', state:'TX', citySlug:'grapevine-tx', slug:'dove-valley-ranch', type:'Municipal', fee:48, blurb:"The City of Grapevine's flagship 18-hole municipal course, Dove Valley Ranch is a links-influenced layout set among rolling terrain near DFW Airport. One of the best-maintained munis in the mid-cities." },
+  // ── Round Rock ──
+  { id:'rr-old-settlers-park', name:'Old Settlers Park Golf Course', city:'Round Rock', state:'TX', citySlug:'round-rock-tx', slug:'old-settlers-park', type:'Municipal', fee:35, blurb:"Round Rock's City-owned 18-hole course in Old Settlers Park — a well-maintained, affordable layout that serves the fast-growing Austin suburb and draws heavy play from local regulars. Great value for the area." },
+  // ── Rowlett ──
+  { id:'row-waterview', name:'Waterview Golf Club', city:'Rowlett', state:'TX', citySlug:'rowlett-tx', slug:'waterview', type:'Public', fee:45, blurb:"A scenic daily-fee course in Rowlett built into the rolling terrain above Lake Ray Hubbard. Waterview features dramatic elevation changes, water views, and one of the most memorable finishing holes in the Dallas area." },
+  // ── Pearland ──
+  { id:'prl-pearland-golf', name:'Pearland Golf Club at Country Place', city:'Pearland', state:'TX', citySlug:'pearland-tx', slug:'pearland-golf-club', type:'Public', fee:40, blurb:"A popular public course in the booming Houston suburb of Pearland. Country Place offers 18 holes of well-maintained, affordable golf with consistent conditions and easy access from south Houston." },
+  // ── Sugar Land ──
+  { id:'sul-oyster-creek', name:'Oyster Creek Golf Course', city:'Sugar Land', state:'TX', citySlug:'sugar-land-tx', slug:'oyster-creek', type:'Municipal', fee:35, blurb:"The City of Sugar Land's municipal golf facility, set along Oyster Creek in Fort Bend County. An accessible 18-hole layout that's well-loved by the local community and one of the most affordable rounds in the Houston suburbs." },
+  // ── Cypress / Houston NW ──
+  { id:'cyp-longwood', name:'Longwood Golf Club', city:'Cypress', state:'TX', citySlug:'cypress-tx', slug:'longwood', type:'Public', fee:45, blurb:"A beloved daily-fee course on Houston's northwest side in Cypress. Longwood features tree-lined fairways, generous fairways, and conditions that punch above their price point — a reliable suburban Houston pick." },
+  // ── Weslaco / Rio Grande Valley ──
+  { id:'wes-tierra-santa', name:'Tierra Santa Golf Club', city:'Weslaco', state:'TX', citySlug:'weslaco-tx', slug:'tierra-santa', type:'Public', fee:38, blurb:"An 18-hole daily-fee track in the Rio Grande Valley serving golfers from Weslaco, McAllen, and the broader Winter Texan snowbird community. Tierra Santa offers championship-length golf at accessible South Texas pricing." },
+  // ── New Braunfels ──
+  { id:'nb-landa-park', name:'Landa Park Golf Course', city:'New Braunfels', state:'TX', citySlug:'new-braunfels-tx', slug:'landa-park', type:'Municipal', fee:30, blurb:"A scenic Hill Country municipal course in New Braunfels set inside Landa Park. With views of the Comal River and mature cypress trees lining the fairways, Landa Park is one of the most visually distinctive city-run courses in Texas." },
+  // ── Pflugerville ──
+  { id:'pfug-blackhawk', name:'Blackhawk Golf Club', city:'Pflugerville', state:'TX', citySlug:'pflugerville-tx', slug:'blackhawk', type:'Public', fee:50, blurb:"One of the premier public golf courses in the Austin metro, Blackhawk is a challenging 18-hole layout in Pflugerville featuring rolling terrain, a creek winding through several holes, and excellent conditioning year-round." },
+  // ── Cedar Park ──
+  { id:'cp-twin-creeks', name:'Twin Creeks Golf Club', city:'Cedar Park', state:'TX', citySlug:'cedar-park-tx', slug:'twin-creeks', type:'Public', fee:55, blurb:"A daily-fee 18-hole course in Cedar Park on the northwest side of the Austin metro. Twin Creeks offers a genuine test of golf with well-designed holes, strong conditioning, and a welcoming atmosphere for golfers of all levels." },
+  // ── Conroe / The Woodlands ──
+  { id:'con-west-fork', name:'West Fork Golf Club', city:'Conroe', state:'TX', citySlug:'conroe-tx', slug:'west-fork', type:'Public', fee:45, blurb:"A public 18-hole layout just north of The Woodlands in Conroe, serving the booming Montgomery County golf community. West Fork offers solid daily-fee golf with tree-lined fairways and reasonable pricing for the greater Houston area." },
 ];
 
 function slugify(str) {
