@@ -103,15 +103,20 @@
   overlay.querySelector(".tp-wl-close").addEventListener("click", close);
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && overlay.classList.contains("open")) close(); });
 
+  const STRIPE_LINK = "https://buy.stripe.com/5kQ28r7vmbGP0SW11p2Ji00";
+
   function showDone(emailed) {
     body.innerHTML = `
       <div class="tp-wl-done">
         <div class="ico">⛳️</div>
         <h3>You're on the list!</h3>
-        <p class="sub">Your founding rate is reserved. We'll email you the moment TrackPass goes live in Texas.${emailed === false ? "<br><small>(Saved — confirmation email pending.)</small>" : ""}</p>
-        <button class="tp-wl-submit" type="button">Done</button>
+        <p class="sub">Your founding rate is reserved.${emailed === false ? "<br><small>(Saved — confirmation email pending.)</small>" : ""}</p>
+        <a href="${STRIPE_LINK}" class="tp-wl-submit" style="display:block;text-align:center;text-decoration:none;margin-bottom:.75rem">Lock it in now — $199/year →</a>
+        <button class="tp-wl-submit" type="button" style="background:#5b6b61">I'll pay later</button>
+        <p class="tp-wl-foot">We'll email you when TrackPass goes live. Pay now to guarantee your founding rate.</p>
       </div>`;
-    body.querySelector("button").addEventListener("click", close);
+    body.querySelectorAll("button").forEach(b => b.addEventListener("click", close));
+    if (window.posthog) posthog.capture("stripe_cta_shown");
   }
 
   form.addEventListener("submit", async (e) => {
