@@ -77,6 +77,16 @@
   const msg = overlay.querySelector(".tp-wl-msg");
   const body = overlay.querySelector(".tp-wl-body");
   let lastFocus = null;
+  let formStartFired = false;
+
+  // Fire waitlist_form_started once when the user first touches the email field
+  const emailInput = overlay.querySelector("#tpwl-email");
+  emailInput && emailInput.addEventListener("focus", function onFirstFocus() {
+    if (formStartFired) return;
+    formStartFired = true;
+    emailInput.removeEventListener("focus", onFirstFocus);
+    if (window.posthog) posthog.capture("waitlist_form_started");
+  });
 
   function open(e) {
     if (e) e.preventDefault();
@@ -138,7 +148,14 @@
         body: JSON.stringify(data),
       });
       const j = await r.json().catch(() => ({}));
-      if (r.ok && j.ok) { showDone(j.emailed); return; }
+      if (r.ok && j.ok) {
+        if (window.posthog) {
+          posthog.capture("waitlist_form_completed", { region: data.region || null, has_name: !!(data.name || "").trim() });
+          posthog.identify(email);
+        }
+        showDone(j.emailed);
+        return;
+      }
       msg.className = "tp-wl-msg err";
       msg.textContent = j.error || "Something went wrong — please try again.";
     } catch (_) {
@@ -165,4 +182,19 @@
   else document.addEventListener("DOMContentLoaded", wire);
 
   window.TrackPassWaitlist = { open, close };
+
+  // Exit-intent: show modal when cursor exits top of viewport. One shot per session.
+  if (!sessionStorage.getItem("tp_exit_shown")) {
+    document.addEventListener("mouseleave", function exitIntent(e) {
+      if (e.clientY > 0) return;
+      sessionStorage.setItem("tp_exit_shown", "1");
+      document.removeEventListener("mouseleave", exitIntent);
+      if (overlay.classList.contains("open")) return; // already open
+      // Personalise heading for exit-intent context
+      const h = overlay.querySelector("#tpwl-h");
+      if (h) h.textContent = "Wait — grab your founding rate first";
+      if (window.posthog) posthog.capture("exit_intent_triggered");
+      open();
+    });
+  }
 })();
