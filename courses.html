@@ -13,6 +13,9 @@
 <meta property="og:site_name" content="TrackPass" />
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="assets/courses-data.js"></script>
 <!-- Material Symbols -->
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <!-- Google Fonts: Sora & Manrope -->
@@ -212,220 +215,11 @@
 </div>
 </header>
 <!-- Course Results Grid -->
-<section class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="resultsGrid">
-<!-- Course Card 1 -->
-<div class="course-card group bg-white rounded-3xl overflow-hidden shadow-[0px_4px_20px_rgba(16,50,35,0.08)] transition-all duration-500 hover:-translate-y-1 flex flex-col">
-<div class="relative h-64 overflow-hidden shrink-0">
-<div class="card-img w-full h-full bg-cover bg-center transition-transform duration-700" data-alt="A lush, sun-drenched golf course fairway winding through ancient oak trees at sunset. The lighting is golden and warm, casting long shadows across the perfectly manicured green grass. The atmosphere is serene, high-end, and evokes a sense of quiet luxury. Sophisticated emerald greens and earthy tones dominate the palette." style="background-image: url('assets/img/img_39f13b576312.jpg')"></div>
-<div class="absolute top-4 left-4 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-lg text-[11px] uppercase tracking-wider">PARTNER · FREE</div>
-<button class="absolute top-4 right-4 bg-white/20 backdrop-blur-md text-white p-2 rounded-full hover:bg-white hover:text-error transition-all">
-<span class="material-symbols-outlined">favorite</span>
-</button>
-</div>
-<div class="p-6 flex flex-col flex-1">
-<div class="flex justify-between items-start mb-2">
-<h3 class="font-headline-md text-headline-md text-primary">Lions Municipal</h3>
-<div class="flex items-center gap-1 text-secondary">
-<span class="material-symbols-outlined fill-icon text-[18px]">star</span>
-<span class="font-label-lg text-label-lg">4.9</span>
-</div>
-</div>
-<div class="flex items-center gap-1 text-on-surface-variant mb-6">
-<span class="material-symbols-outlined text-[18px]">location_on</span>
-<span class="font-body-md text-body-md">Austin, TX</span>
-</div>
-<div class="flex flex-wrap gap-2 mb-8">
-<span class="bg-surface-container-low text-on-primary-fixed-variant px-3 py-1 rounded-full text-[12px] font-medium">Municipal</span>
-<span class="bg-surface-container-low text-on-primary-fixed-variant px-3 py-1 rounded-full text-[12px] font-medium">Historic</span>
-</div>
-<div class="flex flex-col gap-3 mt-auto">
-<p class="font-body-md text-[13px] text-on-surface-variant leading-tight">Free — just show your pass.</p>
-<button class="w-full bg-deep-forest text-white py-3 rounded-full font-label-lg text-label-lg hover:bg-primary transition-all active:scale-95">Join the founding list — $199/year</button>
-</div>
-</div>
-</div>
-<!-- Course Card 2 -->
-<div class="course-card group bg-white rounded-3xl overflow-hidden shadow-[0px_4px_20px_rgba(16,50,35,0.08)] transition-all duration-500 hover:-translate-y-1 flex flex-col">
-<div class="relative h-64 overflow-hidden shrink-0">
-<div class="card-img w-full h-full bg-cover bg-center transition-transform duration-700" data-alt="A dramatic coastal golf course cliffside hole overlooking a turquoise ocean with crashing white waves. The sky is a clear, bright blue, creating a high-key, modern aesthetic. The grass is a vibrant, saturated green, contrasting sharply with the deep blue water. The style is minimalist and premium, capturing a breathtaking outdoor sporting experience." style="background-image: url('assets/img/img_fa96e661a39b.jpg')"></div>
-<div class="absolute top-4 left-4 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-lg text-[11px] uppercase tracking-wider">PARTNER · FREE</div>
-<button class="absolute top-4 right-4 bg-white/20 backdrop-blur-md text-white p-2 rounded-full hover:bg-white hover:text-error transition-all">
-<span class="material-symbols-outlined">favorite</span>
-</button>
-</div>
-<div class="p-6 flex flex-col flex-1">
-<div class="flex justify-between items-start mb-2">
-<h3 class="font-headline-md text-headline-md text-primary">Memorial Park</h3>
-<div class="flex items-center gap-1 text-secondary">
-<span class="material-symbols-outlined fill-icon text-[18px]">star</span>
-<span class="font-label-lg text-label-lg">5.0</span>
-</div>
-</div>
-<div class="flex items-center gap-1 text-on-surface-variant mb-6">
-<span class="material-symbols-outlined text-[18px]">location_on</span>
-<span class="font-body-md text-body-md">Houston, TX</span>
-</div>
-<div class="flex flex-wrap gap-2 mb-8">
-<span class="bg-surface-container-low text-on-primary-fixed-variant px-3 py-1 rounded-full text-[12px] font-medium">Municipal</span>
-<span class="bg-surface-container-low text-on-primary-fixed-variant px-3 py-1 rounded-full text-[12px] font-medium">Championship</span>
-</div>
-<div class="flex flex-col gap-3 mt-auto">
-<p class="font-body-md text-[13px] text-on-surface-variant leading-tight">Free — just show your pass.</p>
-<button class="w-full bg-deep-forest text-white py-3 rounded-full font-label-lg text-label-lg hover:bg-primary transition-all active:scale-95">Join the founding list — $199/year</button>
-</div>
-</div>
-</div>
-<!-- Course Card 3 -->
-<div class="course-card group bg-white rounded-3xl overflow-hidden shadow-[0px_4px_20px_rgba(16,50,35,0.08)] transition-all duration-500 hover:-translate-y-1 flex flex-col">
-<div class="relative h-64 overflow-hidden shrink-0">
-<div class="card-img w-full h-full bg-cover bg-center transition-transform duration-700" data-alt="A wide-angle shot of a minimalist golf clubhouse with clean architectural lines, made of stone and dark wood, reflecting in a still water feature. The surrounding landscape is a desert oasis style with native grasses and sand bunkers. The lighting is soft morning light, highlighting the textures of the materials. Modern, corporate, and extremely sophisticated." style="background-image: url('assets/img/img_faba87f765de.jpg')"></div>
-<div class="absolute top-4 left-4 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-lg text-[11px] uppercase tracking-wider">PARTNER · FREE</div>
-<button class="absolute top-4 right-4 bg-white/20 backdrop-blur-md text-white p-2 rounded-full hover:bg-white hover:text-error transition-all">
-<span class="material-symbols-outlined">favorite</span>
-</button>
-</div>
-<div class="p-6 flex flex-col flex-1">
-<div class="flex justify-between items-start mb-2">
-<h3 class="font-headline-md text-headline-md text-primary">Brackenridge Park</h3>
-<div class="flex items-center gap-1 text-secondary">
-<span class="material-symbols-outlined fill-icon text-[18px]">star</span>
-<span class="font-label-lg text-label-lg">4.7</span>
-</div>
-</div>
-<div class="flex items-center gap-1 text-on-surface-variant mb-6">
-<span class="material-symbols-outlined text-[18px]">location_on</span>
-<span class="font-body-md text-body-md">San Antonio, TX</span>
-</div>
-<div class="flex flex-wrap gap-2 mb-8">
-<span class="bg-surface-container-low text-on-primary-fixed-variant px-3 py-1 rounded-full text-[12px] font-medium">Municipal</span>
-<span class="bg-surface-container-low text-on-primary-fixed-variant px-3 py-1 rounded-full text-[12px] font-medium">Historic</span>
-</div>
-<div class="flex flex-col gap-3 mt-auto">
-<p class="font-body-md text-[13px] text-on-surface-variant leading-tight">Free — just show your pass.</p>
-<button class="w-full bg-deep-forest text-white py-3 rounded-full font-label-lg text-label-lg hover:bg-primary transition-all active:scale-95">Join the founding list — $199/year</button>
-</div>
-</div>
-</div>
-<!-- Course Card 4 -->
-<div class="course-card group bg-white rounded-3xl overflow-hidden shadow-[0px_4px_20px_rgba(16,50,35,0.08)] transition-all duration-500 hover:-translate-y-1 flex flex-col">
-<div class="relative h-64 overflow-hidden shrink-0">
-<div class="card-img w-full h-full bg-cover bg-center transition-transform duration-700" data-alt="A misty morning on a forest golf course, with tall pine trees bordering a narrow fairway. Dew is visible on the grass, and rays of sunlight pierce through the fog. The scene is quiet and atmospheric, focusing on the heritage of the sport. The colors are deep forest greens, soft grays, and muted browns, creating a grounded, traditional feel." style="background-image: url('assets/img/img_caae156101c8.jpg')"></div>
-<div class="absolute top-4 left-4 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-lg text-[11px] uppercase tracking-wider">PARTNER · FREE</div>
-<button class="absolute top-4 right-4 bg-white/20 backdrop-blur-md text-white p-2 rounded-full hover:bg-white hover:text-error transition-all">
-<span class="material-symbols-outlined">favorite</span>
-</button>
-</div>
-<div class="p-6 flex flex-col flex-1">
-<div class="flex justify-between items-start mb-2">
-<h3 class="font-headline-md text-headline-md text-primary">Tenison Highlands</h3>
-<div class="flex items-center gap-1 text-secondary">
-<span class="material-symbols-outlined fill-icon text-[18px]">star</span>
-<span class="font-label-lg text-label-lg">4.8</span>
-</div>
-</div>
-<div class="flex items-center gap-1 text-on-surface-variant mb-6">
-<span class="material-symbols-outlined text-[18px]">location_on</span>
-<span class="font-body-md text-body-md">Dallas, TX</span>
-</div>
-<div class="flex flex-wrap gap-2 mb-8">
-<span class="bg-surface-container-low text-on-primary-fixed-variant px-3 py-1 rounded-full text-[12px] font-medium">Public</span>
-<span class="bg-surface-container-low text-on-primary-fixed-variant px-3 py-1 rounded-full text-[12px] font-medium">Pro Shop</span>
-</div>
-<div class="flex flex-col gap-3 mt-auto">
-<p class="font-body-md text-[13px] text-on-surface-variant leading-tight">Free — just show your pass.</p>
-<button class="w-full bg-deep-forest text-white py-3 rounded-full font-label-lg text-label-lg hover:bg-primary transition-all active:scale-95">Join the founding list — $199/year</button>
-</div>
-</div>
-</div>
-<!-- Course Card 5 -->
-<div class="course-card group bg-white rounded-3xl overflow-hidden shadow-[0px_4px_20px_rgba(16,50,35,0.08)] transition-all duration-500 hover:-translate-y-1 flex flex-col">
-<div class="relative h-64 overflow-hidden shrink-0">
-<div class="card-img w-full h-full bg-cover bg-center transition-transform duration-700" data-alt="Modern minimalist architecture of a golf resort in the rolling hills of Ireland. The building features large glass windows and natural stone. The sky is dramatic with fast-moving clouds. The scene is clean, expansive, and high-end, representing a global golf destination. The color palette is composed of emerald greens, stone grays, and deep navy." style="background-image: url('assets/img/img_a1ce98a02444.jpg')"></div>
-<div class="absolute top-4 left-4 bg-primary-container text-on-primary-container px-3 py-1 rounded-full font-label-lg text-[11px] uppercase tracking-wider">COVERED UP TO $50</div>
-<button class="absolute top-4 right-4 bg-white/20 backdrop-blur-md text-white p-2 rounded-full hover:bg-white hover:text-error transition-all">
-<span class="material-symbols-outlined">favorite</span>
-</button>
-</div>
-<div class="p-6 flex flex-col flex-1">
-<div class="flex justify-between items-start mb-2">
-<h3 class="font-headline-md text-headline-md text-primary">Roy Kizer Golf Course</h3>
-<div class="flex items-center gap-1 text-secondary">
-<span class="material-symbols-outlined fill-icon text-[18px]">star</span>
-<span class="font-label-lg text-label-lg">4.6</span>
-</div>
-</div>
-<div class="flex items-center gap-1 text-on-surface-variant mb-6">
-<span class="material-symbols-outlined text-[18px]">location_on</span>
-<span class="font-body-md text-body-md">Austin, TX</span>
-</div>
-<div class="flex flex-wrap gap-2 mb-8">
-<span class="bg-surface-container-low text-on-primary-fixed-variant px-3 py-1 rounded-full text-[12px] font-medium">Links Style</span>
-<span class="bg-surface-container-low text-on-primary-fixed-variant px-3 py-1 rounded-full text-[12px] font-medium">Public</span>
-</div>
-<div class="flex flex-col gap-3 mt-auto">
-<p class="font-body-md text-[13px] text-on-surface-variant leading-tight">Pay, snap your receipt, get reimbursed up to $50/round (weekday/off-peak).</p>
-<button class="w-full bg-outline-variant/30 text-primary py-3 rounded-full font-label-lg text-label-lg hover:bg-surface-variant transition-all active:scale-95">Join the founding list — $199/year</button>
-</div>
-</div>
-</div>
-<!-- Course Card 6 -->
-<div class="course-card group bg-white rounded-3xl overflow-hidden shadow-[0px_4px_20px_rgba(16,50,35,0.08)] transition-all duration-500 hover:-translate-y-1 flex flex-col">
-<div class="relative h-64 overflow-hidden shrink-0">
-<div class="card-img w-full h-full bg-cover bg-center transition-transform duration-700" data-alt="A luxury golf resort infinity pool overlooking the 18th green at dusk. The water is glowing with soft blue light, and the sky is a deep purple and orange gradient. The resort is built with white stucco and tiled roofs, giving a Mediterranean feel. The vibe is exclusive and relaxing. The colors are sunset oranges, deep purples, and crisp whites." style="background-image: url('assets/img/img_3d108a712e91.jpg')"></div>
-<div class="absolute top-4 left-4 bg-primary-container text-on-primary-container px-3 py-1 rounded-full font-label-lg text-[11px] uppercase tracking-wider">COVERED UP TO $50</div>
-<button class="absolute top-4 right-4 bg-white/20 backdrop-blur-md text-white p-2 rounded-full hover:bg-white hover:text-error transition-all">
-<span class="material-symbols-outlined">favorite</span>
-</button>
-</div>
-<div class="p-6 flex flex-col flex-1">
-<div class="flex justify-between items-start mb-2">
-<h3 class="font-headline-md text-headline-md text-primary">Cedar Crest</h3>
-<div class="flex items-center gap-1 text-secondary">
-<span class="material-symbols-outlined fill-icon text-[18px]">star</span>
-<span class="font-label-lg text-label-lg">4.9</span>
-</div>
-</div>
-<div class="flex items-center gap-1 text-on-surface-variant mb-6">
-<span class="material-symbols-outlined text-[18px]">location_on</span>
-<span class="font-body-md text-body-md">Dallas, TX</span>
-</div>
-<div class="flex flex-wrap gap-2 mb-8">
-<span class="bg-surface-container-low text-on-primary-fixed-variant px-3 py-1 rounded-full text-[12px] font-medium">Municipal</span>
-<span class="bg-surface-container-low text-on-primary-fixed-variant px-3 py-1 rounded-full text-[12px] font-medium">Rolling Hills</span>
-</div>
-<div class="flex flex-col gap-3 mt-auto">
-<p class="font-body-md text-[13px] text-on-surface-variant leading-tight">Pay, snap your receipt, get reimbursed up to $50/round (weekday/off-peak).</p>
-<button class="w-full bg-outline-variant/30 text-primary py-3 rounded-full font-label-lg text-label-lg hover:bg-surface-variant transition-all active:scale-95">Join the founding list — $199/year</button>
-</div>
-</div>
-</div>
-</section>
-<!-- Map View (Hidden by default) -->
-<section class="hidden px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-[716px] rounded-3xl overflow-hidden shadow-lg border border-outline-variant/30" id="mapContainer">
-<div class="w-full h-full bg-surface-container relative">
-<div class="w-full h-full bg-cover bg-center opacity-50 grayscale contrast-125" data-location="California" style="background-image: url('assets/img/img_ed36b9a88199.jpg')"></div>
-<!-- Custom Map Markers Overlay (Simulated) -->
-<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-<div class="relative group pointer-events-auto cursor-pointer" style="top: -20%; left: -10%;">
-<div class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-bold shadow-lg animate-bounce text-[12px]">FREE</div>
-<div class="w-4 h-4 bg-secondary-container rounded-full mx-auto -mt-1 border-2 border-white"></div>
-</div>
-<div class="relative group pointer-events-auto cursor-pointer" style="top: 10%; left: 15%;">
-<div class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-bold shadow-lg animate-pulse text-[12px]">FREE</div>
-<div class="w-4 h-4 bg-secondary-container rounded-full mx-auto -mt-1 border-2 border-white"></div>
-</div>
-<div class="relative group pointer-events-auto cursor-pointer" style="top: 30%; left: -25%;">
-<div class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full font-bold shadow-lg text-[12px]">UP TO $50</div>
-<div class="w-4 h-4 bg-primary-container rounded-full mx-auto -mt-1 border-2 border-white"></div>
-</div>
-</div>
-<!-- Float card for map -->
-<div class="absolute bottom-8 left-8 right-8 md:right-auto md:w-96 glass-panel p-6 rounded-2xl shadow-xl flex flex-col">
-<h4 class="font-headline-md text-primary mb-2">Lions Municipal</h4>
-<p class="text-on-surface-variant text-body-md mb-4">4.9 (124 reviews) • Austin, TX</p>
-<button class="w-full bg-deep-forest text-white py-3 rounded-xl font-label-lg transition-all hover:bg-primary">View Details</button>
-</div>
-</div>
+<!-- Course Results Grid (rendered from assets/courses-data.js) -->
+<section class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="resultsGrid"></section>
+<!-- Map View (hidden by default) — real OpenStreetMap via Leaflet -->
+<section class="hidden px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto" id="mapContainer">
+<div id="courseMap" class="w-full h-[716px] rounded-3xl overflow-hidden shadow-lg border border-outline-variant/30 z-0"></div>
 </section>
 </main>
 <!-- Footer -->
@@ -493,5 +287,114 @@
             mapViewBtn.classList.remove('bg-deep-forest', 'text-white', 'shadow-md');
             mapViewBtn.classList.add('text-on-surface-variant', 'hover:bg-surface-container-high');
         });
+
+        /* ---- TrackPass: data-driven course rendering (verified dataset) ---- */
+        const COURSES = window.TRACKPASS_COURSES || [];
+        const PALETTES = [
+          ['#16412b','#103223'], ['#1f7a4d','#16412b'], ['#254f38','#103223'],
+          ['#103223','#002a17'], ['#2d4c3b','#16412b'], ['#1b365d','#103223']
+        ];
+        const regionSelect = document.querySelectorAll('header select')[0];
+        const JOIN_URL = 'plans.html';
+
+        function esc(s){ return (s||'').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+        function imageBlock(c, i){
+          if (c.photo){
+            return `<div class="card-img w-full h-full bg-cover bg-center transition-transform duration-700" role="img" aria-label="${esc(c.name)}, ${esc(c.city)}" style="background-image:url('${c.photo}')"></div>`;
+          }
+          // No verified photo: branded name-card (NOT a fake stock photo of another place)
+          const p = PALETTES[i % PALETTES.length];
+          return `<div class="w-full h-full flex flex-col items-center justify-center text-center px-6" style="background:linear-gradient(150deg, ${p[0]} 0%, ${p[1]} 100%)">
+            <span class="material-symbols-outlined text-secondary-fixed text-[34px] mb-2" style="font-variation-settings:'FILL' 1;">golf_course</span>
+            <span class="font-headline-md text-white leading-tight">${esc(c.name)}</span>
+            <span class="font-label-lg text-[11px] uppercase tracking-widest text-secondary-fixed/90 mt-2">${esc(c.city)}, TX</span>
+          </div>`;
+        }
+
+        function card(c, i){
+          const badge = c.partner
+            ? `<div class="absolute top-4 left-4 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-lg text-[11px] uppercase tracking-wider">PARTNER · FREE</div>`
+            : `<div class="absolute top-4 left-4 bg-white/90 text-on-primary-fixed-variant px-3 py-1 rounded-full font-label-lg text-[11px] uppercase tracking-wider">COVERED · UP TO $50</div>`;
+          const tags = (c.tags||[]).map(t => `<span class="bg-surface-container-low text-on-primary-fixed-variant px-3 py-1 rounded-full text-[12px] font-medium">${esc(t)}</span>`).join('');
+          const access = c.partner
+            ? `Free — just show your pass.`
+            : `Green fee covered up to $50/round.`;
+          return `<div class="course-card group bg-white rounded-3xl overflow-hidden shadow-[0px_4px_20px_rgba(16,50,35,0.08)] transition-all duration-500 hover:-translate-y-1 flex flex-col">
+            <div class="relative h-64 overflow-hidden shrink-0">
+              ${imageBlock(c, i)}
+              ${badge}
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="font-headline-md text-headline-md text-primary mb-2">${esc(c.name)}</h3>
+              <div class="flex items-center gap-1 text-on-surface-variant mb-4">
+                <span class="material-symbols-outlined text-[18px]">location_on</span>
+                <span class="font-body-md text-body-md">${esc(c.city)}, TX · ${esc(c.region)}</span>
+              </div>
+              <p class="font-body-md text-[13px] text-on-surface-variant leading-snug mb-5">${esc(c.blurb)}</p>
+              <div class="flex flex-wrap gap-2 mb-6">${tags}</div>
+              <div class="flex flex-col gap-3 mt-auto">
+                <p class="font-body-md text-[13px] text-on-surface-variant leading-tight">${access}</p>
+                <a href="${JOIN_URL}" class="w-full bg-deep-forest text-white py-3 rounded-full font-label-lg text-label-lg hover:bg-primary transition-all active:scale-95 text-center block">Join the founding list — $199/year</a>
+              </div>
+            </div>
+          </div>`;
+        }
+
+        function currentRegion(){
+          const v = regionSelect ? regionSelect.value : 'All Regions';
+          if (v === 'Dallas-Fort Worth') return 'Dallas–Fort Worth'; // normalize dash
+          return v;
+        }
+        function filtered(){
+          const r = currentRegion();
+          return COURSES.filter(c => r === 'All Regions' || c.region === r);
+        }
+        function renderGrid(){
+          const list = filtered();
+          resultsGrid.innerHTML = list.length
+            ? list.map((c,i)=>card(c,i)).join('')
+            : `<p class="font-body-md text-on-surface-variant col-span-full py-10 text-center">No courses match that filter yet.</p>`;
+          if (mapInited) renderMarkers();
+        }
+
+        /* ---- Real interactive map (Leaflet + OpenStreetMap, no API key) ---- */
+        let map = null, mapInited = false, markerLayer = null;
+        function initMap(){
+          if (mapInited || typeof L === 'undefined') return;
+          map = L.map('courseMap', { scrollWheelZoom:false }).setView([31.3, -97.5], 6);
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19, attribution: '© OpenStreetMap contributors'
+          }).addTo(map);
+          markerLayer = L.layerGroup().addTo(map);
+          mapInited = true;
+          renderMarkers();
+        }
+        function renderMarkers(){
+          if (!markerLayer) return;
+          markerLayer.clearLayers();
+          const list = filtered();
+          const pts = [];
+          list.forEach(c => {
+            if (typeof c.lat !== 'number' || typeof c.lng !== 'number') return;
+            const color = c.partner ? '#fdc65e' : '#16412b';
+            const m = L.circleMarker([c.lat, c.lng], {
+              radius: 9, color:'#fff', weight:2, fillColor:color, fillOpacity:1
+            }).bindPopup(
+              `<strong>${esc(c.name)}</strong><br>${esc(c.city)}, TX<br>` +
+              (c.partner ? 'Partner · free with your pass' : 'Covered up to $50/round') +
+              `<br><a href="${JOIN_URL}">Join the founding list →</a>`
+            );
+            m.addTo(markerLayer);
+            pts.push([c.lat, c.lng]);
+          });
+          if (pts.length) map.fitBounds(pts, { padding:[40,40], maxZoom:10 });
+        }
+
+        // init map the first time the Map tab is shown (Leaflet needs a visible container)
+        mapViewBtn.addEventListener('click', () => { setTimeout(() => { initMap(); if(map) map.invalidateSize(); renderMarkers(); }, 50); });
+        if (regionSelect) regionSelect.addEventListener('change', renderGrid);
+
+        renderGrid();
     </script>
 </body></html>
