@@ -1,0 +1,328 @@
+#!/usr/bin/env node
+/**
+ * TrackPass — programmatic SEO course page generator
+ * Generates /courses/[city-slug]/[course-slug]/index.html for each confirmed TX public course.
+ * Data accuracy rule: only confirmed real courses, no fabricated details.
+ */
+const fs = require('fs');
+const path = require('path');
+
+const STRIPE_LINK = 'https://buy.stripe.com/5kQ28r7vmbGP0SW11p2Ji00';
+const SITE_URL = 'https://trackpassgolf.com';
+
+const COURSES = [
+  // ── Austin ──
+  { id:'austin-lions-muny', name:'Lions Municipal Golf Course', city:'Austin', state:'TX', citySlug:'austin-tx', slug:'lions-municipal', type:'Municipal', fee:35, blurb:"Austin's first public course, opened in 1924 and a Texas historic landmark. Walkable and beloved, Lions Muny sits right in West Austin and is one of the most storied municipal layouts in the state." },
+  { id:'austin-morris-williams', name:'Morris Williams Golf Course', city:'Austin', state:'TX', citySlug:'austin-tx', slug:'morris-williams', type:'Municipal', fee:38, blurb:"A local favorite muni with a unique routing and stunning views of the downtown Austin skyline. Morris Williams offers a great combination of challenge and character for everyday golfers." },
+  { id:'austin-roy-kizer', name:'Roy Kizer Golf Course', city:'Austin', state:'TX', citySlug:'austin-tx', slug:'roy-kizer', type:'Municipal', fee:42, blurb:"Austin's premier links-style municipal course — open, breezy, and a great walk in South Austin. Roy Kizer's wide fairways and firm conditions reward creative shotmaking." },
+  { id:'austin-jimmy-clay', name:'Jimmy Clay Golf Course', city:'Austin', state:'TX', citySlug:'austin-tx', slug:'jimmy-clay', type:'Municipal', fee:34, blurb:"Shares a campus with Roy Kizer in South Austin, making this an easy add for a 36-hole day. Jimmy Clay is an accessible, well-maintained muni that plays well for all skill levels." },
+  { id:'austin-riverside', name:'Riverside Golf Course', city:'Austin', state:'TX', citySlug:'austin-tx', slug:'riverside', type:'Municipal', fee:30, blurb:"East-of-downtown Austin muni where Texas legends Ben Crenshaw and Tom Kite first learned the game. Riverside is a piece of Texas golf history and one of the most affordable rounds in the city." },
+  { id:'austin-hancock', name:'Hancock Golf Course', city:'Austin', state:'TX', citySlug:'austin-tx', slug:'hancock', type:'Municipal', fee:18, holes:9, blurb:"The oldest golf course in Texas, dating to 1899. This quirky, walkable nine-holer in central Austin is a must-play for golf history buffs — and at $18, it's the best deal in Austin." },
+  // ── San Antonio ──
+  { id:'sa-brackenridge', name:'Brackenridge Park Golf Course', city:'San Antonio', state:'TX', citySlug:'san-antonio-tx', slug:'brackenridge-park', type:'Municipal', fee:50, blurb:"The oldest 18-hole public golf course in Texas, opened in 1916 and designed along the San Antonio River. Brackenridge Park hosted the 1922 Texas Open — the very first PGA Tour event played in the state of Texas." },
+  { id:'sa-cedar-creek', name:'Cedar Creek Golf Course', city:'San Antonio', state:'TX', citySlug:'san-antonio-tx', slug:'cedar-creek', type:'Municipal', fee:55, blurb:"Renovated and reopened in 2024, Cedar Creek is now one of the most challenging municipal layouts in Texas at 7,158 yards. Located on the northwest side, it's a serious test for low-handicappers." },
+  { id:'sa-mission-del-lago', name:'Mission del Lago Golf Course', city:'San Antonio', state:'TX', citySlug:'san-antonio-tx', slug:'mission-del-lago', type:'Municipal', fee:40, blurb:"A well-priced South Side muni on the Alamo City Golf Trail. Mission del Lago is the most accessible municipal course for golfers coming from the south end of San Antonio." },
+  { id:'sa-olmos-basin', name:'Olmos Basin Golf Course', city:'San Antonio', state:'TX', citySlug:'san-antonio-tx', slug:'olmos-basin', type:'Municipal', fee:40, blurb:"One of San Antonio's most popular municipal courses, Olmos Basin has been a local favorite since 1963. Located just north of downtown off Highway 281, it's oak-lined, walkable, and consistently well-maintained." },
+  { id:'sa-northern-hills', name:'Northern Hills Golf Course', city:'San Antonio', state:'TX', citySlug:'san-antonio-tx', slug:'northern-hills', type:'Municipal', fee:35, blurb:"Part of the city-run Alamo City Golf Trail, Northern Hills offers affordable golf on San Antonio's north side. A solid everyday track for local players looking to get out without breaking the bank." },
+  { id:'sa-riverside', name:'Riverside Golf Course', city:'San Antonio', state:'TX', citySlug:'san-antonio-tx', slug:'riverside', type:'Municipal', fee:38, blurb:"Located just south of downtown San Antonio, Riverside features a full 18-hole championship layout alongside a 9-hole par-3 course — making it a great option for golfers of every skill level." },
+  { id:'sa-willow-springs', name:'Willow Springs Golf Course', city:'San Antonio', state:'TX', citySlug:'san-antonio-tx', slug:'willow-springs', type:'Municipal', fee:42, blurb:"A historically significant Alamo City Golf Trail course on the east side of San Antonio — tree-lined fairways, classic design, and consistently good conditions make Willow Springs worth the drive." },
+  // ── Dallas ──
+  { id:'dal-cedar-crest', name:'Cedar Crest Golf Course', city:'Dallas', state:'TX', citySlug:'dallas-tx', slug:'cedar-crest', type:'Municipal', fee:35, blurb:"A historic 1916 A.W. Tillinghast design in south Dallas — one of the oldest municipal courses in Texas. Cedar Crest has a classic feel and mature tree-lined layout that rewards course management." },
+  { id:'dal-keeton-park', name:'Keeton Park Golf Course', city:'Dallas', state:'TX', citySlug:'dallas-tx', slug:'keeton-park', type:'Municipal', fee:35, blurb:"Well-maintained east Dallas muni offering an honest, playable layout for golfers at every skill level. Keeton Park is a reliable everyday track with good greens and a welcoming atmosphere." },
+  { id:'dal-luna-vista', name:'Luna Vista Golf Course', city:'Dallas', state:'TX', citySlug:'dallas-tx', slug:'luna-vista', type:'Municipal', fee:32, blurb:"Situated along the Elm Fork in northwest Dallas (formerly known as L.B. Houston), Luna Vista is flat, walkable, and among the most affordable Dallas munis. Great for a quick weekday round." },
+  { id:'dal-stevens-park', name:'Stevens Park Golf Course', city:'Dallas', state:'TX', citySlug:'dallas-tx', slug:'stevens-park', type:'Municipal', fee:40, blurb:"A 1924 classic in southwest Dallas with tree-lined fairways, dramatic elevation changes, and stunning views of the downtown skyline. Stevens Park is one of the most scenic municipal courses in North Texas." },
+  { id:'dal-tenison-glen', name:'Tenison Glen Golf Course', city:'Dallas', state:'TX', citySlug:'dallas-tx', slug:'tenison-glen', type:'Municipal', fee:40, blurb:"One of two 18-hole courses at Tenison Park in east Dallas. The Glen layout offers a traditional muni experience with solid conditions and competitive pricing, just minutes from downtown." },
+  { id:'dal-tenison-highlands', name:'Tenison Highlands Golf Course', city:'Dallas', state:'TX', citySlug:'dallas-tx', slug:'tenison-highlands', type:'Municipal', fee:45, blurb:"The redesigned championship layout at Tenison Park — 7,100 yards of modern municipal golf, ten minutes from downtown Dallas. The Highlands is among the best-conditioned public courses in DFW." },
+  // ── Fort Worth ──
+  { id:'fw-pecan-valley-river', name:'Pecan Valley Golf Course — River', city:'Fort Worth', state:'TX', citySlug:'fort-worth-tx', slug:'pecan-valley-river', type:'Municipal', fee:40, blurb:"The 'River' layout at Pecan Valley is widely regarded as one of the best municipal courses in Texas. Stretching 6,600 yards along the Trinity River, it combines natural beauty with a genuine challenge." },
+  { id:'fw-pecan-valley-hills', name:'Pecan Valley Golf Course — Hills', city:'Fort Worth', state:'TX', citySlug:'fort-worth-tx', slug:'pecan-valley-hills', type:'Municipal', fee:35, blurb:"The 'Hills' layout at Pecan Valley pairs with the River course to give golfers 36 holes of City of Fort Worth golf. Slightly shorter and added in 1982, it's a great complement to the River layout." },
+  { id:'fw-rockwood-park', name:'Rockwood Park Golf Course', city:'Fort Worth', state:'TX', citySlug:'fort-worth-tx', slug:'rockwood-park', type:'Municipal', fee:35, blurb:"Fully renovated in 2017, Rockwood now stretches 7,053 yards with four tee options — from beginner-friendly to championship. One of the most updated municipal facilities in the Dallas–Fort Worth area." },
+  { id:'fw-meadowbrook', name:'Meadowbrook Golf Course', city:'Fort Worth', state:'TX', citySlug:'fort-worth-tx', slug:'meadowbrook', type:'Municipal', fee:28, blurb:"A John Bredemus original from 1924, renovated in 2025. Meadowbrook has the most rolling terrain of the Fort Worth city courses — a classic layout with beautiful elevation changes in east Fort Worth." },
+  // ── Houston ──
+  { id:'hou-memorial-park', name:'Memorial Park Golf Course', city:'Houston', state:'TX', citySlug:'houston-tx', slug:'memorial-park', type:'Municipal', fee:40, blurb:"Widely considered the best municipal golf course in Texas, Memorial Park is a 1936 classic that now hosts the PGA Tour's Houston Open. Exceptional conditions, iconic layout, and hard to beat at muni prices." },
+  { id:'hou-sharpstown', name:'Sharpstown Park Golf Course', city:'Houston', state:'TX', citySlug:'houston-tx', slug:'sharpstown-park', type:'Municipal', fee:30, blurb:"One of Houston's most popular and most walkable municipal courses on the southwest side. Sharpstown is the go-to track for regulars who want great conditions and an easy, enjoyable walk." },
+  { id:'hou-hermann-park', name:'Hermann Park Golf Course', city:'Houston', state:'TX', citySlug:'houston-tx', slug:'hermann-park', type:'Municipal', fee:26, blurb:"A historically significant 18-hole course inside the loop in central Houston. Hermann Park is easy to reach, affordable, and steeped in the history of Houston's public golf tradition." },
+  { id:'hou-gus-wortham', name:'Gus Wortham Park Golf Course', city:'Houston', state:'TX', citySlug:'houston-tx', slug:'gus-wortham-park', type:'Municipal', fee:32, blurb:"Historic municipal course just east of downtown Houston featuring scenic, tree-lined fairways at a reasonable price. Gus Wortham is a dependable Houston muni with good value for the regular player." },
+  { id:'hou-melrose-park', name:'Melrose Park Golf Course', city:'Houston', state:'TX', citySlug:'houston-tx', slug:'melrose-park', type:'Municipal', fee:18, holes:18, blurb:"An 18-hole par-3 layout in north Houston managed by a private company — ideal for short-game practice, beginners, and anyone who wants a quick, affordable round without the time commitment of a full course." },
+  // ── El Paso ──
+  { id:'ep-ascarate', name:'Ascarate Municipal Golf Course', city:'El Paso', state:'TX', citySlug:'el-paso-tx', slug:'ascarate-municipal', type:'Municipal', fee:25, holes:9, blurb:"An accessible 9-hole municipal layout in east El Paso at Ascarate Park. Affordable and beginner-friendly, Ascarate is El Paso's most accessible public golf option and a great place to get your game started." },
+  // ── Lubbock ──
+  { id:'lub-shadow-hills', name:'Shadow Hills Golf Course', city:'Lubbock', state:'TX', citySlug:'lubbock-tx', slug:'shadow-hills', type:'Public', fee:35, blurb:"A well-regarded public course on Lubbock's south side and one of the most reliable daily-fee tracks in West Texas. Shadow Hills offers consistent conditions and honest golf for players at every level." },
+  { id:'lub-rawls', name:'The Rawls Course at Texas Tech', city:'Lubbock', state:'TX', citySlug:'lubbock-tx', slug:'rawls-course-texas-tech', type:'Public', fee:55, blurb:"Championship public course at Texas Tech University, consistently ranked among the best in West Texas. The Rawls Course offers a premium public golf experience with first-class facilities on the Tech campus." },
+  // ── Abilene ──
+  { id:'abi-maxwell', name:'Maxwell Municipal Golf Course', city:'Abilene', state:'TX', citySlug:'abilene-tx', slug:'maxwell-municipal', type:'Municipal', fee:20, blurb:"Abilene's long-running city golf course — affordable, friendly, and open to everyone. Maxwell Municipal is the home course for local golfers and a welcoming first stop for anyone visiting the area." },
+  { id:'abi-willow-creek', name:'Willow Creek Golf Center', city:'Abilene', state:'TX', citySlug:'abilene-tx', slug:'willow-creek', type:'Public', fee:18, blurb:"Public golf facility in Abilene with a shorter layout well-suited to beginners and casual players looking for an affordable round. Willow Creek is one of the most accessible public golf options in the area." },
+  // ── Waco ──
+  { id:'wac-cottonwood-creek', name:'Cottonwood Creek Golf Course', city:'Waco', state:'TX', citySlug:'waco-tx', slug:'cottonwood-creek', type:'Public', fee:35, blurb:"A Pete Dye and Joe Finger design from 1985, Cottonwood Creek is an 18-hole par-72 layout with Bermuda grass throughout. One of the most distinguished public golf courses in Central Texas." },
+];
+
+function slugify(str) {
+  return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+function nearbyCourses(course) {
+  return COURSES.filter(c => c.citySlug === course.citySlug && c.id !== course.id).slice(0, 4);
+}
+
+function tailwindConfig() {
+  return `<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "inverse-on-surface": "#d4fae2", "on-primary-container": "#80ad90",
+        "on-primary-fixed": "#002111", "surface-container-lowest": "#ffffff",
+        "on-tertiary-container": "#5fb482", "tertiary-fixed": "#9ef5be",
+        "secondary-fixed": "#ffdea8", "surface-off-white": "#FAF9F4",
+        "sky-blue": "#C2E1F2", "on-secondary": "#ffffff",
+        "on-error": "#ffffff", "on-tertiary-fixed": "#002110",
+        "error-container": "#ffdad6", "on-surface-variant": "#414943",
+        "error": "#ba1a1a", "surface-container-high": "#cbf1da",
+        "secondary-container": "#fdc65e", "on-background": "#002113",
+        "primary-fixed-dim": "#a3d1b3", "surface-container": "#d1f7e0",
+        "on-secondary-container": "#745200", "on-primary": "#ffffff",
+        "tertiary-fixed-dim": "#82d8a3", "on-tertiary": "#ffffff",
+        "deep-forest": "#103223", "primary": "#002a17",
+        "surface-container-low": "#d6fde5", "on-tertiary-fixed-variant": "#00522f",
+        "surface": "#e8ffef", "on-error-container": "#93000a",
+        "secondary": "#7c5800", "primary-fixed": "#bfedce",
+        "inverse-primary": "#a3d1b3", "tertiary-container": "#004326",
+        "on-surface": "#002113", "surface-dim": "#bde3cc",
+        "surface-variant": "#c6ebd5", "on-secondary-fixed-variant": "#5e4200",
+        "on-secondary-fixed": "#271900", "inverse-surface": "#153627",
+        "primary-container": "#16412b", "surface-bright": "#e8ffef",
+        "tertiary": "#002b16", "outline-variant": "#c1c8c1"
+      },
+      fontFamily: {
+        "body-md": ["Manrope"], "headline-md": ["Sora"],
+        "display-lg": ["Sora"], "label-sm": ["Manrope"],
+        "label-lg": ["Manrope"], "headline-lg": ["Sora"]
+      },
+      fontSize: {
+        "body-md": ["16px", {lineHeight:"24px", fontWeight:"400"}],
+        "headline-lg-mobile": ["28px", {lineHeight:"36px", fontWeight:"600"}],
+        "headline-md": ["24px", {lineHeight:"32px", fontWeight:"600"}],
+        "display-lg": ["48px", {lineHeight:"56px", letterSpacing:"-0.02em", fontWeight:"700"}],
+        "body-lg": ["18px", {lineHeight:"28px", fontWeight:"400"}],
+        "display-lg-mobile": ["36px", {lineHeight:"42px", letterSpacing:"-0.02em", fontWeight:"700"}],
+        "label-sm": ["12px", {lineHeight:"16px", fontWeight:"500"}],
+        "label-lg": ["14px", {lineHeight:"20px", letterSpacing:"0.05em", fontWeight:"600"}],
+        "headline-lg": ["32px", {lineHeight:"40px", fontWeight:"600"}]
+      }
+    }
+  }
+}
+</script>
+<style>
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+.glass-nav { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+</style>`;
+}
+
+function generatePage(course) {
+  const canonical = `${SITE_URL}/courses/${course.citySlug}/${course.slug}/`;
+  const nearby = nearbyCourses(course);
+  const holesText = course.holes === 9 ? '9 holes' : '18 holes';
+  const partnerText = 'up to $50 off your green fee';
+
+  const nearbyLinks = nearby.length > 0 ? nearby.map(n =>
+    `<a href="${SITE_URL}/courses/${n.citySlug}/${n.slug}/" class="block p-4 rounded-xl border border-outline-variant bg-surface hover:bg-surface-container transition-colors">
+      <div class="font-bold text-primary font-body-md text-body-md">${n.name}</div>
+      <div class="text-on-surface-variant text-sm mt-1">${n.city}, TX · ${n.type}</div>
+    </a>`
+  ).join('\n') : '';
+
+  return `<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="theme-color" content="#16412b"/>
+<title>${course.name} Green Fees &amp; Tee Times | TrackPass Texas Golf Pass</title>
+<meta name="description" content="Play ${course.name} in ${course.city}, TX with TrackPass — the $199/year Texas golf pass. Green fees covered up to $50/round at any Texas public course. Founding members save from day one."/>
+<link rel="canonical" href="${canonical}"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="${canonical}"/>
+<meta property="og:title" content="${course.name} — Covered by TrackPass | Texas Golf Pass"/>
+<meta property="og:description" content="Play ${course.name} in ${course.city}, TX with TrackPass. $199/year covers green fees up to $50/round at any Texas public course — including ${course.name}."/>
+<meta property="og:site_name" content="TrackPass"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "GolfCourse",
+      "name": "${course.name}",
+      "description": "${course.blurb.replace(/"/g, '\\"')}",
+      "address": { "@type": "PostalAddress", "addressLocality": "${course.city}", "addressRegion": "TX", "addressCountry": "US" },
+      "url": "${canonical}"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much does it cost to play ${course.name}?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Green fees at ${course.name} in ${course.city} are approximately $${course.fee}/round. With TrackPass ($199/year), you get ${partnerText} at ${course.name} and any other Texas public course — unlimited rounds." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is ${course.name} covered by TrackPass?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. TrackPass covers green fees up to $50/round at any Texas public or municipal course, including ${course.name}. Pay your green fee, keep your receipt, and submit for reimbursement. No limit on rounds." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+${tailwindConfig()}
+</head>
+<body class="bg-surface-off-white font-body-md text-on-surface selection:bg-secondary-container selection:text-on-secondary-container">
+
+<!-- Nav -->
+<nav class="fixed top-0 w-full z-50 bg-surface-off-white/80 backdrop-blur-xl shadow-sm">
+  <div class="flex justify-between items-center h-20 px-4 md:px-8 max-w-5xl mx-auto">
+    <a class="text-2xl font-bold tracking-tight text-primary font-headline-lg" href="${SITE_URL}/">TrackPass</a>
+    <div class="hidden md:flex items-center gap-8">
+      <a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md text-body-md" href="${SITE_URL}/courses.html">Find Courses</a>
+      <a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md text-body-md" href="${SITE_URL}/plans.html">Membership</a>
+    </div>
+    <a href="${STRIPE_LINK}" class="bg-primary text-white px-6 py-2.5 rounded-full font-bold hover:bg-deep-forest transition-all duration-200 text-sm">Join Now — $199</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="pt-32 pb-16 px-4 md:px-8 max-w-5xl mx-auto">
+  <div class="mb-4">
+    <a href="${SITE_URL}/courses.html" class="text-secondary font-bold text-sm hover:underline">← All Texas Courses</a>
+  </div>
+  <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container border border-outline-variant text-on-surface-variant text-sm font-bold mb-4">
+    <span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+    Covered by TrackPass
+  </div>
+  <h1 class="font-headline-lg text-4xl md:text-5xl font-bold text-primary leading-tight mb-3">${course.name}</h1>
+  <p class="text-on-surface-variant font-body-md text-body-lg mb-8">${course.city}, Texas &nbsp;·&nbsp; ${course.type} Course &nbsp;·&nbsp; ${holesText}</p>
+
+  <div class="grid md:grid-cols-3 gap-4 mb-12">
+    <div class="p-5 rounded-2xl bg-surface-container border border-outline-variant">
+      <div class="text-label-lg text-on-surface-variant font-label-lg uppercase tracking-wide mb-1">Without TrackPass</div>
+      <div class="text-3xl font-bold text-primary font-headline-lg">~$${course.fee}<span class="text-base font-normal text-on-surface-variant">/round</span></div>
+    </div>
+    <div class="p-5 rounded-2xl bg-primary-container border border-primary/20">
+      <div class="text-label-lg text-on-primary-container font-label-lg uppercase tracking-wide mb-1">With TrackPass</div>
+      <div class="text-3xl font-bold text-primary-fixed font-headline-lg">Up to $50 back<span class="text-base font-normal text-on-primary-container"> per round</span></div>
+    </div>
+    <div class="p-5 rounded-2xl bg-secondary-container border border-secondary/20">
+      <div class="text-label-lg text-on-secondary-container font-label-lg uppercase tracking-wide mb-1">TrackPass Annual Cost</div>
+      <div class="text-3xl font-bold text-on-secondary-container font-headline-lg">$199<span class="text-base font-normal">/year</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Content -->
+<div class="px-4 md:px-8 max-w-5xl mx-auto pb-16">
+  <div class="grid md:grid-cols-5 gap-10">
+    <div class="md:col-span-3 space-y-8">
+      <section>
+        <h2 class="text-xl font-bold text-primary font-headline-md mb-3">About ${course.name}</h2>
+        <p class="text-on-surface font-body-md text-body-lg leading-relaxed">${course.blurb}</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-primary font-headline-md mb-3">How TrackPass Works at ${course.name.split(' ')[0]} ${course.name.split(' ')[1] || ''}</h2>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-secondary mt-0.5">check_circle</span>
+            <span>Book your tee time at ${course.name} the normal way — through the pro shop, GolfNow, or any booking platform.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-secondary mt-0.5">check_circle</span>
+            <span>Pay your green fee at the course and keep your receipt. Weekday and off-peak rates get full coverage.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-secondary mt-0.5">check_circle</span>
+            <span>Log in to your TrackPass member dashboard and submit the receipt. We reimburse you up to $50 — no limit on rounds.</span>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-primary font-headline-md mb-3">Is $199 worth it for ${course.name}?</h2>
+        <p class="text-on-surface font-body-md text-body-lg leading-relaxed">At ~$${course.fee}/round, you break even after just ${Math.ceil(199 / Math.min(course.fee, 50))} rounds — and TrackPass has no round limits. Play ${course.name} four times and the pass has paid for itself. Every round after that is effectively free. And your pass covers every other Texas public course too, not just this one.</p>
+      </section>
+    </div>
+
+    <!-- Sidebar CTA -->
+    <div class="md:col-span-2">
+      <div class="sticky top-28 p-6 rounded-2xl bg-primary-container border border-primary/20 space-y-4">
+        <h3 class="text-lg font-bold text-primary font-headline-md">Get TrackPass</h3>
+        <p class="text-on-surface-variant text-sm">$199/year. Any Texas public course. No limit on rounds.</p>
+        <a href="${STRIPE_LINK}" class="block w-full text-center bg-primary text-white py-3 rounded-full font-bold hover:bg-deep-forest transition-all duration-200">
+          Join Now — $199/year →
+        </a>
+        <a href="${SITE_URL}/#waitlist" class="block w-full text-center border border-primary text-primary py-3 rounded-full font-bold hover:bg-surface-container transition-all duration-200 text-sm">
+          Join the waitlist (pay later)
+        </a>
+        <p class="text-xs text-on-surface-variant text-center">Founding rate · Secure checkout via Stripe</p>
+      </div>
+    </div>
+  </div>
+
+  ${nearby.length > 0 ? `
+  <!-- Nearby courses -->
+  <section class="mt-16 pt-12 border-t border-outline-variant">
+    <h2 class="text-xl font-bold text-primary font-headline-md mb-6">More Courses in ${course.city}</h2>
+    <div class="grid sm:grid-cols-2 gap-3">
+      ${nearbyLinks}
+    </div>
+  </section>` : ''}
+
+  <!-- Bottom CTA -->
+  <section class="mt-16 p-8 rounded-3xl bg-primary text-white text-center">
+    <h2 class="text-2xl font-bold font-headline-md mb-2">Play Any Texas Course — $199/year</h2>
+    <p class="text-white/80 mb-6">TrackPass covers green fees up to $50/round at ${course.name} and 500+ other Texas public courses. Unlimited rounds, one flat price.</p>
+    <a href="${STRIPE_LINK}" class="inline-block bg-white text-primary px-8 py-3 rounded-full font-bold hover:bg-surface-off-white transition-all duration-200">
+      Join the Founding Class →
+    </a>
+  </section>
+</div>
+
+<!-- Footer -->
+<footer class="mt-16 py-8 px-4 md:px-8 border-t border-outline-variant">
+  <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-on-surface-variant">
+    <span class="font-bold text-primary">TrackPass</span>
+    <div class="flex gap-6">
+      <a href="${SITE_URL}/courses.html" class="hover:text-primary">Find Courses</a>
+      <a href="${SITE_URL}/plans.html" class="hover:text-primary">Membership</a>
+      <a href="${SITE_URL}/dashboard.html" class="hover:text-primary">My Pass</a>
+    </div>
+    <span>© ${new Date().getFullYear()} TrackPass</span>
+  </div>
+</footer>
+
+</body>
+</html>`;
+}
+
+// Generate all pages
+let count = 0;
+for (const course of COURSES) {
+  const dir = path.join(__dirname, '..', 'courses', course.citySlug, course.slug);
+  fs.mkdirSync(dir, { recursive: true });
+  const html = generatePage(course);
+  fs.writeFileSync(path.join(dir, 'index.html'), html);
+  count++;
+  console.log(`Generated: courses/${course.citySlug}/${course.slug}/`);
+}
+console.log(`\nDone: ${count} course pages generated.`);
+
+// Generate sitemap entries (to append)
+const sitemapEntries = COURSES.map(c =>
+  `  <url><loc>${SITE_URL}/courses/${c.citySlug}/${c.slug}/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>`
+).join('\n');
+console.log('\n=== SITEMAP ENTRIES ===');
+console.log(sitemapEntries);

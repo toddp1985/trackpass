@@ -299,7 +299,29 @@
         const JOIN_URL = 'plans.html';
 
         function esc(s){ return (s||'').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
-        function courseSlug(c){ return (c.name+'-'+c.city).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,''); }
+        // Map course IDs to SEO page paths (city-slug/course-slug/)
+        const COURSE_PAGE_MAP = {
+          'c1':  'austin-tx/lions-municipal',
+          'c2':  'austin-tx/morris-williams',
+          'c3':  'austin-tx/roy-kizer',
+          'c4':  'austin-tx/jimmy-clay',
+          'c5':  'austin-tx/riverside',
+          'c6':  'austin-tx/hancock',
+          'c7':  'san-antonio-tx/brackenridge-park',
+          'c8':  'san-antonio-tx/cedar-creek',
+          'c9':  'san-antonio-tx/olmos-basin',
+          'c10': 'dallas-tx/tenison-highlands',
+          'c11': 'dallas-tx/stevens-park',
+          'c12': 'dallas-tx/luna-vista',
+          'c13': 'fort-worth-tx/pecan-valley-river',
+          'c14': 'fort-worth-tx/rockwood-park',
+          'c15': 'fort-worth-tx/meadowbrook',
+          'c16': 'houston-tx/memorial-park',
+          'c17': 'houston-tx/gus-wortham-park',
+          'c18': 'houston-tx/hermann-park',
+          'c19': 'houston-tx/sharpstown-park',
+        };
+        function coursePagePath(c){ return COURSE_PAGE_MAP[c.id] || null; }
 
         function imageBlock(c, i){
           if (c.photo){
@@ -338,7 +360,7 @@
               <div class="flex flex-col gap-3 mt-auto">
                 <p class="font-body-md text-[13px] text-on-surface-variant leading-tight">${access}</p>
                 <a href="${JOIN_URL}" class="w-full bg-deep-forest text-white py-3 rounded-full font-label-lg text-label-lg hover:bg-primary transition-all active:scale-95 text-center block">Join the founding list — $199/year</a>
-                <a href="courses/${courseSlug(c)}.html" class="w-full text-center text-primary font-medium text-sm hover:underline py-1">Learn more about this course →</a>
+                ${coursePagePath(c) ? `<a href="/courses/${coursePagePath(c)}/" class="w-full text-center text-primary font-medium text-sm hover:underline py-1">Learn more about this course →</a>` : ''}
               </div>
             </div>
           </div>`;
