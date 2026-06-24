@@ -246,12 +246,12 @@ function generatePage(course) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="theme-color" content="#16412b"/>
 <title>${course.name} Green Fees &amp; Tee Times | TrackPass Texas Golf Pass</title>
-<meta name="description" content="Play ${course.name} in ${course.city}, TX with TrackPass — the $199/year Texas golf pass. Green fees covered up to $50/round at any Texas public course. Founding members save from day one."/>
+<meta name="description" content="Play ${course.name} in ${course.city}, TX with TrackPass — the $199/year Texas golf pass. Up to $50 reimbursed per month at any Texas public course (first visit only, 1/month limit). Founding members save from day one."/>
 <link rel="canonical" href="${canonical}"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="${canonical}"/>
 <meta property="og:title" content="${course.name} — Covered by TrackPass | Texas Golf Pass"/>
-<meta property="og:description" content="Play ${course.name} in ${course.city}, TX with TrackPass. $199/year covers green fees up to $50/round at any Texas public course — including ${course.name}."/>
+<meta property="og:description" content="Play ${course.name} in ${course.city}, TX with TrackPass. $199/year reimburses green fees up to $50 at any Texas public course (1 per month) — including ${course.name}."/>
 <meta property="og:site_name" content="TrackPass"/>
 <script type="application/ld+json">
 {
@@ -275,7 +275,7 @@ function generatePage(course) {
         {
           "@type": "Question",
           "name": "Is ${course.name} covered by TrackPass?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. TrackPass covers green fees up to $50/round at any Texas public or municipal course, including ${course.name}. Pay your green fee, keep your receipt, and submit for reimbursement. 1 out-of-network reimbursement per month, max $50. Each course covered once." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. TrackPass reimburses green fees up to $50 at any Texas public or municipal course, including ${course.name}. Pay your green fee, keep your receipt, and submit for reimbursement. 1 out-of-network reimbursement per month, max $50. Each course covered once." }
         }
       ]
     }
@@ -317,7 +317,7 @@ ${tailwindConfig()}
     </div>
     <div class="p-5 rounded-2xl bg-primary-container border border-primary/20">
       <div class="text-label-lg text-on-primary-container font-label-lg uppercase tracking-wide mb-1">With TrackPass</div>
-      <div class="text-3xl font-bold text-primary-fixed font-headline-lg">Up to $50 back<span class="text-base font-normal text-on-primary-container"> per round</span></div>
+      <div class="text-3xl font-bold text-primary-fixed font-headline-lg">Up to $50 back<span class="text-base font-normal text-on-primary-container">/month reimbursement</span></div>
     </div>
     <div class="p-5 rounded-2xl bg-secondary-container border border-secondary/20">
       <div class="text-label-lg text-on-secondary-container font-label-lg uppercase tracking-wide mb-1">TrackPass Annual Cost</div>
@@ -387,7 +387,7 @@ ${tailwindConfig()}
   <!-- Bottom CTA -->
   <section class="mt-16 p-8 rounded-3xl bg-primary text-white text-center">
     <h2 class="text-2xl font-bold font-headline-md mb-2">Play Any Texas Course — $199/year</h2>
-    <p class="text-white/80 mb-6">TrackPass covers green fees up to $50/round at ${course.name} and 500+ other Texas public courses. Unlimited rounds, one flat price.</p>
+    <p class="text-white/80 mb-6">TrackPass reimburses green fees up to $50 at ${course.name} and 500+ other Texas public courses. 1 reimbursement per month per out-of-network course, one flat price.</p>
     <a href="${STRIPE_LINK}" class="inline-block bg-white text-primary px-8 py-3 rounded-full font-bold hover:bg-surface-off-white transition-all duration-200">
       Join the Founding Class →
     </a>

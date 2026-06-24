@@ -20,6 +20,7 @@
   .tp-wl-field label{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:#5b6b61;font-weight:600}
   .tp-wl-field input,.tp-wl-field select{padding:.8rem 1rem;border-radius:.75rem;border:1px solid #dfe6e1;background:#f7faf8;font-size:1rem;font-family:'Manrope',sans-serif}
   .tp-wl-field input:focus,.tp-wl-field select:focus{outline:none;border-color:#16412b;background:#fff}
+  .tp-wl-field input:-webkit-autofill,.tp-wl-field input:-webkit-autofill:hover,.tp-wl-field input:-webkit-autofill:focus{-webkit-box-shadow:0 0 0px 1000px #f7faf8 inset;box-shadow:0 0 0px 1000px #f7faf8 inset;-webkit-text-fill-color:#002113}
   .tp-wl-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
   .tp-wl-submit{width:100%;background:#16412b;color:#fff;border:0;border-radius:999px;padding:.95rem;font-weight:700;font-size:1rem;cursor:pointer;transition:background .2s}
   .tp-wl-submit:hover{background:#0c2c1c}
