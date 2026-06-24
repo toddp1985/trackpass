@@ -94,3 +94,84 @@ trackpassgolf.com
 - McCreless Park San Antonio: No web presence found. Verify if still operating.
 - Austin city courses: One contact gets all 6 courses. Use Template 3 modified for city staff.
 - Fort Worth: All 4 courses have individual city employee emails. Best direct outreach opportunity.
+
+---
+
+## Batch 2 targets (contact forms / additional direct emails)
+
+### Austin City Courses (austintexas.gov/golfatx)
+- Lion's Municipal Golf Course
+- Morris Williams Golf Course
+- Roy Kizer Golf Course
+- Jimmy Clay Golf Course
+- Hancock Golf Course
+- Riverside Golf Course (already emailed direct)
+
+Contact form: https://www.austintexas.gov/golfatx (use general contact)
+
+Subject: "TrackPass -- driving more rounds to Austin golf courses"
+
+---
+
+### Dallas City Courses (dallasparks.org)
+
+Direct contacts found:
+- Tenison Park Golf Course: info@tenisonpark.com
+- LB Houston Golf Course: lbhgolf@dallasparks.org (or city form)
+- Stevens Park: stevenspark@dallasparks.org
+- Keeton Park: keetonpark@dallasparks.org
+- Cedar Crest: already emailed (imcgraw@golfcedarcrest.com)
+
+Subject: "TrackPass partner inquiry -- Dallas city golf"
+
+---
+
+### San Antonio (Alamo City Golf Trail -- 8 courses under one city dept)
+
+Contact: SAPARD Golf Division -- golf@sanantonio.gov or (210) 207-3914
+
+Subject: "TrackPass -- bringing more rounds to San Antonio public courses"
+
+Note: All 8 Alamo City courses are under the same Parks & Recreation department. One contact = all 8 courses.
+
+---
+
+## Template 4: Austin municipal (contact form)
+
+Subject: TrackPass -- driving more rounds to Austin public courses
+
+Hi,
+
+I wanted to reach out about TrackPass, a $199/year golf pass for Texas golfers that we're building in Austin.
+
+We list all of the Austin Golf courses on our site (trackpassgolf.com) and members are actively searching for tee time options there. We'd love to make it official and add you to our partner network.
+
+For a partner course, the setup is simple: our members show their digital TrackPass at the pro shop and play at your standard green fee rate. We track the visits and settle with you each month. No upfront cost to the course, no extra staff work. You just get more rounds booked, especially on slower weekday windows.
+
+The fastest way to get listed is the partner page at trackpassgolf.com/partner.html. Takes about two minutes.
+
+Thanks for your time.
+
+TrackPass
+trackpassgolf.com
+
+---
+
+## Template 5: San Antonio parks dept (city golf division)
+
+Subject: TrackPass -- Alamo City Golf Trail partner inquiry
+
+Hi,
+
+I'm reaching out about TrackPass, a new $199/year Texas golf pass. We have all eight Alamo City Golf Trail courses listed on our platform and our members are actively looking for rounds in San Antonio.
+
+We're talking with several Texas municipal golf systems about becoming partner courses. The arrangement is simple: our members show a digital pass at the pro shop, play at your standard weekday green fee rate, and we reconcile with the city monthly. No upfront cost to the city, no change to your operations.
+
+Given that we're based in Austin and have significant member interest in San Antonio, this could mean a meaningful number of additional weekday rounds -- which tends to be where utilization is lowest.
+
+Would you be the right person to talk with about this? Happy to share details or you can take a look at how it works at trackpassgolf.com/partner.html.
+
+Thanks,
+TrackPass
+trackpassgolf.com
+

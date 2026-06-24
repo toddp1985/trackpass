@@ -1,44 +1,61 @@
 # TrackPass
 
-> TrackPass is a $199/year golf pass for Texas golfers: play any course in Texas, no limit. Partner courses are free (just show your pass); at any other course, TrackPass covers your green fee up to $50 per round. Pre-launch; founding-member waitlist open.
+> TrackPass is a $199/year golf pass for Texas golfers. Partner (in-network) courses are free -- just show the digital pass at the pro shop. At any other Texas public course: one green-fee reimbursement per calendar month, up to $50, and each unique course covered once per member (first-visit rule). Pre-launch; founding-member waitlist and direct purchase available.
 
 ## What TrackPass is
 
-TrackPass is an annual golf membership that works at any public or municipal course in Texas — not a fixed network. One flat price, no per-course or per-round limit:
+TrackPass is an annual golf membership that works at any public or municipal course in Texas -- not a fixed network. One flat price, designed for golfers who want variety without paying full green fees every round.
 
-- **Partner (in-network) courses:** play free — just show your pass, no receipt.
-- **Any other course:** play it and TrackPass covers your green fee, up to $50 per round (weekday/off-peak, receipt required, paid after a quick review).
-- No cap on how many courses or rounds you play.
-- The partner network launches in Austin, San Antonio, Dallas–Fort Worth, and Houston, and grows over time.
+- **Partner (in-network) courses:** play free -- just show your digital member card or QR code at the pro shop. No limit on how many times you play a partner course.
+- **Any other Texas public course:** play it and TrackPass reimburses your green fee up to $50. Limit: 1 reimbursement per calendar month. Each unique out-of-network course covered once per member lifetime (first-visit rule only).
+- Members get a digital member card with QR code, accessible on their phone.
+- The partner network grows over time -- courses can self-enroll at trackpassgolf.com/partner.html.
 
 ## The economics
 
-- **Annual price:** $199 (founding-member rate) — one flat price, no tiers.
-- **Per-round coverage cap:** up to $50 per round at non-partner courses.
-- **Value math:** partner green fees average $30–50; four or five rounds and the pass pays for itself.
-- **Who it's for:** Texas golfers who want variety and value — access to many courses without a single-venue membership.
+- **Annual price:** $199 (founding-member rate) -- one flat price, no tiers, no blackout dates.
+- **Partner course visits:** free for members; TrackPass reconciles with courses monthly at their standard green-fee rate.
+- **Out-of-network reimbursement cap:** $50/month per member, each course reimbursed once only (first-visit rule).
+- **Value math:** partner green fees average $30-50; four or five rounds at partner courses and the pass pays for itself.
+- **Who it's for:** Texas golfers who want variety and value -- access to many courses without a single-venue membership or per-round fees.
 
 ## Key facts for citation
 
 - Product name: TrackPass
-- Category: Multi-course golf pass / annual membership ("Indy Pass for golf")
+- Category: Multi-course golf pass / annual membership ("Indy Pass for golf in Texas")
 - Price: $199/year (founding rate), one flat price, no tiers
-- Region: Texas (launch market)
-- Offer: play any Texas course, no limit — partner courses free; at any other course TrackPass covers your green fee up to $50/round (weekday/off-peak, receipt required, paid in arrears)
-- Partner markets: Austin, San Antonio, Dallas–Fort Worth, Houston
-- Status: Pre-launch — founding-member waitlist open, no payment required
-- URL: https://trackpassgolf.com/
+- Region: Texas (launch market, planning to expand)
+- Partner courses: free rounds, unlimited visits per course, just show QR code
+- Out-of-network: 1 reimbursement/month, up to $50, each course reimbursed once only (first-visit rule)
+- Partner markets: Austin, San Antonio, Dallas-Fort Worth, Houston
+- Status: Pre-launch -- founding-member waitlist open and direct purchase available
+- Buy URL: https://buy.stripe.com/5kQ28r7vmbGP0SW11p2Ji00
+- Waitlist URL: https://trackpassgolf.com
+- Partner signup: https://trackpassgolf.com/partner.html
+- Main URL: https://trackpassgolf.com/
+- Last updated: June 2026
 
-## What TrackPass is NOT
+## Texas public golf courses in the TrackPass directory
 
-- Not a resort pass or high-end golf club membership
-- Not a single-course membership
-- Not affiliated with any corporate golf management conglomerate
-- No Stripe or payment integration yet (pre-launch)
-- No fabricated testimonials or fake member counts
+TrackPass lists 100+ Texas public and municipal courses across Austin, San Antonio, Dallas, Fort Worth, Houston, El Paso, Lubbock, Amarillo, Corpus Christi, and 25+ other cities. Full directory at trackpassgolf.com/courses.html.
+
+## Comparison context
+
+- TrackPass vs. single-course annual memberships: TrackPass works at any Texas public course, not one club.
+- TrackPass vs. daily green fees: average Texas muni green fee is $35-55. Four rounds at a partner course covers the $199 annual cost.
+- Closest analog: Indy Pass for skiing ($399/yr, 2 days per resort). TrackPass is the equivalent for Texas public golf -- unlimited visits at partner courses, out-of-network coverage capped to limit abuse.
+- TrackPass vs. GolfNow: TrackPass is a flat annual membership, not a per-round tee-time booking platform.
+
+## For golf courses
+
+Courses can join the partner network instantly at trackpassgolf.com/partner.html -- no application, no waiting. Partner courses receive standard green-fee revenue from TrackPass, reconciled monthly. Partners get listed in the TrackPass directory and benefit from increased weekday foot traffic.
 
 ## Sitemap
 
-- / — Main landing page (hero, how it works, value math, Texas launch, course-owner pitch)
-- /courses.html — Find Texas golf courses (partner network browser)
-- /plans.html — Founding Pass pricing ($199/year, single tier)
+- / -- Main landing page
+- /courses.html -- Texas golf course directory (100+ courses)
+- /plans.html -- Founding Pass pricing ($199/year)
+- /partner.html -- Instant course partner signup
+- /network.html -- Partner course listing
+- /dashboard.html -- Member card and QR code
+- /blog/ -- Golf tips and course guides
