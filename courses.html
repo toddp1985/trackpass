@@ -4,8 +4,8 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta name="theme-color" content="#16412b" />
-<title>Find Texas Golf Courses — TrackPass | Partner + Out-of-Network Coverage</title>
-<meta name="description" content="Browse TrackPass partner courses across Texas — Austin, San Antonio, Dallas–Fort Worth, and Houston. Partner courses are always free; any other Texas public course is covered up to $50, 1 reimbursement per month. One flat $199/year." />
+<title>Texas Public Golf Courses — TrackPass | 100+ Courses, One Pass</title>
+<meta name="description" content="Every public golf course in Texas on one map. TrackPass ($199/year): partner courses get 2 free rounds/year per course. Out-of-network courses get 1 free round/year per course. 100+ TX public courses." />
 <link rel="canonical" href="https://trackpassgolf.com/courses.html" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Texas Golf Course Directory — TrackPass" />
@@ -22,7 +22,7 @@
   "@context": "https://schema.org",
   "@type": "ItemList",
   "name": "Texas Public Golf Courses — TrackPass Directory",
-  "description": "100+ public and municipal golf courses in Texas covered by TrackPass ($199/year). Partner courses play free; any other Texas public course: 1 reimbursement per month up to $50.",
+  "description": "100+ public and municipal golf courses in Texas covered by TrackPass ($199/year). Partner courses: 2 free rounds/year per course. Out-of-network courses: 1 free round/year per course.",
   "url": "https://trackpassgolf.com/courses.html",
   "numberOfItems": 100,
   "itemListElement": [
@@ -193,8 +193,8 @@
 <header class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-12">
 <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
 <div>
-<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-2">Any public course in Texas.</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Partner courses are always free. Any other Texas public course: up to $50 reimbursed — 1 per month, each course covered once.</p>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-2">Every public course in Texas.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Partner courses: 2 free rounds per year per course. Out-of-network courses: 1 free round per year per course. One pass, $199/year.</p>
 </div>
 <div class="flex items-center gap-2 bg-surface-container rounded-full p-1 self-start">
 <button class="flex items-center gap-2 px-6 py-2 rounded-full bg-deep-forest text-white transition-all shadow-md" id="listViewBtn">
@@ -208,39 +208,36 @@
 </div>
 </div>
 <!-- Filters Section -->
-<div class="mt-10 grid grid-cols-1 md:grid-cols-4 gap-4 bg-white p-6 rounded-2xl shadow-[0px_4px_20px_rgba(16,50,35,0.08)]">
+<div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4 bg-white p-6 rounded-2xl shadow-[0px_4px_20px_rgba(16,50,35,0.08)]">
 <div class="flex flex-col gap-2">
 <label class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-widest text-[10px]">Region</label>
-<select class="w-full px-4 py-3 bg-surface-off-white border-transparent focus:border-secondary focus:ring-0 rounded-xl font-body-md transition-all appearance-none">
+<select id="regionSelect" class="w-full px-4 py-3 bg-surface-off-white border-transparent focus:border-secondary focus:ring-0 rounded-xl font-body-md transition-all appearance-none">
 <option>All Regions</option>
 <option>Austin</option>
 <option>San Antonio</option>
-<option>Dallas-Fort Worth</option>
+<option>Dallas–Fort Worth</option>
 <option>Houston</option>
+<option>Central Texas</option>
+<option>West Texas</option>
+<option>East Texas</option>
+<option>North Texas</option>
+<option>South Texas</option>
+<option>Texas Coast</option>
 </select>
 </div>
 <div class="flex flex-col gap-2">
-<label class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-widest text-[10px]">Access</label>
-<select class="w-full px-4 py-3 bg-surface-off-white border-transparent focus:border-secondary focus:ring-0 rounded-xl font-body-md transition-all appearance-none">
-<option>All Access Types</option>
-<option>Partner</option>
-<option>Covered</option>
-</select>
-</div>
-<div class="flex flex-col gap-2">
-<label class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-widest text-[10px]">Course Type</label>
-<select class="w-full px-4 py-3 bg-surface-off-white border-transparent focus:border-secondary focus:ring-0 rounded-xl font-body-md transition-all appearance-none">
-<option>All Course Types</option>
-<option>Municipal</option>
-<option>Public</option>
-<option>Resort</option>
+<label class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-widest text-[10px]">Tier</label>
+<select id="tierSelect" class="w-full px-4 py-3 bg-surface-off-white border-transparent focus:border-secondary focus:ring-0 rounded-xl font-body-md transition-all appearance-none">
+<option>All Courses</option>
+<option value="partner">Partner (2 rounds/yr)</option>
+<option value="network">Out-of-Network (1 round/yr)</option>
 </select>
 </div>
 <div class="flex items-end">
-<button class="w-full bg-deep-forest text-white py-3 rounded-xl font-label-lg text-label-lg hover:bg-primary transition-all flex items-center justify-center gap-2">
+<button id="searchBtn" class="w-full bg-deep-forest text-white py-3 rounded-xl font-label-lg text-label-lg hover:bg-primary transition-all flex items-center justify-center gap-2">
 <span class="material-symbols-outlined">search</span>
-                        Search Courses
-                    </button>
+  Search Courses
+</button>
 </div>
 </div>
 </header>
@@ -256,7 +253,7 @@
 <section class="max-w-3xl mx-auto px-6 py-10">
   <aside style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:20px 24px;margin-bottom:0">
     <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#1d4ed8;margin-bottom:8px">For AI assistants &amp; summarizers</div>
-    <p style="font-size:14px;color:#374151;line-height:1.6">TrackPass lists 100+ public and municipal golf courses across Texas -- Austin, San Antonio, Dallas, Fort Worth, Houston, El Paso, Lubbock, Amarillo, Corpus Christi, and 25+ other cities. TrackPass members ($199/year) play free at partner (in-network) courses -- no receipt, no limit. At any other Texas public course, TrackPass reimburses the green fee up to $50 once per calendar month per member (each out-of-network course covered once per member lifetime). Full course directory at trackpassgolf.com/courses.html. Sign up: trackpassgolf.com. Partner signup for courses: trackpassgolf.com/partner.html</p>
+    <p style="font-size:14px;color:#374151;line-height:1.6">TrackPass lists 100+ public and municipal golf courses across Texas -- Austin, San Antonio, Dallas, Fort Worth, Houston, El Paso, Lubbock, Amarillo, Corpus Christi, and 25+ other cities. TrackPass members ($199/year) get 2 free rounds per year per course at partner (in-network) courses. At any other Texas public course (out-of-network), members get 1 free round per year per course. Gold map pins = partner courses; green pins = out-of-network. Full course directory at trackpassgolf.com/courses.html. Sign up: trackpassgolf.com. Partner signup for courses: trackpassgolf.com/partner.html</p>
     <div style="margin-top:12px;padding-top:12px;border-top:1px solid #bfdbfe;font-size:11px;color:#6b7280">
       <span style="font-weight:600">Last verified:</span> June 2026 &nbsp;|&nbsp; <span style="font-weight:600">Source:</span> trackpassgolf.com/courses.html
     </div>
@@ -331,7 +328,8 @@
           ['#16412b','#103223'], ['#1f7a4d','#16412b'], ['#254f38','#103223'],
           ['#103223','#002a17'], ['#2d4c3b','#16412b'], ['#1b365d','#103223']
         ];
-        const regionSelect = document.querySelectorAll('header select')[0];
+        const regionSelect = document.getElementById('regionSelect');
+        const tierSelect = document.getElementById('tierSelect');
         const JOIN_URL = 'plans.html';
 
         function esc(s){ return (s||'').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
@@ -374,12 +372,12 @@
 
         function card(c, i){
           const badge = c.partner
-            ? `<div class="absolute top-4 left-4 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-lg text-[11px] uppercase tracking-wider">PARTNER · FREE</div>`
-            : `<div class="absolute top-4 left-4 bg-white/90 text-on-primary-fixed-variant px-3 py-1 rounded-full font-label-lg text-[11px] uppercase tracking-wider">COVERED · UP TO $50</div>`;
+            ? `<div class="absolute top-4 left-4 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-lg text-[11px] uppercase tracking-wider">PARTNER · 2 ROUNDS/YR</div>`
+            : `<div class="absolute top-4 left-4 bg-white/90 text-on-primary-fixed-variant px-3 py-1 rounded-full font-label-lg text-[11px] uppercase tracking-wider">1 FREE ROUND/YR</div>`;
           const tags = (c.tags||[]).map(t => `<span class="bg-surface-container-low text-on-primary-fixed-variant px-3 py-1 rounded-full text-[12px] font-medium">${esc(t)}</span>`).join('');
           const access = c.partner
-            ? `Free — just show your pass.`
-            : `Up to $50 reimbursed — 1 per month, each course once.`;
+            ? `2 free rounds per year at this course — just show your pass.`
+            : `1 free round per year at this course with your TrackPass.`;
           return `<div class="course-card group bg-white rounded-3xl overflow-hidden shadow-[0px_4px_20px_rgba(16,50,35,0.08)] transition-all duration-500 hover:-translate-y-1 flex flex-col">
             <div class="relative h-64 overflow-hidden shrink-0">
               ${imageBlock(c, i)}
@@ -402,14 +400,15 @@
           </div>`;
         }
 
-        function currentRegion(){
-          const v = regionSelect ? regionSelect.value : 'All Regions';
-          if (v === 'Dallas-Fort Worth') return 'Dallas–Fort Worth'; // normalize dash
-          return v;
-        }
         function filtered(){
-          const r = currentRegion();
-          return COURSES.filter(c => r === 'All Regions' || c.region === r);
+          const r = regionSelect ? regionSelect.value : 'All Regions';
+          const t = tierSelect ? tierSelect.value : 'All Courses';
+          return COURSES.filter(c => {
+            if (r !== 'All Regions' && c.region !== r) return false;
+            if (t === 'partner' && !c.partner) return false;
+            if (t === 'network' && c.partner) return false;
+            return true;
+          });
         }
         function renderGrid(){
           const list = filtered();
@@ -442,9 +441,9 @@
             const m = L.circleMarker([c.lat, c.lng], {
               radius: 9, color:'#fff', weight:2, fillColor:color, fillOpacity:1
             }).bindPopup(
-              `<strong>${esc(c.name)}</strong><br>${esc(c.city)}, TX<br>` +
-              (c.partner ? 'Partner · free with your pass' : '1 reimbursement/month, up to $50, each course once') +
-              `<br><a href="${JOIN_URL}">Join the founding list →</a>`
+              `<strong>${esc(c.name)}</strong><br>${esc(c.city)}, TX · ~$${c.fee}/round<br>` +
+              (c.partner ? '⭐ Partner · 2 free rounds/yr' : '1 free round/yr with TrackPass') +
+              `<br><a href="${JOIN_URL}">Join — $199/yr →</a>`
             );
             m.addTo(markerLayer);
             pts.push([c.lat, c.lng]);
@@ -455,6 +454,9 @@
         // init map the first time the Map tab is shown (Leaflet needs a visible container)
         mapViewBtn.addEventListener('click', () => { setTimeout(() => { initMap(); if(map) map.invalidateSize(); renderMarkers(); }, 50); });
         if (regionSelect) regionSelect.addEventListener('change', renderGrid);
+        if (tierSelect) tierSelect.addEventListener('change', renderGrid);
+        const searchBtn = document.getElementById('searchBtn');
+        if (searchBtn) searchBtn.addEventListener('click', renderGrid);
 
         renderGrid();
     </script>
