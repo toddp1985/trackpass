@@ -1,2 +1,5 @@
 blueprint.html
 .instagram-creds.txt
+node_modules/
+package-lock.json
+*.instagram-creds.txt
