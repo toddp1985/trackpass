@@ -1,5 +1,5 @@
-// Run on June 27, 2026: node outreach/send-batch1-followup.js
-const RESEND_KEY = "REDACTED";
+// Run on June 27, 2026: RESEND_API_KEY=<key> node outreach/send-batch1-followup.js
+const RESEND_KEY = process.env.RESEND_API_KEY;
 
 const contacts = [
   { to: "imcgraw@golfcedarcrest.com", course: "Cedar Crest Golf Course" },
