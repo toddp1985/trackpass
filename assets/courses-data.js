@@ -194,7 +194,7 @@ window.TRACKPASS_COURSES = [
     "fee": 32,
     "lat": 32.872,
     "lng": -96.934,
-    "photo": null,
+    "photo": "https://golf-pass-brightspot.s3.amazonaws.com/6f/01/a2a3c91cfd0c551f20aaa9d30424/96647.jpg",
     "tags": [
       "Municipal"
     ],
@@ -476,7 +476,7 @@ window.TRACKPASS_COURSES = [
     "lng": -95.3198,
     "region": "Houston",
     "partner": false,
-    "photo": null,
+    "photo": "https://golf-pass-brightspot.s3.amazonaws.com/81/44/6a3cef86b72b396479b0df1af570/70905.jpg",
     "citySlug": "houston-tx"
   },
   {
@@ -834,7 +834,7 @@ window.TRACKPASS_COURSES = [
     "lng": -102.0679,
     "region": "West Texas",
     "partner": false,
-    "photo": null,
+    "photo": "https://golf-pass-brightspot.s3.amazonaws.com/36/99/ee8c81d34a2c37b6b71a9fb9cee1/18495.jpg",
     "citySlug": "midland-tx"
   },
   {
