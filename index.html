@@ -39,7 +39,16 @@
       "@id": "https://trackpassgolf.com/#product",
       "name": "TrackPass — Annual Golf Pass",
       "description": "A $199/year Texas golf pass. Partner (in-network) courses: 2 free rounds per year per course — just show your pass, no receipt. Any other Texas public course: 1 free round per year per course. Full terms at trackpassgolf.com.",
+      "image": "https://trackpassgolf.com/assets/img/img_d233aed06c11.jpg",
       "brand": { "@type": "Brand", "name": "TrackPass" },
+      "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "applicableCountry": "US",
+        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+        "merchantReturnDays": 30,
+        "returnMethod": "https://schema.org/ReturnByMail",
+        "returnFees": "https://schema.org/FreeReturn"
+      },
       "offers": {
         "@type": "Offer",
         "url": "https://trackpassgolf.com/",
@@ -47,7 +56,17 @@
         "price": "199",
         "priceValidUntil": "2027-01-01",
         "availability": "https://schema.org/PreOrder",
-        "description": "Founding-member annual pass. Waitlist open — no payment required to reserve your spot."
+        "description": "Founding-member annual pass. Waitlist open — no payment required to reserve your spot.",
+        "shippingDetails": {
+          "@type": "OfferShippingDetails",
+          "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "USD" },
+          "deliveryTime": {
+            "@type": "ShippingDeliveryTime",
+            "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY" },
+            "transitTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY" }
+          },
+          "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "US" }
+        }
       }
     },
     {
