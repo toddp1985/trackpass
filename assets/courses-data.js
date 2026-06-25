@@ -31,7 +31,7 @@ window.TRACKPASS_COURSES = [
     "fee": 38,
     "lat": 30.3074,
     "lng": -97.6868,
-    "photo": null,
+    "photo": "https://golf-pass-brightspot.s3.amazonaws.com/43/13/388f2545b8da89d1a436d4c470c5/3449.jpg",
     "tags": [
       "Municipal"
     ],
@@ -47,7 +47,7 @@ window.TRACKPASS_COURSES = [
     "fee": 42,
     "lat": 30.1835,
     "lng": -97.733,
-    "photo": null,
+    "photo": "https://golf-pass-brightspot.s3.amazonaws.com/8f/51/439f61267e410af8f0f3ba13f8f7/9820.jpg",
     "tags": [
       "Links-style"
     ],
@@ -63,7 +63,7 @@ window.TRACKPASS_COURSES = [
     "fee": 34,
     "lat": 30.1856,
     "lng": -97.7296,
-    "photo": null,
+    "photo": "https://golf-pass-brightspot.s3.amazonaws.com/4c/f4/92b8eea99d72d1d19b14c5816650/9823.jpg",
     "tags": [
       "Municipal"
     ],
@@ -79,7 +79,7 @@ window.TRACKPASS_COURSES = [
     "fee": 30,
     "lat": 30.233,
     "lng": -97.715,
-    "photo": null,
+    "photo": "https://golf-pass-brightspot.s3.amazonaws.com/ac/44/0b12e8cb2a905005ff8de4c33ffa/101706.jpg",
     "tags": [
       "Municipal",
       "Historic"
@@ -130,7 +130,7 @@ window.TRACKPASS_COURSES = [
     "fee": 55,
     "lat": 29.619,
     "lng": -98.629,
-    "photo": null,
+    "photo": "https://golf-pass-brightspot.s3.amazonaws.com/70/39/4958173e95741923dc2242a2820f/3391.jpg",
     "tags": [
       "Scenic"
     ],
@@ -146,7 +146,7 @@ window.TRACKPASS_COURSES = [
     "fee": 40,
     "lat": 29.488,
     "lng": -98.49,
-    "photo": null,
+    "photo": "https://golf-pass-brightspot.s3.amazonaws.com/9a/11/c73e76ab92185a5470532c620fdc/83483.jpg",
     "tags": [
       "Municipal"
     ],
@@ -162,7 +162,7 @@ window.TRACKPASS_COURSES = [
     "fee": 45,
     "lat": 32.794,
     "lng": -96.733,
-    "photo": null,
+    "photo": "https://golf-pass-brightspot.s3.amazonaws.com/f2/7e/a162b0d2bd227f5dd5d454a75f46/103475.jpg",
     "tags": [
       "Championship"
     ],
@@ -210,7 +210,7 @@ window.TRACKPASS_COURSES = [
     "fee": 40,
     "lat": 32.647,
     "lng": -97.452,
-    "photo": null,
+    "photo": "https://golf-pass-brightspot.s3.amazonaws.com/d7/8d/52b4019d78c7b26f74faf90e43df/104106.jpg",
     "tags": [
       "River"
     ],
@@ -226,7 +226,7 @@ window.TRACKPASS_COURSES = [
     "fee": 35,
     "lat": 32.776,
     "lng": -97.337,
-    "photo": null,
+    "photo": "https://golf-pass-brightspot.s3.amazonaws.com/0a/ef/a26437d079a2580f20e3ab1b14c3/109110.jpg",
     "tags": [
       "Historic"
     ],
@@ -242,7 +242,7 @@ window.TRACKPASS_COURSES = [
     "fee": 28,
     "lat": 32.756,
     "lng": -97.27,
-    "photo": null,
+    "photo": "https://golf-pass-brightspot.s3.amazonaws.com/3b/69/abcba85b85c576c2f59eab5dcddc/109107.jpg",
     "tags": [
       "Municipal"
     ],
@@ -275,7 +275,7 @@ window.TRACKPASS_COURSES = [
     "fee": 32,
     "lat": 29.742,
     "lng": -95.323,
-    "photo": null,
+    "photo": "https://golf-pass-brightspot.s3.amazonaws.com/c7/54/c6e70d4bf9a7caa4fb7b17f972ee/96777.jpg",
     "tags": [
       "Historic"
     ],
@@ -308,7 +308,7 @@ window.TRACKPASS_COURSES = [
     "fee": 24,
     "lat": 29.7,
     "lng": -95.51,
-    "photo": null,
+    "photo": "https://golf-pass-brightspot.s3.amazonaws.com/d3/68/f0b973624cdce6f313afb0fb973c/58773.jpg",
     "tags": [
       "Municipal"
     ],
@@ -330,7 +330,7 @@ window.TRACKPASS_COURSES = [
     "lng": -98.5686,
     "region": "San Antonio",
     "partner": false,
-    "photo": null,
+    "photo": "https://golf-pass-brightspot.s3.amazonaws.com/f4/2f/e45a40be2e13edc2c7a2c40809a7/83482.jpg",
     "citySlug": "san-antonio-tx"
   },
   {
@@ -379,7 +379,7 @@ window.TRACKPASS_COURSES = [
     "lng": -98.4336,
     "region": "San Antonio",
     "partner": false,
-    "photo": null,
+    "photo": "https://golf-pass-brightspot.s3.amazonaws.com/1a/94/3e41c2db30d98a59491be45d645a/83490.jpg",
     "citySlug": "san-antonio-tx"
   },
   {
@@ -396,7 +396,7 @@ window.TRACKPASS_COURSES = [
     "lng": -96.837,
     "region": "Dallas–Fort Worth",
     "partner": false,
-    "photo": null,
+    "photo": "https://golf-pass-brightspot.s3.amazonaws.com/69/eb/c1522904852081056583320a1d20/104969.jpg",
     "citySlug": "dallas-tx"
   },
   {
@@ -412,7 +412,7 @@ window.TRACKPASS_COURSES = [
     "lng": -96.717,
     "region": "Dallas–Fort Worth",
     "partner": false,
-    "photo": null,
+    "photo": "https://golf-pass-brightspot.s3.amazonaws.com/63/08/ad0626820ef6c222b589dff240c6/109618.jpg",
     "citySlug": "dallas-tx"
   },
   {
@@ -428,7 +428,7 @@ window.TRACKPASS_COURSES = [
     "lng": -96.761,
     "region": "Dallas–Fort Worth",
     "partner": false,
-    "photo": null,
+    "photo": "https://golf-pass-brightspot.s3.amazonaws.com/0e/36/9fe8c9139f38f60887bfe3348b94/103474.jpg",
     "citySlug": "dallas-tx"
   },
   {
@@ -444,7 +444,7 @@ window.TRACKPASS_COURSES = [
     "lng": -97.3248,
     "region": "Dallas–Fort Worth",
     "partner": false,
-    "photo": null,
+    "photo": "https://golf-pass-brightspot.s3.amazonaws.com/d7/8d/52b4019d78c7b26f74faf90e43df/104106.jpg",
     "citySlug": "fort-worth-tx"
   },
   {
@@ -460,7 +460,7 @@ window.TRACKPASS_COURSES = [
     "lng": -95.2898,
     "region": "Houston",
     "partner": false,
-    "photo": null,
+    "photo": "https://golf-pass-brightspot.s3.amazonaws.com/07/f9/d310a49bea1bed0f06962ea25e6d/26934.jpg",
     "citySlug": "houston-tx"
   },
   {
@@ -607,7 +607,7 @@ window.TRACKPASS_COURSES = [
     "lng": -97.0781,
     "region": "Dallas–Fort Worth",
     "partner": false,
-    "photo": null,
+    "photo": "https://golf-pass-brightspot.s3.amazonaws.com/f1/68/25d498e5839efa033f5c9353e4a6/110199.jpg",
     "citySlug": "arlington-tx"
   },
   {
@@ -640,7 +640,7 @@ window.TRACKPASS_COURSES = [
     "lng": -97.0681,
     "region": "Dallas–Fort Worth",
     "partner": false,
-    "photo": null,
+    "photo": "https://golf-pass-brightspot.s3.amazonaws.com/6f/4a/830550e0f34d2cd4f492418db1f9/21992.jpg",
     "citySlug": "arlington-tx"
   },
   {
@@ -656,7 +656,7 @@ window.TRACKPASS_COURSES = [
     "lng": -96.6889,
     "region": "Dallas–Fort Worth",
     "partner": false,
-    "photo": null,
+    "photo": "https://golf-pass-brightspot.s3.amazonaws.com/19/d9/112497d0a5bd9143af1da709a50e/104967.jpg",
     "citySlug": "plano-tx"
   },
   {
@@ -672,7 +672,7 @@ window.TRACKPASS_COURSES = [
     "lng": -96.9389,
     "region": "Dallas–Fort Worth",
     "partner": false,
-    "photo": null,
+    "photo": "https://golf-pass-brightspot.s3.amazonaws.com/d1/85/97fb365669636d820693d25bf910/101977.jpg",
     "citySlug": "irving-tx"
   },
   {

@@ -1,7 +1,7 @@
 # TrackPass Instagram Launch Queue — @trackpassgolf
 # 7 posts to publish before any outreach. Post 2x/day. Use Canva for all graphics.
-# Account: ANONYMOUS — no connection to Todd Peoples or any existing account.
-# Setup: new Gmail (trackpassgolf@gmail.com), no linked personal phone.
+# Account: Branded — @trackpassgolf, no connection to any personal account.
+# Setup: sign up with hello@trackpassgolf.com. No linked personal phone or Facebook.
 
 ---
 
