@@ -17,11 +17,17 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "GolfCourse",
+      "@type": ["GolfCourse", "SportsActivityLocation", "LocalBusiness"],
       "name": "Northern Hills Golf Course",
       "description": "Part of the city-run Alamo City Golf Trail, Northern Hills offers affordable golf on San Antonio's north side. A solid everyday track for local players looking to get out without breaking the bank.",
       "address": { "@type": "PostalAddress", "addressLocality": "San Antonio", "addressRegion": "TX", "addressCountry": "US" },
-      "url": "https://trackpassgolf.com/courses/san-antonio-tx/northern-hills/"
+      "url": "https://trackpassgolf.com/courses/san-antonio-tx/northern-hills/",
+      "priceRange": "$$",
+      "openingHours": "Mo-Su 07:00-19:00",
+      "geo": { "@type": "GeoCoordinates", "latitude": 31, "longitude": -100 },
+      "sameAs": ["https://trackpassgolf.com/courses.html"],
+      "isAccessibleForFree": false,
+      "amenityFeature": [{ "@type": "LocationFeatureSpecification", "name": "TrackPass Accepted", "value": true }]
     },
     {
       "@type": "FAQPage",
@@ -36,6 +42,14 @@
           "name": "Is Northern Hills Golf Course covered by TrackPass?",
           "acceptedAnswer": { "@type": "Answer", "text": "Yes. TrackPass covers Northern Hills Golf Course in San Antonio, TX. Partner courses: show your pass and play free — 2 rounds per year per course. Out-of-network courses (like most public TX courses): 1 free round per year per course. $199/year." }
         }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://trackpassgolf.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Courses", "item": "https://trackpassgolf.com/courses.html" },
+        { "@type": "ListItem", "position": 3, "name": "Northern Hills Golf Course", "item": "https://trackpassgolf.com/courses/san-antonio-tx/northern-hills/" }
       ]
     }
   ]

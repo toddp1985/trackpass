@@ -17,11 +17,17 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "GolfCourse",
+      "@type": ["GolfCourse", "SportsActivityLocation", "LocalBusiness"],
       "name": "Pecan Valley Golf Course — Hills",
       "description": "The 'Hills' layout at Pecan Valley pairs with the River course to give golfers 36 holes of City of Fort Worth golf. Slightly shorter and added in 1982, it's a great complement to the River layout.",
       "address": { "@type": "PostalAddress", "addressLocality": "Fort Worth", "addressRegion": "TX", "addressCountry": "US" },
-      "url": "https://trackpassgolf.com/courses/fort-worth-tx/pecan-valley-hills/"
+      "url": "https://trackpassgolf.com/courses/fort-worth-tx/pecan-valley-hills/",
+      "priceRange": "$$",
+      "openingHours": "Mo-Su 07:00-19:00",
+      "geo": { "@type": "GeoCoordinates", "latitude": 31, "longitude": -100 },
+      "sameAs": ["https://trackpassgolf.com/courses.html"],
+      "isAccessibleForFree": false,
+      "amenityFeature": [{ "@type": "LocationFeatureSpecification", "name": "TrackPass Accepted", "value": true }]
     },
     {
       "@type": "FAQPage",
@@ -36,6 +42,14 @@
           "name": "Is Pecan Valley Golf Course — Hills covered by TrackPass?",
           "acceptedAnswer": { "@type": "Answer", "text": "Yes. TrackPass covers Pecan Valley Golf Course — Hills in Fort Worth, TX. Partner courses: show your pass and play free — 2 rounds per year per course. Out-of-network courses (like most public TX courses): 1 free round per year per course. $199/year." }
         }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://trackpassgolf.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Courses", "item": "https://trackpassgolf.com/courses.html" },
+        { "@type": "ListItem", "position": 3, "name": "Pecan Valley Golf Course — Hills", "item": "https://trackpassgolf.com/courses/fort-worth-tx/pecan-valley-hills/" }
       ]
     }
   ]

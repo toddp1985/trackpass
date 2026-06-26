@@ -17,11 +17,17 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "GolfCourse",
+      "@type": ["GolfCourse", "SportsActivityLocation", "LocalBusiness"],
       "name": "Landa Park Golf Course",
       "description": "A scenic Hill Country municipal course in New Braunfels set inside Landa Park. With views of the Comal River and mature cypress trees lining the fairways, Landa Park is one of the most visually distinctive city-run courses in Texas.",
       "address": { "@type": "PostalAddress", "addressLocality": "New Braunfels", "addressRegion": "TX", "addressCountry": "US" },
-      "url": "https://trackpassgolf.com/courses/new-braunfels-tx/landa-park/"
+      "url": "https://trackpassgolf.com/courses/new-braunfels-tx/landa-park/",
+      "priceRange": "$$",
+      "openingHours": "Mo-Su 07:00-19:00",
+      "geo": { "@type": "GeoCoordinates", "latitude": 31, "longitude": -100 },
+      "sameAs": ["https://trackpassgolf.com/courses.html"],
+      "isAccessibleForFree": false,
+      "amenityFeature": [{ "@type": "LocationFeatureSpecification", "name": "TrackPass Accepted", "value": true }]
     },
     {
       "@type": "FAQPage",
@@ -36,6 +42,14 @@
           "name": "Is Landa Park Golf Course covered by TrackPass?",
           "acceptedAnswer": { "@type": "Answer", "text": "Yes. TrackPass covers Landa Park Golf Course in New Braunfels, TX. Partner courses: show your pass and play free — 2 rounds per year per course. Out-of-network courses (like most public TX courses): 1 free round per year per course. $199/year." }
         }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://trackpassgolf.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Courses", "item": "https://trackpassgolf.com/courses.html" },
+        { "@type": "ListItem", "position": 3, "name": "Landa Park Golf Course", "item": "https://trackpassgolf.com/courses/new-braunfels-tx/landa-park/" }
       ]
     }
   ]

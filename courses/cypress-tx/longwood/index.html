@@ -17,11 +17,17 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "GolfCourse",
+      "@type": ["GolfCourse", "SportsActivityLocation", "LocalBusiness"],
       "name": "Longwood Golf Club",
       "description": "A beloved daily-fee course on Houston's northwest side in Cypress. Longwood features tree-lined fairways, generous fairways, and conditions that punch above their price point — a reliable suburban Houston pick.",
       "address": { "@type": "PostalAddress", "addressLocality": "Cypress", "addressRegion": "TX", "addressCountry": "US" },
-      "url": "https://trackpassgolf.com/courses/cypress-tx/longwood/"
+      "url": "https://trackpassgolf.com/courses/cypress-tx/longwood/",
+      "priceRange": "$$",
+      "openingHours": "Mo-Su 07:00-19:00",
+      "geo": { "@type": "GeoCoordinates", "latitude": 31, "longitude": -100 },
+      "sameAs": ["https://trackpassgolf.com/courses.html"],
+      "isAccessibleForFree": false,
+      "amenityFeature": [{ "@type": "LocationFeatureSpecification", "name": "TrackPass Accepted", "value": true }]
     },
     {
       "@type": "FAQPage",
@@ -36,6 +42,14 @@
           "name": "Is Longwood Golf Club covered by TrackPass?",
           "acceptedAnswer": { "@type": "Answer", "text": "Yes. TrackPass covers Longwood Golf Club in Cypress, TX. Partner courses: show your pass and play free — 2 rounds per year per course. Out-of-network courses (like most public TX courses): 1 free round per year per course. $199/year." }
         }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://trackpassgolf.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Courses", "item": "https://trackpassgolf.com/courses.html" },
+        { "@type": "ListItem", "position": 3, "name": "Longwood Golf Club", "item": "https://trackpassgolf.com/courses/cypress-tx/longwood/" }
       ]
     }
   ]

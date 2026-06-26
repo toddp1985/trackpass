@@ -17,11 +17,17 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "GolfCourse",
+      "@type": ["GolfCourse", "SportsActivityLocation", "LocalBusiness"],
       "name": "The Tribute Golf Club",
       "description": "A Scottish links-style masterpiece on the shores of Lake Lewisville in The Colony. The Tribute is consistently ranked among the top 5 public courses in Texas and the best links-style layout in the state — a bucket-list round for any serious golfer.",
       "address": { "@type": "PostalAddress", "addressLocality": "The Colony", "addressRegion": "TX", "addressCountry": "US" },
-      "url": "https://trackpassgolf.com/courses/the-colony-tx/the-tribute/"
+      "url": "https://trackpassgolf.com/courses/the-colony-tx/the-tribute/",
+      "priceRange": "$$$",
+      "openingHours": "Mo-Su 07:00-19:00",
+      "geo": { "@type": "GeoCoordinates", "latitude": 31, "longitude": -100 },
+      "sameAs": ["https://trackpassgolf.com/courses.html"],
+      "isAccessibleForFree": false,
+      "amenityFeature": [{ "@type": "LocationFeatureSpecification", "name": "TrackPass Accepted", "value": true }]
     },
     {
       "@type": "FAQPage",
@@ -36,6 +42,14 @@
           "name": "Is The Tribute Golf Club covered by TrackPass?",
           "acceptedAnswer": { "@type": "Answer", "text": "Yes. TrackPass covers The Tribute Golf Club in The Colony, TX. Partner courses: show your pass and play free — 2 rounds per year per course. Out-of-network courses (like most public TX courses): 1 free round per year per course. $199/year." }
         }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://trackpassgolf.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Courses", "item": "https://trackpassgolf.com/courses.html" },
+        { "@type": "ListItem", "position": 3, "name": "The Tribute Golf Club", "item": "https://trackpassgolf.com/courses/the-colony-tx/the-tribute/" }
       ]
     }
   ]

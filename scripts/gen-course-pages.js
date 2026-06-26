@@ -258,11 +258,17 @@ function generatePage(course) {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "GolfCourse",
+      "@type": ["GolfCourse", "SportsActivityLocation", "LocalBusiness"],
       "name": "${course.name}",
       "description": "${course.blurb.replace(/"/g, '\\"')}",
       "address": { "@type": "PostalAddress", "addressLocality": "${course.city}", "addressRegion": "TX", "addressCountry": "US" },
-      "url": "${canonical}"
+      "url": "${canonical}",
+      "priceRange": "${course.fee <= 25 ? '$' : course.fee <= 45 ? '$$' : '$$$'}",
+      "openingHours": "Mo-Su 07:00-19:00",
+      "geo": { "@type": "GeoCoordinates", "latitude": ${course.lat || 31.0}, "longitude": ${course.lng || -100.0} },
+      "sameAs": ["https://trackpassgolf.com/courses.html"],
+      "isAccessibleForFree": false,
+      "amenityFeature": [{ "@type": "LocationFeatureSpecification", "name": "TrackPass Accepted", "value": true }]
     },
     {
       "@type": "FAQPage",
@@ -277,6 +283,14 @@ function generatePage(course) {
           "name": "Is ${course.name} covered by TrackPass?",
           "acceptedAnswer": { "@type": "Answer", "text": "Yes. TrackPass covers ${course.name} in ${course.city}, TX. Partner courses: show your pass and play free — 2 rounds per year per course. Out-of-network courses (like most public TX courses): 1 free round per year per course. $199/year." }
         }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "${SITE_URL}/" },
+        { "@type": "ListItem", "position": 2, "name": "Courses", "item": "${SITE_URL}/courses.html" },
+        { "@type": "ListItem", "position": 3, "name": "${course.name}", "item": "${canonical}" }
       ]
     }
   ]

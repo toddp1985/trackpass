@@ -17,11 +17,17 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "GolfCourse",
+      "@type": ["GolfCourse", "SportsActivityLocation", "LocalBusiness"],
       "name": "Weatherford Golf Club",
       "description": "Weatherford's go-to public golf facility, offering an accessible 18-hole layout west of Fort Worth. Affordable, welcoming, and set in the rolling terrain of Parker County — Weatherford Golf Club is a straightforward, enjoyable round that captures the spirit of Texas small-town golf.",
       "address": { "@type": "PostalAddress", "addressLocality": "Weatherford", "addressRegion": "TX", "addressCountry": "US" },
-      "url": "https://trackpassgolf.com/courses/weatherford-tx/weatherford-golf-club/"
+      "url": "https://trackpassgolf.com/courses/weatherford-tx/weatherford-golf-club/",
+      "priceRange": "$$",
+      "openingHours": "Mo-Su 07:00-19:00",
+      "geo": { "@type": "GeoCoordinates", "latitude": 31, "longitude": -100 },
+      "sameAs": ["https://trackpassgolf.com/courses.html"],
+      "isAccessibleForFree": false,
+      "amenityFeature": [{ "@type": "LocationFeatureSpecification", "name": "TrackPass Accepted", "value": true }]
     },
     {
       "@type": "FAQPage",
@@ -36,6 +42,14 @@
           "name": "Is Weatherford Golf Club covered by TrackPass?",
           "acceptedAnswer": { "@type": "Answer", "text": "Yes. TrackPass covers Weatherford Golf Club in Weatherford, TX. Partner courses: show your pass and play free — 2 rounds per year per course. Out-of-network courses (like most public TX courses): 1 free round per year per course. $199/year." }
         }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://trackpassgolf.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Courses", "item": "https://trackpassgolf.com/courses.html" },
+        { "@type": "ListItem", "position": 3, "name": "Weatherford Golf Club", "item": "https://trackpassgolf.com/courses/weatherford-tx/weatherford-golf-club/" }
       ]
     }
   ]

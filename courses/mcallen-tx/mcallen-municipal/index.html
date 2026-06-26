@@ -17,11 +17,17 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "GolfCourse",
+      "@type": ["GolfCourse", "SportsActivityLocation", "LocalBusiness"],
       "name": "McAllen Municipal Golf Course",
       "description": "The main public golf facility in the Rio Grande Valley, McAllen Municipal offers an accessible, affordable 18 holes in the heart of the Valley. A popular winter destination for snowbirds from colder climates.",
       "address": { "@type": "PostalAddress", "addressLocality": "McAllen", "addressRegion": "TX", "addressCountry": "US" },
-      "url": "https://trackpassgolf.com/courses/mcallen-tx/mcallen-municipal/"
+      "url": "https://trackpassgolf.com/courses/mcallen-tx/mcallen-municipal/",
+      "priceRange": "$$",
+      "openingHours": "Mo-Su 07:00-19:00",
+      "geo": { "@type": "GeoCoordinates", "latitude": 31, "longitude": -100 },
+      "sameAs": ["https://trackpassgolf.com/courses.html"],
+      "isAccessibleForFree": false,
+      "amenityFeature": [{ "@type": "LocationFeatureSpecification", "name": "TrackPass Accepted", "value": true }]
     },
     {
       "@type": "FAQPage",
@@ -36,6 +42,14 @@
           "name": "Is McAllen Municipal Golf Course covered by TrackPass?",
           "acceptedAnswer": { "@type": "Answer", "text": "Yes. TrackPass covers McAllen Municipal Golf Course in McAllen, TX. Partner courses: show your pass and play free — 2 rounds per year per course. Out-of-network courses (like most public TX courses): 1 free round per year per course. $199/year." }
         }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://trackpassgolf.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Courses", "item": "https://trackpassgolf.com/courses.html" },
+        { "@type": "ListItem", "position": 3, "name": "McAllen Municipal Golf Course", "item": "https://trackpassgolf.com/courses/mcallen-tx/mcallen-municipal/" }
       ]
     }
   ]

@@ -17,11 +17,17 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "GolfCourse",
+      "@type": ["GolfCourse", "SportsActivityLocation", "LocalBusiness"],
       "name": "Star Ranch Golf Club",
       "description": "A highly rated 18-hole daily-fee course in Hutto, northeast of Austin. Star Ranch is known for its excellent conditions, links-influenced design, and consistently strong reviews from Austin-area golfers. One of the best-value premium public rounds in Central Texas.",
       "address": { "@type": "PostalAddress", "addressLocality": "Hutto", "addressRegion": "TX", "addressCountry": "US" },
-      "url": "https://trackpassgolf.com/courses/hutto-tx/star-ranch/"
+      "url": "https://trackpassgolf.com/courses/hutto-tx/star-ranch/",
+      "priceRange": "$$$",
+      "openingHours": "Mo-Su 07:00-19:00",
+      "geo": { "@type": "GeoCoordinates", "latitude": 31, "longitude": -100 },
+      "sameAs": ["https://trackpassgolf.com/courses.html"],
+      "isAccessibleForFree": false,
+      "amenityFeature": [{ "@type": "LocationFeatureSpecification", "name": "TrackPass Accepted", "value": true }]
     },
     {
       "@type": "FAQPage",
@@ -36,6 +42,14 @@
           "name": "Is Star Ranch Golf Club covered by TrackPass?",
           "acceptedAnswer": { "@type": "Answer", "text": "Yes. TrackPass covers Star Ranch Golf Club in Hutto, TX. Partner courses: show your pass and play free — 2 rounds per year per course. Out-of-network courses (like most public TX courses): 1 free round per year per course. $199/year." }
         }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://trackpassgolf.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Courses", "item": "https://trackpassgolf.com/courses.html" },
+        { "@type": "ListItem", "position": 3, "name": "Star Ranch Golf Club", "item": "https://trackpassgolf.com/courses/hutto-tx/star-ranch/" }
       ]
     }
   ]

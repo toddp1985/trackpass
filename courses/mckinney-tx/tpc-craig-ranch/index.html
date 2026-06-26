@@ -17,11 +17,17 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "GolfCourse",
+      "@type": ["GolfCourse", "SportsActivityLocation", "LocalBusiness"],
       "name": "TPC Craig Ranch",
       "description": "Home of the PGA Tour's AT&T Byron Nelson, TPC Craig Ranch is a world-class public layout in McKinney. Playing the same course the pros compete on is a bucket-list experience — and it's open to the public year-round.",
       "address": { "@type": "PostalAddress", "addressLocality": "McKinney", "addressRegion": "TX", "addressCountry": "US" },
-      "url": "https://trackpassgolf.com/courses/mckinney-tx/tpc-craig-ranch/"
+      "url": "https://trackpassgolf.com/courses/mckinney-tx/tpc-craig-ranch/",
+      "priceRange": "$$$",
+      "openingHours": "Mo-Su 07:00-19:00",
+      "geo": { "@type": "GeoCoordinates", "latitude": 31, "longitude": -100 },
+      "sameAs": ["https://trackpassgolf.com/courses.html"],
+      "isAccessibleForFree": false,
+      "amenityFeature": [{ "@type": "LocationFeatureSpecification", "name": "TrackPass Accepted", "value": true }]
     },
     {
       "@type": "FAQPage",
@@ -36,6 +42,14 @@
           "name": "Is TPC Craig Ranch covered by TrackPass?",
           "acceptedAnswer": { "@type": "Answer", "text": "Yes. TrackPass covers TPC Craig Ranch in McKinney, TX. Partner courses: show your pass and play free — 2 rounds per year per course. Out-of-network courses (like most public TX courses): 1 free round per year per course. $199/year." }
         }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://trackpassgolf.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Courses", "item": "https://trackpassgolf.com/courses.html" },
+        { "@type": "ListItem", "position": 3, "name": "TPC Craig Ranch", "item": "https://trackpassgolf.com/courses/mckinney-tx/tpc-craig-ranch/" }
       ]
     }
   ]

@@ -17,11 +17,17 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "GolfCourse",
+      "@type": ["GolfCourse", "SportsActivityLocation", "LocalBusiness"],
       "name": "Oso Beach Municipal Golf Course",
       "description": "A 9-hole muni near the water on Corpus Christi's south side. Oso Beach is one of the most affordable public rounds in Coastal Bend Texas — perfect for a casual 9 before heading to the beach.",
       "address": { "@type": "PostalAddress", "addressLocality": "Corpus Christi", "addressRegion": "TX", "addressCountry": "US" },
-      "url": "https://trackpassgolf.com/courses/corpus-christi-tx/oso-beach/"
+      "url": "https://trackpassgolf.com/courses/corpus-christi-tx/oso-beach/",
+      "priceRange": "$",
+      "openingHours": "Mo-Su 07:00-19:00",
+      "geo": { "@type": "GeoCoordinates", "latitude": 31, "longitude": -100 },
+      "sameAs": ["https://trackpassgolf.com/courses.html"],
+      "isAccessibleForFree": false,
+      "amenityFeature": [{ "@type": "LocationFeatureSpecification", "name": "TrackPass Accepted", "value": true }]
     },
     {
       "@type": "FAQPage",
@@ -36,6 +42,14 @@
           "name": "Is Oso Beach Municipal Golf Course covered by TrackPass?",
           "acceptedAnswer": { "@type": "Answer", "text": "Yes. TrackPass covers Oso Beach Municipal Golf Course in Corpus Christi, TX. Partner courses: show your pass and play free — 2 rounds per year per course. Out-of-network courses (like most public TX courses): 1 free round per year per course. $199/year." }
         }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://trackpassgolf.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Courses", "item": "https://trackpassgolf.com/courses.html" },
+        { "@type": "ListItem", "position": 3, "name": "Oso Beach Municipal Golf Course", "item": "https://trackpassgolf.com/courses/corpus-christi-tx/oso-beach/" }
       ]
     }
   ]

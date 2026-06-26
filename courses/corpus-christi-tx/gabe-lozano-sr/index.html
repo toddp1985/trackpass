@@ -17,11 +17,17 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "GolfCourse",
+      "@type": ["GolfCourse", "SportsActivityLocation", "LocalBusiness"],
       "name": "Gabe Lozano Sr. Golf Center",
       "description": "A 27-hole municipal complex on the north side of Corpus Christi offering three 9-hole layouts. Gabe Lozano is the most popular public golf facility on the Texas Coastal Bend and a longtime community cornerstone.",
       "address": { "@type": "PostalAddress", "addressLocality": "Corpus Christi", "addressRegion": "TX", "addressCountry": "US" },
-      "url": "https://trackpassgolf.com/courses/corpus-christi-tx/gabe-lozano-sr/"
+      "url": "https://trackpassgolf.com/courses/corpus-christi-tx/gabe-lozano-sr/",
+      "priceRange": "$$",
+      "openingHours": "Mo-Su 07:00-19:00",
+      "geo": { "@type": "GeoCoordinates", "latitude": 31, "longitude": -100 },
+      "sameAs": ["https://trackpassgolf.com/courses.html"],
+      "isAccessibleForFree": false,
+      "amenityFeature": [{ "@type": "LocationFeatureSpecification", "name": "TrackPass Accepted", "value": true }]
     },
     {
       "@type": "FAQPage",
@@ -36,6 +42,14 @@
           "name": "Is Gabe Lozano Sr. Golf Center covered by TrackPass?",
           "acceptedAnswer": { "@type": "Answer", "text": "Yes. TrackPass covers Gabe Lozano Sr. Golf Center in Corpus Christi, TX. Partner courses: show your pass and play free — 2 rounds per year per course. Out-of-network courses (like most public TX courses): 1 free round per year per course. $199/year." }
         }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://trackpassgolf.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Courses", "item": "https://trackpassgolf.com/courses.html" },
+        { "@type": "ListItem", "position": 3, "name": "Gabe Lozano Sr. Golf Center", "item": "https://trackpassgolf.com/courses/corpus-christi-tx/gabe-lozano-sr/" }
       ]
     }
   ]

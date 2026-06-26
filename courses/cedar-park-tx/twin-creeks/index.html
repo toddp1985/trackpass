@@ -17,11 +17,17 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "GolfCourse",
+      "@type": ["GolfCourse", "SportsActivityLocation", "LocalBusiness"],
       "name": "Twin Creeks Golf Club",
       "description": "A daily-fee 18-hole course in Cedar Park on the northwest side of the Austin metro. Twin Creeks offers a genuine test of golf with well-designed holes, strong conditioning, and a welcoming atmosphere for golfers of all levels.",
       "address": { "@type": "PostalAddress", "addressLocality": "Cedar Park", "addressRegion": "TX", "addressCountry": "US" },
-      "url": "https://trackpassgolf.com/courses/cedar-park-tx/twin-creeks/"
+      "url": "https://trackpassgolf.com/courses/cedar-park-tx/twin-creeks/",
+      "priceRange": "$$$",
+      "openingHours": "Mo-Su 07:00-19:00",
+      "geo": { "@type": "GeoCoordinates", "latitude": 31, "longitude": -100 },
+      "sameAs": ["https://trackpassgolf.com/courses.html"],
+      "isAccessibleForFree": false,
+      "amenityFeature": [{ "@type": "LocationFeatureSpecification", "name": "TrackPass Accepted", "value": true }]
     },
     {
       "@type": "FAQPage",
@@ -36,6 +42,14 @@
           "name": "Is Twin Creeks Golf Club covered by TrackPass?",
           "acceptedAnswer": { "@type": "Answer", "text": "Yes. TrackPass covers Twin Creeks Golf Club in Cedar Park, TX. Partner courses: show your pass and play free — 2 rounds per year per course. Out-of-network courses (like most public TX courses): 1 free round per year per course. $199/year." }
         }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://trackpassgolf.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Courses", "item": "https://trackpassgolf.com/courses.html" },
+        { "@type": "ListItem", "position": 3, "name": "Twin Creeks Golf Club", "item": "https://trackpassgolf.com/courses/cedar-park-tx/twin-creeks/" }
       ]
     }
   ]

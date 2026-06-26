@@ -17,11 +17,17 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "GolfCourse",
+      "@type": ["GolfCourse", "SportsActivityLocation", "LocalBusiness"],
       "name": "Woodland Hills Golf Course",
       "description": "A scenic 18-hole daily-fee course in Nacogdoches, the oldest city in Texas. Woodland Hills offers tree-lined East Texas golf at affordable prices and is the home course for Stephen F. Austin University golfers and the broader Nacogdoches community.",
       "address": { "@type": "PostalAddress", "addressLocality": "Nacogdoches", "addressRegion": "TX", "addressCountry": "US" },
-      "url": "https://trackpassgolf.com/courses/nacogdoches-tx/woodland-hills/"
+      "url": "https://trackpassgolf.com/courses/nacogdoches-tx/woodland-hills/",
+      "priceRange": "$$",
+      "openingHours": "Mo-Su 07:00-19:00",
+      "geo": { "@type": "GeoCoordinates", "latitude": 31, "longitude": -100 },
+      "sameAs": ["https://trackpassgolf.com/courses.html"],
+      "isAccessibleForFree": false,
+      "amenityFeature": [{ "@type": "LocationFeatureSpecification", "name": "TrackPass Accepted", "value": true }]
     },
     {
       "@type": "FAQPage",
@@ -36,6 +42,14 @@
           "name": "Is Woodland Hills Golf Course covered by TrackPass?",
           "acceptedAnswer": { "@type": "Answer", "text": "Yes. TrackPass covers Woodland Hills Golf Course in Nacogdoches, TX. Partner courses: show your pass and play free — 2 rounds per year per course. Out-of-network courses (like most public TX courses): 1 free round per year per course. $199/year." }
         }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://trackpassgolf.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Courses", "item": "https://trackpassgolf.com/courses.html" },
+        { "@type": "ListItem", "position": 3, "name": "Woodland Hills Golf Course", "item": "https://trackpassgolf.com/courses/nacogdoches-tx/woodland-hills/" }
       ]
     }
   ]
