@@ -14,7 +14,7 @@
 Every public golf course in Texas.
 One pass. $199/year.
 
-2 rounds at partner courses. 1 round at any TX public course.
+2 free rounds/yr at partner courses. Green fee reimbursed at any other TX public course.
 No blackout dates. No reservations required.
 
 trackpassgolf.com — link in bio.
@@ -31,15 +31,15 @@ trackpassgolf.com — link in bio.
 **Slide 1:** "Course Spotlight: TPC Craig Ranch, McKinney TX"
 **Slide 2:** Photo of course + "Par 72 | 7,437 yards | Rated one of Texas's best public courses"
 **Slide 3:** "Walk-up rate: $85-$150/round"
-**Slide 4:** "TrackPass members: 1 free round per year. (Partner courses get 2 rounds/yr.)"
+**Slide 4:** "TrackPass members: green fee reimbursed up to $50/round. (Partner courses get 2 free rounds/yr.)"
 **Slide 5:** "Your $199 pass covers this and 99 other TX public courses. trackpassgolf.com"
 
 **Caption:**
 TPC Craig Ranch. McKinney, Texas.
 
-One of the finest public courses in the state — TrackPass members get 1 free round per year here.
+One of the finest public courses in the state — pay the green fee here and TrackPass reimburses you up to $50.
 
-A single round runs $85–$150. Your $199 pass covers it and 99 other TX public courses. Partner courses unlock 2 rounds/yr when they join the network.
+A single round runs $85–$150. Your $199 pass covers reimbursement here and at 99 other TX public courses. Partner courses unlock 2 free rounds/yr when they join the network.
 
 trackpassgolf.com
 
@@ -57,7 +57,7 @@ trackpassgolf.com
 TrackPass annual membership = $199
 
 Play 4 rounds. The pass pays for itself.
-Everything else is free.
+Partner-course rounds are free; everywhere else, your green fee gets reimbursed.
 
 **Caption:**
 The math is simple.
@@ -79,9 +79,9 @@ trackpassgolf.com
 **Caption:**
 Firewheel Golf Park. Garland, Texas.
 
-36 holes of championship public golf in DFW — TrackPass members get 1 free round per year.
+36 holes of championship public golf in DFW — pay the green fee and TrackPass reimburses you up to $50.
 
-Walk-up: $45–$65/round. Your $199 pass covers one free round here + 99 other TX courses.
+Walk-up: $45–$65/round. Your $199 pass covers reimbursement here + 99 other TX courses.
 
 trackpassgolf.com
 
@@ -96,13 +96,13 @@ trackpassgolf.com
 
 **Slide 1:** "How TrackPass Works"
 **Slide 2:** "1. Buy your pass ($199/yr). Get a digital member card."
-**Slide 3:** "2. Show your card at the pro shop. Walk on."
-**Slide 4:** "3. Use up to 2 rounds/yr at partner courses, 1 round/yr at any other TX public course."
+**Slide 3:** "2. At partner courses: show your card at the pro shop. Walk on."
+**Slide 4:** "3. Anywhere else: pay the green fee, log your round, submit the receipt — reimbursed up to $50/round, 1/month, up to $199/yr."
 
 **Caption:**
-No apps. No booking systems. No blackout dates.
+No apps to book. No blackout dates.
 
-Show your TrackPass card at the pro shop. Walk on. Simple as that.
+At partner courses, show your TrackPass card at the pro shop and walk on. Anywhere else, pay the green fee and get reimbursed.
 
 $199/year. 100 TX public courses.
 
@@ -121,7 +121,7 @@ Hermann Park Golf Course. Houston, Texas.
 
 Steps from the Museum of Natural Science and the Houston Zoo — one of Houston's most beloved public courses.
 
-TrackPass members: 1 free round per year (out-of-network). Visitors pay $30–$45.
+TrackPass members: pay the green fee here and get reimbursed up to $50/round. Visitors pay $30–$45.
 
 trackpassgolf.com
 

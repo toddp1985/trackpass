@@ -47,15 +47,15 @@ See launch-queue.md POST 7.
 Slide 1: "Course Spotlight: Memorial Park Golf Course — Houston, TX"
 Slide 2: [Memorial Park photo] "Par 72 | Renovation by Tom Doak | Host of PGA Tour events"
 Slide 3: "$75–$120/round walk-up rate"
-Slide 4: "TrackPass: 1 free round/year (out-of-network)"
+Slide 4: "TrackPass: green fee reimbursed up to $50/round"
 Slide 5: "$199/yr. 100 TX public courses. trackpassgolf.com"
 
 Caption:
 Memorial Park Golf Course just had a $34 million renovation. Tom Doak. PGA Tour quality. Open to the public.
 
-TrackPass members get 1 free round here per year. Walk-up rate is $75–$120.
+Pay the green fee here and TrackPass reimburses you up to $50. Walk-up rate is $75–$120.
 
-One round covers 37% of your annual pass.
+One reimbursed round can cover up to a quarter of your annual pass cost.
 
 trackpassgolf.com
 
@@ -80,7 +80,7 @@ Green fees. Cart fees. Range balls. Add it up.
 
 For most TX golfers playing 10+ rounds a year, it's $400–$1,200+.
 
-TrackPass is $199. 100 TX public courses. 1–2 free rounds each.
+TrackPass is $199. 100 TX public courses. 2 free rounds/yr at partner courses, green fee reimbursed everywhere else.
 
 What would you do with the savings?
 
@@ -98,7 +98,7 @@ Brackenridge Park Golf Course. San Antonio, Texas.
 
 Opened in 1916. The oldest municipal golf course in Texas.
 
-$30–$50/round. TrackPass members get 1 free round per year here.
+$30–$50/round. TrackPass members pay the green fee and get reimbursed up to $50 here.
 
 110 years of Texas golf history — part of your $199 pass.
 
@@ -125,7 +125,7 @@ Texas is a big golf state.
 
 TrackPass covers them all. One price. $199/year.
 
-Partner courses = 2 free rounds/yr. All others = 1 free round/yr.
+Partner courses = 2 free rounds/yr. All others = green fee reimbursed up to $50/round.
 
 trackpassgolf.com
 
@@ -139,7 +139,7 @@ Pecan Valley River Course. Fort Worth, Texas.
 
 Host of the 1968 PGA Championship — Walter Burkemo, Arnold Palmer played this course.
 
-$40–$65/round. TrackPass: 1 free round/year.
+$40–$65/round. TrackPass: green fee reimbursed up to $50/round.
 
 Historic DFW golf. Part of your $199 pass.
 
@@ -182,7 +182,7 @@ Lions Municipal Golf Course. Austin, Texas.
 
 One of the most historic public courses in the South. "Muny" to every Austinite who's played it.
 
-$30–$55/round. Fully walkable. TrackPass: 1 free round/year.
+$30–$55/round. Fully walkable. TrackPass: green fee reimbursed up to $50/round.
 
 Austin's golf institution — part of your $199 pass.
 
@@ -227,7 +227,7 @@ Tierra Verde Golf Club. Grand Prairie, Texas.
 
 Championship layout, bent grass greens, $50–$75/round.
 
-Right in the middle of DFW — TrackPass: 1 free round/year.
+Right in the middle of DFW — TrackPass: green fee reimbursed up to $50/round.
 
 trackpassgolf.com
 
@@ -261,9 +261,9 @@ Roy Kizer / Jimmy Clay Golf Complex. South Austin, Texas.
 
 Two courses, one complex. 36 holes of public golf right inside Austin city limits.
 
-$35–$55/round each. TrackPass: 1 free round per course, per year.
+$35–$55/round each. TrackPass: green fee reimbursed up to $50/round at each course.
 
-That's 2 free rounds from one complex on your $199 pass.
+That's up to two reimbursed rounds from one complex on your $199 pass (subject to the 1-reimbursement-per-month cap).
 
 trackpassgolf.com
 
@@ -277,9 +277,9 @@ trackpassgolf.com
 **Format:** Carousel (4 slides)
 **Canva:** Clean infographic style, green/white/gold
 
-Slide 1: "Partner Courses vs. Out-of-Network"
-Slide 2: "Partner Courses: 2 free rounds/yr per course. Course prints a QR code for your pro shop. Zero friction for the golfer."
-Slide 3: "Out-of-Network: 1 free round/yr per course. Show your digital card. Walk on."
+Slide 1: "Partner Courses vs. Every Other TX Course"
+Slide 2: "Partner Courses: 2 free rounds/yr per course. Show your digital pass at the pro shop. Zero paperwork."
+Slide 3: "Any Other Texas Public Course: pay the green fee, log your round, submit the receipt. Reimbursed up to $50/round, 1 round/month, up to $199/yr."
 Slide 4: "All 95 TX public courses are covered. More partner courses = more free rounds for you."
 
 Caption:
@@ -287,7 +287,7 @@ How the two tiers work:
 
 Partner courses: 2 free rounds per year. The course is in the network — they've installed the check-in system. Smoother experience.
 
-Out-of-network: 1 free round per year. Show your card at the pro shop. Walk on.
+Any other Texas public course: pay the green fee, log the round in your dashboard, and email the receipt to reimbursements@trackpassgolf.com. Reimbursed up to $50/round, 1 round per month, up to $199 per membership year.
 
 95 TX public courses covered. As more courses join the partner network, your founding member benefits only get better.
 
@@ -303,7 +303,7 @@ Rockwood Park Golf Course. Fort Worth, Texas.
 
 Mature trees, rolling terrain, $35–$50/round. Quintessential Texas muni.
 
-TrackPass: 1 free round/year.
+TrackPass: green fee reimbursed up to $50/round.
 
 DFW's hidden gem. Part of your $199 pass.
 
@@ -347,7 +347,7 @@ Cedar Creek Golf Course. San Antonio, Texas.
 
 Tree-lined, challenging, $35–$55/round. One of SA's most popular public tracks.
 
-TrackPass: 1 free round/year.
+TrackPass: green fee reimbursed up to $50/round.
 
 Part of your $199 pass.
 
@@ -365,16 +365,16 @@ trackpassgolf.com
 Note: If you can shoot this in-person, great. If not, use course photos with a travel-style edit.
 
 Text overlays:
-Day 1: Lions Muni, Austin — $0 (TrackPass)
-Day 2: Brackenridge, San Antonio — $0
-Day 3: Hermann Park, Houston — $0
-Day 4: Pecan Valley, Fort Worth — $0
-Day 5: TPC Craig Ranch, McKinney — $0
+Day 1: Lions Muni, Austin — logged
+Day 2: Brackenridge, San Antonio — logged
+Day 3: Hermann Park, Houston — logged
+Day 4: Pecan Valley, Fort Worth — logged
+Day 5: TPC Craig Ranch, McKinney — logged
 
 Caption:
-5 Texas golf courses. 5 days. $0 in green fees.
+5 Texas golf courses. 5 days. Every round logged for reimbursement.
 
-That's what a TrackPass looks like in practice. $199/year, 95 TX public courses, 1 free round per course per year.
+That's what a TrackPass looks like in practice. $199/year, 95 TX public courses, green fee reimbursed up to $50/round (1 reimbursement per month, up to $199/year), plus 2 free rounds/yr at partner courses.
 
 Some people drive 12 hours to golf in Scottsdale. Texas has 95 public courses and most people haven't played half of them.
 
@@ -390,7 +390,7 @@ Ross Rogers Golf Course. Amarillo, Texas.
 
 Two courses (East + West), $25–$40/round. The best deal in the Texas Panhandle.
 
-TrackPass: 1 free round/year per course. That's 2 Amarillo rounds on one pass.
+TrackPass: green fee reimbursed up to $50/round at each course (subject to the 1-reimbursement-per-month cap).
 
 Panhandle golf. Wide open fairways. Big sky. Worth the drive.
 
@@ -409,15 +409,15 @@ trackpassgolf.com
 
 Graphic text:
 "Played Lions Muni and Brackenridge in one weekend.
-Both covered. Zero green fees. TrackPass pays for itself in two rounds."
+Both logged. Both reimbursed. TrackPass is paying for itself already."
 — TrackPass founding member
 
 Caption:
-Two rounds. Zero green fees.
+Two rounds. Real money back.
 
 Lions Municipal in Austin ($45/round) + Brackenridge Park in San Antonio ($40/round) = $85 in green fees. One weekend trip.
 
-TrackPass: $199/year. Two courses covered for free in a single weekend.
+TrackPass: $199/year. Log both rounds — one gets reimbursed up to $50 that month (or play free if a course has joined the partner network).
 
 trackpassgolf.com
 
@@ -431,7 +431,7 @@ Pecan Hollow Golf Course. Plano, Texas.
 
 $50–$70/round. Mature pecan trees, tight fairways. One of DFW's most played public tracks.
 
-TrackPass: 1 free round/year.
+TrackPass: green fee reimbursed up to $50/round.
 
 Part of your $199 pass — 95 TX courses covered.
 
@@ -455,7 +455,7 @@ Lock it in.
 Caption:
 Two weeks of @trackpassgolf.
 
-95 Texas public courses. $199/year founding member pricing. 1–2 free rounds per course per year.
+95 Texas public courses. $199/year founding member pricing. 2 free rounds/yr at partner courses, green fee reimbursed elsewhere.
 
 The price goes up as more courses join the partner network.
 
@@ -477,7 +477,7 @@ Which do you play first?
 Caption:
 TPC Craig Ranch vs. Firewheel.
 
-Two elite DFW public courses. Both on TrackPass. You can play both this year — 1 free round each.
+Two elite DFW public courses. Both on TrackPass. Play both this year — green fee reimbursed up to $50/round at each (subject to the monthly cap).
 
 Which do you tee off first? 👇
 
