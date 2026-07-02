@@ -5,62 +5,80 @@ Output: assets/reels/reel-<id>.mp4 + assets/reels/manifest.json
 Served on GH Pages so the worker can feed public URLs to the IG Reels API.
 Copy rules: capped-reimbursement model only — never "free anywhere",
 reimbursement always framed as up to $50/round, 1 round/month, $199/yr cap.
+Partner benefit: 1 free round per year per course.
+Style: TikTok-native capsules (Avenir Next Demi Bold, white on translucent
+black pills) — matches the AI concept reels. AI reel entries in the existing
+manifest (no courseId, custom caption) are preserved.
 
-Usage: python3 scripts/make-reels.py            # featured courses w/ local photos
+Usage: python3 scripts/make-reels.py            # courses w/ local photos
+       python3 scripts/make-reels.py --force    # regenerate existing files
 """
-import json, re, subprocess, tempfile
+import json, re, subprocess, sys, tempfile
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "assets" / "reels"
 OUT.mkdir(exist_ok=True)
-FONT = "/System/Library/Fonts/Supplemental/Arial Bold.ttf"
 W, H = 1080, 1920
+FORCE = "--force" in sys.argv
+
+def font(sz):
+    try:
+        return ImageFont.truetype("/System/Library/Fonts/Avenir Next.ttc", sz, index=2)
+    except Exception:
+        return ImageFont.truetype("/System/Library/Fonts/Supplemental/Arial Bold.ttf", sz)
 
 data = (ROOT / "assets" / "courses-data.js").read_text()
 courses = json.loads(re.search(r"window\.TRACKPASS_COURSES = (\[.*?\]);", data, re.S).group(1))
 
 def hooks(c):
+    """Returns (top_lines, cta) — each line is (text, size)."""
     fee, city, name = c.get("fee") or 40, c["city"], c["name"]
     if c.get("partner"):
-        return [
-            (540, f"{name}", 60, "w"),
-            (640, f"{city}, Texas", 46, "w"),
-            (860, "Partner course: show your pass,", 56, "w"),
-            (950, "play free. 2 rounds a year.", 56, "y"),
-            (1560, "$199/yr · trackpassgolf.com", 44, "w"),
-        ]
+        return ([(f"{name.lower()}", 56), (f"partner course: 1 free round/year.", 48),
+                 ("just show your pass.", 48)], "trackpassgolf.com · $199/yr")
     variants = [
-        [(540, f"{city} golf: ~${fee} a round", 58, "w"),
-         (840, "TrackPass pays you back up to $50", 52, "w"),
-         (930, "(1 round/mo, up to $199/yr)", 44, "y"),
-         (1560, "$199/yr · trackpassgolf.com", 44, "w")],
-        [(540, "Green fees add up.", 62, "w"),
-         (840, "Get up to $199/yr of them back.", 54, "y"),
-         (930, f"Like here — {name}.", 44, "w"),
-         (1560, "trackpassgolf.com", 44, "w")],
-        [(540, "95 Texas public courses.", 58, "w"),
-         (630, "One $199 pass.", 58, "y"),
-         (860, f"Play {name}, send the receipt,", 46, "w"),
-         (950, "get up to $50 back. Once a month.", 46, "w"),
-         (1560, "trackpassgolf.com", 44, "w")],
+        ([(f"{city.lower()} golf: ~${fee} a round", 54),
+          ("trackpass pays you back up to $50", 46),
+          ("(1 round/mo, up to $199/yr)", 42)], "trackpassgolf.com"),
+        ([("green fees add up.", 58),
+          ("get up to $199/yr of them back", 46),
+          (f"like here — {name.lower()}", 42)], "trackpassgolf.com"),
+        ([("95 texas public courses.", 54), ("one $199 pass.", 54),
+          (f"{name.lower()} included", 42)], "trackpassgolf.com"),
     ]
     return variants[sum(map(ord, c["id"])) % len(variants)]
 
-def make_overlay(lines, path):
+def capsule_line(d, txt, sz, y):
+    f = font(sz)
+    tw = d.textlength(txt, font=f)
+    while tw > W - 120 and sz > 30:
+        sz -= 2
+        f = font(sz)
+        tw = d.textlength(txt, font=f)
+    pad_x, pad_y, r = 30, 18, 24
+    x0 = (W - tw) / 2 - pad_x
+    asc, desc = f.getmetrics()
+    th = asc + desc
+    d.rounded_rectangle([x0, y, x0 + tw + 2 * pad_x, y + th + 2 * pad_y],
+                        radius=r, fill=(10, 10, 10, 165))
+    d.text(((W - tw) / 2, y + pad_y), txt, font=f, fill=(255, 255, 255, 255))
+    return y + th + 2 * pad_y + 16
+
+def make_overlay(hook_lines, cta, path):
     img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     d = ImageDraw.Draw(img)
-    for y, txt, sz, col in lines:
-        f = ImageFont.truetype(FONT, sz)
-        while d.textlength(txt, font=f) > W - 90 and sz > 30:
-            sz -= 2
-            f = ImageFont.truetype(FONT, sz)
-        w = d.textlength(txt, font=f)
-        fill = (253, 224, 71, 255) if col == "y" else (255, 255, 255, 255)
-        d.text(((W - w) / 2, y), txt, font=f, fill=fill,
-               stroke_width=6, stroke_fill=(0, 20, 10, 220))
+    y = 430
+    for txt, sz in hook_lines:
+        y = capsule_line(d, txt, sz, y)
+    capsule_line(d, cta, 40, 1580)
     img.save(path)
+
+# preserve non-course entries (AI concept reels carry their own caption)
+manifest_path = OUT / "manifest.json"
+old = json.loads(manifest_path.read_text()) if manifest_path.exists() else []
+ai_entries = [e for e in old if not e.get("courseId")]
 
 manifest = []
 made = 0
@@ -75,11 +93,12 @@ for c in courses:
     if im.width < 700:                       # too soft for 1080 vertical
         continue
     out = OUT / f"reel-{c['id']}.mp4"
-    if out.exists():
+    if out.exists() and not FORCE:
         manifest.append({"file": f"assets/reels/{out.name}", "courseId": c["id"]})
         continue
     with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as tf:
-        make_overlay(hooks(c), tf.name)
+        top, cta = hooks(c)
+        make_overlay(top, cta, tf.name)
         fc = ("[0:v]scale=1080:1920:force_original_aspect_ratio=increase,"
               "crop=1080:1920,"
               "zoompan=z='1.0+0.15*on/450':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
@@ -97,5 +116,14 @@ for c in courses:
     made += 1
     print("made", out.name, c["name"])
 
-(OUT / "manifest.json").write_text(json.dumps(manifest, indent=1))
-print(f"total reels: {len(manifest)} (new: {made})")
+# interleave AI concept reels between course reels (~1 per 2)
+merged = []
+ai = list(ai_entries)
+for i, entry in enumerate(manifest):
+    merged.append(entry)
+    if ai and i % 2 == 1:
+        merged.append(ai.pop(0))
+merged.extend(ai)
+
+manifest_path.write_text(json.dumps(merged, indent=1))
+print(f"total reels: {len(merged)} (new: {made}, ai: {len(ai_entries)})")
