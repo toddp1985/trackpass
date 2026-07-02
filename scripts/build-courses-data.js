@@ -327,7 +327,7 @@ const js = `/* TrackPass — full Texas public course directory (single source o
  * DATA ACCURACY: only confirmed real public/municipal courses. Coordinates are
  * exact for the 19 featured courses, city-approximate for the rest.
  * partner:true ONLY when a real partner deal is signed.
- * Policy: partner = 2 free rounds/yr/course (show digital pass). Any other Texas public course:
+ * Policy: partner = 1 free round/yr/course (show digital pass). Any other Texas public course:
  * pay the green fee, log the round, submit the receipt to reimbursements@trackpassgolf.com —
  * reimbursed up to $50/round, 1 round/month, up to $199/membership year.
  */

@@ -80,7 +80,7 @@ Green fees. Cart fees. Range balls. Add it up.
 
 For most TX golfers playing 10+ rounds a year, it's $400–$1,200+.
 
-TrackPass is $199. 100 TX public courses. 2 free rounds/yr at partner courses, green fee reimbursed everywhere else.
+TrackPass is $199. 100 TX public courses. 1 free round/yr at partner courses, green fee reimbursed everywhere else.
 
 What would you do with the savings?
 
@@ -125,7 +125,7 @@ Texas is a big golf state.
 
 TrackPass covers them all. One price. $199/year.
 
-Partner courses = 2 free rounds/yr. All others = green fee reimbursed up to $50/round.
+Partner courses = 1 free round/yr. All others = green fee reimbursed up to $50/round.
 
 trackpassgolf.com
 
@@ -278,14 +278,14 @@ trackpassgolf.com
 **Canva:** Clean infographic style, green/white/gold
 
 Slide 1: "Partner Courses vs. Every Other TX Course"
-Slide 2: "Partner Courses: 2 free rounds/yr per course. Show your digital pass at the pro shop. Zero paperwork."
+Slide 2: "Partner Courses: 1 free round/yr per course. Show your digital pass at the pro shop. Zero paperwork."
 Slide 3: "Any Other Texas Public Course: pay the green fee, log your round, submit the receipt. Reimbursed up to $50/round, 1 round/month, up to $199/yr."
 Slide 4: "All 95 TX public courses are covered. More partner courses = more free rounds for you."
 
 Caption:
 How the two tiers work:
 
-Partner courses: 2 free rounds per year. The course is in the network — they've installed the check-in system. Smoother experience.
+Partner courses: 1 free round per year. The course is in the network — they've installed the check-in system. Smoother experience.
 
 Any other Texas public course: pay the green fee, log the round in your dashboard, and email the receipt to reimbursements@trackpassgolf.com. Reimbursed up to $50/round, 1 round per month, up to $199 per membership year.
 
@@ -374,7 +374,7 @@ Day 5: TPC Craig Ranch, McKinney — logged
 Caption:
 5 Texas golf courses. 5 days. Every round logged for reimbursement.
 
-That's what a TrackPass looks like in practice. $199/year, 95 TX public courses, green fee reimbursed up to $50/round (1 reimbursement per month, up to $199/year), plus 2 free rounds/yr at partner courses.
+That's what a TrackPass looks like in practice. $199/year, 95 TX public courses, green fee reimbursed up to $50/round (1 reimbursement per month, up to $199/year), plus 1 free round/yr at partner courses.
 
 Some people drive 12 hours to golf in Scottsdale. Texas has 95 public courses and most people haven't played half of them.
 
@@ -455,7 +455,7 @@ Lock it in.
 Caption:
 Two weeks of @trackpassgolf.
 
-95 Texas public courses. $199/year founding member pricing. 2 free rounds/yr at partner courses, green fee reimbursed elsewhere.
+95 Texas public courses. $199/year founding member pricing. 1 free round/yr at partner courses, green fee reimbursed elsewhere.
 
 The price goes up as more courses join the partner network.
 

@@ -11,7 +11,7 @@ Post these yourself from your personal Reddit account. Space them out — don't 
 **Body:**
 Been thinking about this for a while. Texas has 570+ public golf courses and no good statewide pass.
 
-Here's what I built: TrackPass. One flat $199/year. Partner courses: 2 free rounds per year per course -- just show your digital pass at the pro shop. Any other Texas public course: pay the green fee, log the round, and submit the receipt -- reimbursed up to $50/round, 1 round per month, up to $199 per membership year.
+Here's what I built: TrackPass. One flat $199/year. Partner courses: 1 free round per year per course -- just show your digital pass at the pro shop. Any other Texas public course: pay the green fee, log the round, and submit the receipt -- reimbursed up to $50/round, 1 round per month, up to $199 per membership year.
 
 Site is at trackpassgolf.com. Still in early days as a founding-member launch, so the price is locked at $199 before it goes to $279.
 
@@ -71,6 +71,6 @@ Founding rate is $199 -- goes to $279 as the partner network grows. trackpassgol
 ## NOTE on current offer model (updated)
 
 The current model is:
-- Partner courses: show pass, play free, no receipt, no reimbursement needed -- 2 free rounds/year per course
+- Partner courses: show pass, play free, no receipt, no reimbursement needed -- 1 free round/year per course
 - Any other TX public course: pay the green fee, log the round in the member dashboard, and email the receipt to reimbursements@trackpassgolf.com -- reimbursed up to $50/round, 1 round per month, up to $199 per membership year
 Always mention reimbursement and the receipt process when describing non-partner courses -- do not claim "free" or "no receipt" for courses outside the partner network.

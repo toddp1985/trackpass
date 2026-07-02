@@ -32,7 +32,7 @@ const course = courses[dayOfYear % courses.length];
 
 // Generate caption
 function generateCaption(c) {
-  const tier = c.partner ? '⭐ Partner course — 2 free rounds/yr' : 'Green fee reimbursed up to $50/round with TrackPass';
+  const tier = c.partner ? '⭐ Partner course — 1 free round/yr' : 'Green fee reimbursed up to $50/round with TrackPass';
   const templates = [
     `${c.name} in ${c.city}, TX.\n\nGreen fee: ~$${c.fee}/round without TrackPass.\n\n${tier}.\n\nTrackPass: $199/yr flat. Play every public course in Texas.\n\nLink in bio → trackpassgolf.com\n\n#TexasGolf #${c.city.replace(/\s/,'')}Golf #MunicipalGolf #TrackPass #GolfTexas #PublicGolf`,
     `Play ${c.name} with TrackPass.\n\n${c.blurb || `One of ${c.city}'s best public courses.`}\n\nWith TrackPass ($199/yr): ${tier.toLowerCase()}.\n\nGreen fee without it: ~$${c.fee}.\n\n4 rounds and you break even. Reimbursement caps at $199/year.\n\nLink in bio.\n\n#TexasGolf #${c.city.replace(/\s/,'')} #GolfPass #TrackPass #PublicGolf #GolfTexas`,
@@ -115,7 +115,7 @@ async function postToX() {
   }
   
   // X post is max 280 chars — use shortened version
-  const xCaption = `${course.name} (${course.city}, TX) — ~$${course.fee}/round.\n\nWith TrackPass $199/yr: ${course.partner ? '2 free rounds/yr' : 'green fee reimbursed up to $50/round'}.\n\n95 TX public courses. One flat pass.\n\ntrackpassgolf.com\n\n#TexasGolf #GolfPass #PublicGolf`;
+  const xCaption = `${course.name} (${course.city}, TX) — ~$${course.fee}/round.\n\nWith TrackPass $199/yr: ${course.partner ? '1 free round/yr' : 'green fee reimbursed up to $50/round'}.\n\n95 TX public courses. One flat pass.\n\ntrackpassgolf.com\n\n#TexasGolf #GolfPass #PublicGolf`;
   
   try {
     // Use OAuth 1.0a signing (simplified — use oauth-1.0a package if available)

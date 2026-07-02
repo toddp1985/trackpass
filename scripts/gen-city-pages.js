@@ -62,7 +62,7 @@ Object.entries(byCity).forEach(([slug, data]) => {
       : `<div style="width:100%;height:140px;background:linear-gradient(135deg,#16412b,#1a5c3a);border-radius:0.75rem 0.75rem 0 0;display:flex;align-items:center;justify-content:center;color:#86efac;font-size:2rem">⛳</div>`;
     
     const tierBadge = c.partner
-      ? `<span style="background:#fde047;color:#713f12;padding:0.15rem 0.6rem;border-radius:999px;font-size:0.7rem;font-weight:700">PARTNER · 2 rounds/yr</span>`
+      ? `<span style="background:#fde047;color:#713f12;padding:0.15rem 0.6rem;border-radius:999px;font-size:0.7rem;font-weight:700">PARTNER · 1 round/yr</span>`
       : `<span style="background:#dcfce7;color:#166534;padding:0.15rem 0.6rem;border-radius:999px;font-size:0.7rem;font-weight:700">GREEN FEE REIMBURSED</span>`;
 
     const slugName = c.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,'');
@@ -137,7 +137,7 @@ Object.entries(byCity).forEach(([slug, data]) => {
   
   <div style="margin-bottom:2rem">
     <h1 style="font-family:Sora,sans-serif;font-size:2rem;font-weight:800;margin:0 0 0.5rem">${meta.h1}</h1>
-    <p style="color:#555;margin:0 0 1rem;font-size:1rem">${data.courses.length} courses covered by TrackPass${partnerCount > 0 ? ` · ${partnerCount} partner${partnerCount > 1 ? 's' : ''} (2 rounds/yr)` : ''} · ${oonCount} other courses (green fee reimbursed)</p>
+    <p style="color:#555;margin:0 0 1rem;font-size:1rem">${data.courses.length} courses covered by TrackPass${partnerCount > 0 ? ` · ${partnerCount} partner${partnerCount > 1 ? 's' : ''} (1 round/yr)` : ''} · ${oonCount} other courses (green fee reimbursed)</p>
     
     <div style="background:white;border:1px solid #dcfce7;border-radius:0.75rem;padding:1rem 1.25rem;display:inline-flex;gap:2rem;flex-wrap:wrap">
       <div>
@@ -167,7 +167,7 @@ Object.entries(byCity).forEach(([slug, data]) => {
 <section style="background:#16412b;color:white;padding:2.5rem 1.5rem;margin-top:2rem" aria-label="About TrackPass — Quick Facts">
   <div style="max-width:48rem;margin:0 auto">
     <h2 style="font-family:Sora,sans-serif;font-size:1.1rem;font-weight:700;margin:0 0 0.5rem">About TrackPass</h2>
-    <p style="color:#bbf7d0;margin-bottom:0.75rem;font-size:0.9rem;line-height:1.7">TrackPass ($199/year) is a flat-rate golf pass covering every public golf course in Texas. Partner courses: 2 free rounds/yr per course. Any other Texas public course: pay the green fee, log the round, and submit the receipt for reimbursement — up to $50/round, 1 round/month, up to $199/year. One QR code, 95 courses.</p>
+    <p style="color:#bbf7d0;margin-bottom:0.75rem;font-size:0.9rem;line-height:1.7">TrackPass ($199/year) is a flat-rate golf pass covering every public golf course in Texas. Partner courses: 1 free round/yr per course. Any other Texas public course: pay the green fee, log the round, and submit the receipt for reimbursement — up to $50/round, 1 round/month, up to $199/year. One QR code, 95 courses.</p>
     <p style="font-size:0.8rem;color:#86efac;margin:0">Closest analog: Indy Pass for skiing. <a href="/plans.html" style="color:#fde047;font-weight:700">Join now →</a> · <a href="/llms.txt" style="color:#86efac">llms.txt</a></p>
   </div>
 </section>

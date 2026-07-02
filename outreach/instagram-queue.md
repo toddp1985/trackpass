@@ -157,7 +157,7 @@ trackpassgolf.com — link in bio
 **Post time:** 6pm on day 7
 
 **Slide 1:** "100 Texas Golf Courses. One Annual Pass." — full bleed Texas outline graphic
-**Slide 2:** "Partner courses: 2 free rounds per year, per course." — gold background
+**Slide 2:** "Partner courses: 1 free round per year, per course." — gold background
 **Slide 3:** "Any other course: green fee reimbursed — up to $50/round, 1/month, up to $199/year." — green background
 **Slide 4:** "100+ public and municipal TX courses on the map." — screenshot of trackpassgolf.com/courses
 **Slide 5:** "$199/yr. No monthly fees. No blackout dates." — clean white
@@ -169,7 +169,7 @@ This is TrackPass.
 
 $199/yr. Every public golf course in Texas.
 
-Partner courses give you 2 free rounds a year. Any other course: pay the green fee, log it, and get reimbursed up to $50/round.
+Partner courses give you 1 free round a year. Any other course: pay the green fee, log it, and get reimbursed up to $50/round.
 
 There are 100+ courses on the map right now. More being added every week.
 

@@ -14,7 +14,7 @@
 Every public golf course in Texas.
 One pass. $199/year.
 
-2 free rounds/yr at partner courses. Green fee reimbursed at any other TX public course.
+1 free round/yr at partner courses. Green fee reimbursed at any other TX public course.
 No blackout dates. No reservations required.
 
 trackpassgolf.com — link in bio.
@@ -31,7 +31,7 @@ trackpassgolf.com — link in bio.
 **Slide 1:** "Course Spotlight: TPC Craig Ranch, McKinney TX"
 **Slide 2:** Photo of course + "Par 72 | 7,437 yards | Rated one of Texas's best public courses"
 **Slide 3:** "Walk-up rate: $85-$150/round"
-**Slide 4:** "TrackPass members: green fee reimbursed up to $50/round. (Partner courses get 2 free rounds/yr.)"
+**Slide 4:** "TrackPass members: green fee reimbursed up to $50/round. (Partner courses get 1 free round/yr.)"
 **Slide 5:** "Your $199 pass covers this and 99 other TX public courses. trackpassgolf.com"
 
 **Caption:**
@@ -39,7 +39,7 @@ TPC Craig Ranch. McKinney, Texas.
 
 One of the finest public courses in the state — pay the green fee here and TrackPass reimburses you up to $50.
 
-A single round runs $85–$150. Your $199 pass covers reimbursement here and at 99 other TX public courses. Partner courses unlock 2 free rounds/yr when they join the network.
+A single round runs $85–$150. Your $199 pass covers reimbursement here and at 99 other TX public courses. Partner courses unlock 1 free round/yr when they join the network.
 
 trackpassgolf.com
 

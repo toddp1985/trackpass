@@ -66,7 +66,7 @@ function generatePage(c) {
     },
     {
       q: `What is TrackPass?`,
-      a: `TrackPass is a $199/year Texas golf pass covering 95+ Texas public and municipal courses. Partner courses: 2 free rounds per year, just show your pass. Any other Texas public course: pay your green fee, log your round, and submit the receipt — reimbursed up to $50/round, 1 round per month, up to $199 per membership year. One flat price for the whole season.`
+      a: `TrackPass is a $199/year Texas golf pass covering 95+ Texas public and municipal courses. Partner courses: 1 free round per year, just show your pass. Any other Texas public course: pay your green fee, log your round, and submit the receipt — reimbursed up to $50/round, 1 round per month, up to $199 per membership year. One flat price for the whole season.`
     },
     {
       q: `Is ${c.name} a good golf course?`,

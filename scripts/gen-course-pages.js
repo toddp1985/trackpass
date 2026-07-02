@@ -248,12 +248,12 @@ function generatePage(course) {
 <link rel="icon" type="image/png" href="../../assets/favicon.png">
 <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
 <title>${course.name} Green Fees &amp; Tee Times | TrackPass Texas Golf Pass</title>
-<meta name="description" content="Play ${course.name} in ${course.city}, TX with TrackPass — the $199/year Texas golf pass. Partner courses: 2 free rounds/year. Everywhere else: green fee reimbursed — up to $50/round, 1 round/month, up to $199/year. $199/year, any Texas public course."/>
+<meta name="description" content="Play ${course.name} in ${course.city}, TX with TrackPass — the $199/year Texas golf pass. Partner courses: 1 free round/year. Everywhere else: green fee reimbursed — up to $50/round, 1 round/month, up to $199/year. $199/year, any Texas public course."/>
 <link rel="canonical" href="${canonical}"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="${canonical}"/>
 <meta property="og:title" content="${course.name} — Covered by TrackPass | Texas Golf Pass"/>
-<meta property="og:description" content="Play ${course.name} in ${course.city}, TX with TrackPass. $199/year — partner courses get 2 free rounds/year, other courses: green fee reimbursed up to $50/round, 1 round/month, up to $199/year. Includes ${course.name}."/>
+<meta property="og:description" content="Play ${course.name} in ${course.city}, TX with TrackPass. $199/year — partner courses get 1 free round/year, other courses: green fee reimbursed up to $50/round, 1 round/month, up to $199/year. Includes ${course.name}."/>
 <meta property="og:site_name" content="TrackPass"/>
 <script type="application/ld+json">
 {
@@ -278,12 +278,12 @@ function generatePage(course) {
         {
           "@type": "Question",
           "name": "How much does it cost to play ${course.name}?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Green fees at ${course.name} in ${course.city} are approximately $${course.fee}/round. With TrackPass ($199/year): partner courses get 2 free rounds per year — just show your pass. Any other Texas public course: pay your green fee, log your round, and submit the receipt — reimbursed up to $50/round, 1 round per month, up to $199 per membership year." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Green fees at ${course.name} in ${course.city} are approximately $${course.fee}/round. With TrackPass ($199/year): partner courses get 1 free round per year — just show your pass. Any other Texas public course: pay your green fee, log your round, and submit the receipt — reimbursed up to $50/round, 1 round per month, up to $199 per membership year." }
         },
         {
           "@type": "Question",
           "name": "Is ${course.name} covered by TrackPass?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. TrackPass covers ${course.name} in ${course.city}, TX. Partner courses: show your pass and play free — 2 rounds per year per course. Any other Texas public course (like most public TX courses): pay the green fee, log the round, and submit your receipt — reimbursed up to $50/round, 1 round per month, up to $199/year. $199/year." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. TrackPass covers ${course.name} in ${course.city}, TX. Partner courses: show your pass and play free — 1 round per year per course. Any other Texas public course (like most public TX courses): pay the green fee, log the round, and submit your receipt — reimbursed up to $50/round, 1 round per month, up to $199/year. $199/year." }
         }
       ]
     },
@@ -305,7 +305,7 @@ ${tailwindConfig()}
 <!-- Nav -->
 <nav class="fixed top-0 w-full z-50 bg-surface-off-white/80 backdrop-blur-xl shadow-sm">
   <div class="flex justify-between items-center h-20 px-4 md:px-8 max-w-5xl mx-auto">
-    <a href="${SITE_URL}/"><img src="../../assets/trackpass-logo.png" alt="TrackPass" class="h-9 md:h-11 w-auto"></a>
+    <a href="${SITE_URL}/"><img src="../../assets/trackpass-logo-h.png" alt="TrackPass" class="h-9 md:h-11 w-auto"></a>
     <div class="hidden md:flex items-center gap-8">
       <a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md text-body-md" href="${SITE_URL}/courses.html">Find Courses</a>
       <a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md text-body-md" href="${SITE_URL}/plans.html">Membership</a>
@@ -333,7 +333,7 @@ ${tailwindConfig()}
     </div>
     <div class="p-5 rounded-2xl ${course.partner ? 'bg-[#b8860b]/10 border border-[#b8860b]/30' : 'bg-primary-container border border-primary/20'}">
       <div class="text-label-lg ${course.partner ? 'text-[#7a5c00]' : 'text-on-primary-container'} font-label-lg uppercase tracking-wide mb-1">${course.partner ? '⭐ Partner Course' : 'Green Fee Reimbursed'}</div>
-      <div class="text-3xl font-bold ${course.partner ? 'text-[#7a5c00]' : 'text-primary-fixed'} font-headline-lg">${course.partner ? '2 free rounds' : 'Up to $50'}<span class="text-base font-normal ${course.partner ? 'text-[#7a5c00]' : 'text-on-primary-container'}">${course.partner ? '/year at this course' : '/round, 1x/month'}</span></div>
+      <div class="text-3xl font-bold ${course.partner ? 'text-[#7a5c00]' : 'text-primary-fixed'} font-headline-lg">${course.partner ? '1 free round' : 'Up to $50'}<span class="text-base font-normal ${course.partner ? 'text-[#7a5c00]' : 'text-on-primary-container'}">${course.partner ? '/year at this course' : '/round, 1x/month'}</span></div>
     </div>
     <div class="p-5 rounded-2xl bg-secondary-container border border-secondary/20">
       <div class="text-label-lg text-on-secondary-container font-label-lg uppercase tracking-wide mb-1">TrackPass Annual Cost</div>
@@ -364,14 +364,14 @@ ${tailwindConfig()}
           </li>
           <li class="flex items-start gap-3">
             <span class="material-symbols-outlined text-secondary mt-0.5">check_circle</span>
-            <span>Log in to your TrackPass member dashboard and log your round. ${course.partner ? 'As a <strong>partner course</strong>, you get <strong>2 free rounds per year</strong> here.' : 'Email your receipt to reimbursements@trackpassgolf.com — TrackPass reimburses <strong>up to $50/round</strong>, 1 round per month, up to $199 per membership year. Partner courses get 2 free rounds/year when they join the network.'}</span>
+            <span>Log in to your TrackPass member dashboard and log your round. ${course.partner ? 'As a <strong>partner course</strong>, you get <strong>1 free round per year</strong> here.' : 'Email your receipt to reimbursements@trackpassgolf.com — TrackPass reimburses <strong>up to $50/round</strong>, 1 round per month, up to $199 per membership year. Partner courses get 1 free round/year when they join the network.'}</span>
           </li>
         </ul>
       </section>
 
       <section>
         <h2 class="text-xl font-bold text-primary font-headline-md mb-3">Is $199 worth it for ${course.name}?</h2>
-        <p class="text-on-surface font-body-md text-body-lg leading-relaxed">At ~$${course.fee}/round, TrackPass reimburses your round at ${course.name} — pay the green fee, log it, and submit your receipt to get up to $50 back. With 100+ covered courses, the pass pays for itself quickly. Partner courses give you 2 free rounds/year; at all other TX public courses, green fees are reimbursed up to $50/round (1 round/month, up to $199/year).</p>
+        <p class="text-on-surface font-body-md text-body-lg leading-relaxed">At ~$${course.fee}/round, TrackPass reimburses your round at ${course.name} — pay the green fee, log it, and submit your receipt to get up to $50 back. With 100+ covered courses, the pass pays for itself quickly. Partner courses give you 1 free round/year; at all other TX public courses, green fees are reimbursed up to $50/round (1 round/month, up to $199/year).</p>
       </section>
     </div>
 
@@ -379,7 +379,7 @@ ${tailwindConfig()}
     <div class="md:col-span-2">
       <div class="sticky top-28 p-6 rounded-2xl bg-primary-container border border-primary/20 space-y-4">
         <h3 class="text-lg font-bold text-primary font-headline-md">Get TrackPass</h3>
-        <p class="text-on-surface-variant text-sm">$199/year. Partner courses: 2 free rounds/year. Everywhere else: green fee reimbursed — up to $50/round, 1 round/month, up to $199/year. Any Texas public course.</p>
+        <p class="text-on-surface-variant text-sm">$199/year. Partner courses: 1 free round/year. Everywhere else: green fee reimbursed — up to $50/round, 1 round/month, up to $199/year. Any Texas public course.</p>
         <a href="${STRIPE_LINK}" class="block w-full text-center bg-primary text-white py-3 rounded-full font-bold hover:bg-deep-forest transition-all duration-200">
           Join Now — $199/year →
         </a>
@@ -403,7 +403,7 @@ ${tailwindConfig()}
   <!-- Bottom CTA -->
   <section class="mt-16 p-8 rounded-3xl bg-primary text-white text-center">
     <h2 class="text-2xl font-bold font-headline-md mb-2">Play Any Texas Course — $199/year</h2>
-    <p class="text-white/80 mb-6">TrackPass covers ${course.name} and 100+ other Texas public courses. Partner courses: 2 free rounds/year. Everywhere else: green fee reimbursed — up to $50/round, 1 round/month, up to $199/year. One flat $199/year.</p>
+    <p class="text-white/80 mb-6">TrackPass covers ${course.name} and 100+ other Texas public courses. Partner courses: 1 free round/year. Everywhere else: green fee reimbursed — up to $50/round, 1 round/month, up to $199/year. One flat $199/year.</p>
     <a href="${STRIPE_LINK}" class="inline-block bg-white text-primary px-8 py-3 rounded-full font-bold hover:bg-surface-off-white transition-all duration-200">
       Join the Founding Class →
     </a>
